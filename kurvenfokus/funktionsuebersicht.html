@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurvenfokus v0.0.8 – Funktionsuebersicht</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --elevated: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --cyan: #00d4ff;
+    --magenta: #ff00ff;
+    --gold: #ffd700;
+    --green: #00ff88;
+    --red: #ff4d4d;
+    --text: #ffffff;
+    --text2: rgba(255,255,255,0.6);
+    --text3: rgba(255,255,255,0.4);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Header ─── */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: linear-gradient(180deg, rgba(0,212,255,0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--cyan); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ─── Tab Nav ─── */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 24px 24px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    color: var(--text3);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text2); }
+  .tab-btn.active {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── Container ─── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── Section ─── */
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  /* ─── Feature Cards ─── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(0,212,255,0.2);
+  }
+  .feature-card .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .icon-cyan { background: rgba(0,212,255,0.12); }
+  .icon-gold { background: rgba(255,215,0,0.12); }
+  .icon-magenta { background: rgba(255,0,255,0.12); }
+  .icon-green { background: rgba(0,255,136,0.12); }
+  .icon-red { background: rgba(255,77,77,0.12); }
+
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .feature-card .detail-list {
+    margin-top: 12px;
+    padding: 0;
+    list-style: none;
+  }
+  .feature-card .detail-list li {
+    font-size: 13px;
+    color: var(--text3);
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .feature-card .detail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    opacity: 0.5;
+  }
+
+  /* ─── Device Frame ─── */
+  .device-section {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .device-frame {
+    flex: 0 0 auto;
+    position: relative;
+  }
+  .device-info {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  /* iPhone Frame */
+  .iphone-frame {
+    width: 300px;
+    background: #1a1a1a;
+    border-radius: 40px;
+    padding: 16px;
+    border: 3px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .iphone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 14px 14px;
+    margin: -16px auto 8px;
+    position: relative;
+    z-index: 2;
+  }
+  .iphone-screen {
+    background: var(--bg);
+    border-radius: 28px;
+    overflow: hidden;
+    min-height: 580px;
+  }
+
+  /* iPad Frame */
+  .ipad-frame {
+    width: 100%;
+    max-width: 900px;
+    background: #1a1a1a;
+    border-radius: 24px;
+    padding: 14px;
+    border: 3px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    margin: 0 auto;
+  }
+  .ipad-screen {
+    background: var(--bg);
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 500px;
+  }
+
+  /* ─── Mockup Elemente ─── */
+  .mock-statusbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .mock-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-navbar .title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .mock-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .mock-map {
+    height: 200px;
+    background: linear-gradient(135deg, #1a2a1a, #0d1a2a, #1a1a2a);
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-map .track {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    width: 80%;
+    height: 50%;
+  }
+  .mock-map .track svg { width: 100%; height: 100%; }
+  .mock-map .map-controls {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mock-map .map-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--text);
+  }
+  .mock-quickstats {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-stat {
+    text-align: center;
+  }
+  .mock-stat .val {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: var(--text);
+  }
+  .mock-stat .lbl {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .mock-timeline {
+    padding: 10px 14px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+  }
+  .mock-slider-track {
+    height: 4px;
+    background: var(--elevated);
+    border-radius: 2px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .mock-slider-fill {
+    height: 100%;
+    width: 35%;
+    background: var(--cyan);
+    border-radius: 2px;
+  }
+  .mock-slider-thumb {
+    position: absolute;
+    top: -5px;
+    left: 35%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--cyan);
+    border: 2px solid white;
+    transform: translateX(-50%);
+  }
+  .mock-pause-zone {
+    position: absolute;
+    height: 100%;
+    background: rgba(255,215,0,0.35);
+    border-radius: 2px;
+  }
+  .mock-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  .mock-playback {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: var(--text2);
+  }
+  .mock-playback .play { color: var(--text); font-size: 16px; }
+  .mock-time {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .mock-speed-btn {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    padding: 3px 8px;
+    background: var(--elevated);
+    border-radius: 6px;
+  }
+  .mock-chart {
+    height: 80px;
+    margin: 8px 12px;
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-chart .chart-label {
+    font-size: 10px;
+    color: var(--text3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .mock-chart svg {
+    width: 100%;
+    height: 50px;
+    margin-top: 4px;
+  }
+
+  /* ─── Annotated Layout ─── */
+  .annotated-layout {
+    position: relative;
+  }
+  .annotation {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .annotation .line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .annotation .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ─── iPad Layout Modes ─── */
+  .layout-modes {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .layout-mode-btn {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--text3);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .layout-mode-btn:hover { border-color: var(--text3); color: var(--text2); }
+  .layout-mode-btn.active {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0,212,255,0.08);
+  }
+
+  .ipad-layout {
+    display: none;
+    gap: 2px;
+    min-height: 420px;
+  }
+  .ipad-layout.active { display: flex; }
+
+  .ipad-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    overflow: hidden;
+  }
+  .ipad-panel .panel-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text3);
+    margin-bottom: 8px;
+  }
+
+  /* ─── Interaction Table ─── */
+  .interaction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .interaction-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .interaction-item .gesture-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .interaction-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .interaction-item p {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* ─── KPI Grid ─── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .kpi-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .kpi-item .kpi-val {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: var(--cyan);
+  }
+  .kpi-item .kpi-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .kpi-item .kpi-desc {
+    font-size: 10px;
+    color: var(--text3);
+    opacity: 0.6;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ─── Import Pipeline ─── */
+  .pipeline {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .pipeline-step {
+    flex: 1;
+    min-width: 140px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .pipeline-step:first-child { border-radius: 12px 0 0 12px; }
+  .pipeline-step:last-child { border-radius: 0 12px 12px 0; }
+  .pipeline-step .step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cyan);
+    opacity: 0.5;
+    margin-bottom: 6px;
+  }
+  .pipeline-step .step-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .pipeline-step h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .pipeline-step p {
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text3);
+    font-size: 18px;
+    padding: 0 2px;
+  }
+
+  /* ─── Color Palette ─── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .color-swatch {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .color-swatch .swatch-color {
+    height: 56px;
+  }
+  .color-swatch .swatch-info {
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+  .color-swatch .swatch-name {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .color-swatch .swatch-hex {
+    font-size: 10px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .color-swatch .swatch-use {
+    font-size: 10px;
+    color: var(--text3);
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  /* ─── Comparison Badge ─── */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-pro {
+    background: rgba(255,215,0,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(255,215,0,0.3);
+  }
+  .badge-new {
+    background: rgba(0,255,136,0.15);
+    color: var(--green);
+    border: 1px solid rgba(0,255,136,0.3);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .section-title { font-size: 22px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .device-section { flex-direction: column; align-items: center; }
+    .device-info { min-width: unset; }
+    .pipeline { flex-direction: column; }
+    .pipeline-step { border-radius: 12px !important; }
+    .pipeline-arrow { justify-content: center; transform: rotate(90deg); }
+    .tab-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 0; }
+    .tab-btn { white-space: nowrap; font-size: 12px; padding: 10px 14px; }
+  }
+
+  /* ─── Legend Marker ─── */
+  .marker-demo {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .marker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .marker-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .marker-label {
+    font-size: 13px;
+    color: var(--text2);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<header class="hero">
+  <div class="hero-badge">Version 0.0.8</div>
+  <h1><span>Kurvenfokus</span> Funktionsuebersicht</h1>
+  <p>Motorrad-Telemetrie visualisieren, analysieren und vergleichen — auf iPhone und iPad.</p>
+</header>
+
+<!-- ═══════════════════════════════ TABS ═══════════════════════════════ -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('iphone')">iPhone</button>
+  <button class="tab-btn" onclick="switchTab('ipad')">iPad</button>
+  <button class="tab-btn" onclick="switchTab('features')">Alle Features</button>
+  <button class="tab-btn" onclick="switchTab('karte')">Karte</button>
+  <button class="tab-btn" onclick="switchTab('import')">Import</button>
+  <button class="tab-btn" onclick="switchTab('design')">Design-System</button>
+</nav>
+
+<!-- ═══════════════════════════════ IPHONE ═══════════════════════════════ -->
+<div id="tab-iphone" class="tab-content active">
+  <div class="container">
+    <div class="section">
+      <div class="section-label">iPhone Layout</div>
+      <div class="section-title">Kompakt und uebersichtlich</div>
+      <div class="section-desc">Vertikales Scroll-Layout — alles auf einen Blick, optimiert fuer einfache Einhand-Bedienung.</div>
+
+      <div class="device-section">
+        <!-- iPhone Mockup -->
+        <div class="device-frame">
+          <div class="iphone-frame">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+              <!-- Status Bar -->
+              <div class="mock-statusbar">
+                <span>14:28</span>
+                <span style="font-size:9px; letter-spacing:1px">KURVENFOKUS</span>
+                <span>100%</span>
+              </div>
+
+              <!-- Navbar -->
+              <div class="mock-navbar">
+                <div class="mock-btn" style="font-size:16px">☰</div>
+                <div class="title" style="color:var(--text)">Alpenpass Tour</div>
+                <div class="mock-btn" style="font-size:14px">⚡</div>
+              </div>
+
+              <!-- Map -->
+              <div class="mock-map" style="height:180px">
+                <svg viewBox="0 0 280 140" style="position:absolute;top:10px;left:10px;width:calc(100% - 20px);height:calc(100% - 20px)">
+                  <path d="M20,100 C60,90 80,40 120,50 S180,80 200,30 S240,60 260,40" stroke="var(--cyan)" stroke-width="2.5" fill="none" opacity="0.8"/>
+                  <circle cx="120" cy="50" r="4" fill="var(--cyan)" opacity="0.7"/>
+                  <circle cx="200" cy="30" r="4" fill="var(--magenta)" opacity="0.7"/>
+                  <circle cx="80" cy="56" r="4" fill="var(--cyan)" opacity="0.7"/>
+                  <circle cx="165" cy="70" r="3" fill="var(--gold)" opacity="0.8"/>
+                  <text x="165" y="64" font-size="8" fill="var(--gold)" text-anchor="middle">&#9749;</text>
+                  <circle cx="155" cy="65" r="6" fill="var(--green)" stroke="white" stroke-width="2"/>
+                </svg>
+                <div class="map-controls">
+                  <div class="map-btn">&#9974;</div>
+                  <div class="map-btn">+</div>
+                  <div class="map-btn">-</div>
+                </div>
+                <div style="position:absolute;bottom:6px;left:10px;display:flex;gap:8px;font-size:8px;color:var(--text3)">
+                  <span><span style="color:var(--cyan)">&#9679;</span> Links</span>
+                  <span><span style="color:var(--magenta)">&#9679;</span> Rechts</span>
+                  <span><span style="color:var(--green)">&#9679;</span> Position</span>
+                </div>
+              </div>
+
+              <!-- Quick Stats -->
+              <div class="mock-quickstats">
+                <div class="mock-stat">
+                  <div class="val">42.3</div>
+                  <div class="lbl">km</div>
+                </div>
+                <div style="width:1px;background:var(--border);margin:4px 0"></div>
+                <div class="mock-stat">
+                  <div class="val">128</div>
+                  <div class="lbl">km/h max</div>
+                </div>
+                <div style="width:1px;background:var(--border);margin:4px 0"></div>
+                <div class="mock-stat">
+                  <div class="val">38°</div>
+                  <div class="lbl">max lean</div>
+                </div>
+                <div style="width:1px;background:var(--border);margin:4px 0"></div>
+                <div class="mock-stat">
+                  <div class="val">24</div>
+                  <div class="lbl">kurven</div>
+                </div>
+              </div>
+
+              <!-- Charts -->
+              <div class="mock-chart">
+                <div class="chart-label">Speed</div>
+                <svg viewBox="0 0 240 40">
+                  <defs>
+                    <linearGradient id="speedGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,35 L20,30 L40,25 L60,15 L80,20 L100,10 L120,18 L140,8 L160,22 L180,12 L200,28 L220,20 L240,32" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+                  <path d="M0,35 L20,30 L40,25 L60,15 L80,20 L100,10 L120,18 L140,8 L160,22 L180,12 L200,28 L220,20 L240,32 L240,40 L0,40Z" fill="url(#speedGrad)"/>
+                  <line x1="84" y1="0" x2="84" y2="40" stroke="var(--text3)" stroke-width="0.5" stroke-dasharray="3,2"/>
+                </svg>
+              </div>
+
+              <div class="mock-chart">
+                <div class="chart-label">Lean</div>
+                <svg viewBox="0 0 240 40">
+                  <path d="M0,20 L20,12 L40,8 L60,15 L80,22 L100,28 L120,20 L140,14 L160,24 L180,30 L200,20 L220,10 L240,18" stroke="var(--cyan)" stroke-width="1" fill="none" opacity="0.6"/>
+                  <path d="M0,20 L20,28 L40,32 L60,25 L80,18 L100,12 L120,20 L140,26 L160,16 L180,10 L200,20 L220,30 L240,22" stroke="var(--magenta)" stroke-width="1" fill="none" opacity="0.6"/>
+                </svg>
+              </div>
+
+              <!-- Timeline -->
+              <div class="mock-timeline">
+                <div class="mock-slider-track">
+                  <div class="mock-pause-zone" style="left:55%;width:8%"></div>
+                  <div class="mock-slider-fill"></div>
+                  <div class="mock-slider-thumb"></div>
+                </div>
+                <div class="mock-controls">
+                  <div class="mock-playback">
+                    <span>&#9664;&#9664;</span>
+                    <span class="play">&#9654;</span>
+                    <span>&#9654;&#9654;</span>
+                  </div>
+                  <div class="mock-time">04:12 / 12:38</div>
+                  <div style="display:flex;gap:6px;align-items:center">
+                    <span style="font-size:12px;color:var(--gold)">&#9749;</span>
+                    <div class="mock-speed-btn">2x</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone Erklaerungen -->
+        <div class="device-info">
+          <h3 style="font-size:20px;margin-bottom:20px">iPhone-Elemente im Detail</h3>
+
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="interaction-item">
+              <div class="gesture-icon">&#9776;</div>
+              <div>
+                <h4>Burger-Menu</h4>
+                <p>Tour-Liste, Import, Vergleich, Export (Pro), Hilfe-Modus, Legal-Links. Oeffnet als Sheet von unten.</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon" style="color:var(--cyan)">&#127758;</div>
+              <div>
+                <h4>Interaktive Karte</h4>
+                <p>MapKit mit Track, Kurven-Markern (antippbar), Pausen-Markern, Positions-Punkt. Fullscreen-Button oben rechts. Kartenstil umschaltbar.</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon" style="font-size:14px;font-weight:700;color:var(--cyan)">42</div>
+              <div>
+                <h4>QuickStats-Leiste <span class="badge badge-new">NEU</span></h4>
+                <p>4 wichtigste Werte direkt unter der Karte: Distanz, Max Speed, Max Lean, Kurven-Anzahl. Nur auf iPhone.</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon" style="color:var(--cyan)">&#128200;</div>
+              <div>
+                <h4>Speed- &amp; Lean-Charts</h4>
+                <p>Interaktive Diagramme mit Scrubber-Linie bei aktueller Zeitposition. LTTB-Sampling fuer fluessige Performance (max 500 Punkte).</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon">&#9654;</div>
+              <div>
+                <h4>Timeline &amp; Playback</h4>
+                <p>Scrubber mit Pausen-Zonen (gelb). Play/Pause, Skip +-10s, Speed 0.25x–20x. Vertikale Wischgeste aendert Speed.</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon" style="color:var(--gold)">&#9749;</div>
+              <div>
+                <h4>Pausen-Erkennung <span class="badge badge-new">NEU</span></h4>
+                <p>Automatisch erkannte Stopps (>60s) als Marker auf Karte und Timeline. Antippbar — springt zur Stelle. Toggle per Kaffeetassen-Button.</p>
+              </div>
+            </div>
+            <div class="interaction-item">
+              <div class="gesture-icon" style="color:var(--magenta)">&#10554;</div>
+              <div>
+                <h4>Kurven-Details</h4>
+                <p>Klappbare Sektionen: Kurven-Chips (scrollbar), Verteilungs-Analyse, alle Statistiken. Kurve antippen fuer Fokus-Modus.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ IPAD ═══════════════════════════════ -->
+<div id="tab-ipad" class="tab-content">
+  <div class="container">
+    <div class="section">
+      <div class="section-label">iPad Layouts</div>
+      <div class="section-title">3 Layouts fuer jede Situation</div>
+      <div class="section-desc">Das iPad nutzt den grossen Bildschirm mit drei umschaltbaren Layout-Modi — waehlbar per Picker oben rechts.</div>
+
+      <!-- Layout Mode Picker -->
+      <div class="layout-modes">
+        <button class="layout-mode-btn active" onclick="switchIPadLayout('standard')">Standard</button>
+        <button class="layout-mode-btn" onclick="switchIPadLayout('mapfocus')">Map Focus</button>
+        <button class="layout-mode-btn" onclick="switchIPadLayout('split')">Split View</button>
+      </div>
+
+      <!-- iPad Device -->
+      <div class="ipad-frame">
+        <div class="ipad-screen" style="padding:8px">
+
+          <!-- Standard Layout -->
+          <div id="ipad-standard" class="ipad-layout active">
+            <!-- Linke Spalte -->
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:2;min-height:200px">
+                <div class="panel-title">Karte</div>
+                <div style="background:linear-gradient(135deg,#1a2a1a,#0d1a2a);border-radius:6px;height:calc(100% - 24px);position:relative">
+                  <svg viewBox="0 0 400 200" style="width:100%;height:100%">
+                    <path d="M30,150 C80,130 120,50 180,70 S280,120 320,40 S380,80 390,50" stroke="var(--cyan)" stroke-width="2" fill="none" opacity="0.7"/>
+                    <circle cx="180" cy="70" r="4" fill="var(--cyan)" opacity="0.7"/>
+                    <circle cx="320" cy="40" r="4" fill="var(--magenta)" opacity="0.7"/>
+                    <circle cx="120" cy="76" r="4" fill="var(--cyan)" opacity="0.7"/>
+                    <circle cx="250" cy="95" r="3" fill="var(--gold)" opacity="0.8"/>
+                    <circle cx="230" cy="90" r="5" fill="var(--green)" stroke="white" stroke-width="1.5"/>
+                  </svg>
+                  <div style="position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:3px">
+                    <div class="map-btn" style="width:24px;height:24px;font-size:9px">&#9974;</div>
+                    <div class="map-btn" style="width:24px;height:24px;font-size:9px">+</div>
+                    <div class="map-btn" style="width:24px;height:24px;font-size:9px">-</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ipad-panel" style="flex:0 0 80px">
+                <div class="panel-title">Kurven-Chips</div>
+                <div style="display:flex;gap:6px;overflow:hidden">
+                  <div style="background:var(--elevated);border-radius:8px;padding:6px 10px;font-size:10px;text-align:center;min-width:48px">
+                    <div style="color:var(--cyan);font-size:8px">L #1</div>
+                    <div style="font-weight:700">32°</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:8px;padding:6px 10px;font-size:10px;text-align:center;min-width:48px">
+                    <div style="color:var(--magenta);font-size:8px">R #2</div>
+                    <div style="font-weight:700">28°</div>
+                  </div>
+                  <div style="background:rgba(0,212,255,0.15);border:1px solid var(--cyan);border-radius:8px;padding:6px 10px;font-size:10px;text-align:center;min-width:48px">
+                    <div style="color:var(--cyan);font-size:8px">L #3</div>
+                    <div style="font-weight:700;color:var(--cyan)">38°</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:8px;padding:6px 10px;font-size:10px;text-align:center;min-width:48px">
+                    <div style="color:var(--magenta);font-size:8px">R #4</div>
+                    <div style="font-weight:700">25°</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:8px;padding:6px 10px;font-size:10px;text-align:center;min-width:48px;color:var(--text3)">
+                    <div style="font-size:8px">...</div>
+                    <div style="font-weight:700">+8</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Rechte Spalte -->
+            <div style="flex:0 0 320px;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Statistiken</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace">42.3</div>
+                    <div style="color:var(--text3);font-size:9px">DISTANZ (KM)</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace">128</div>
+                    <div style="color:var(--text3);font-size:9px">MAX SPEED</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace;color:var(--cyan)">38°</div>
+                    <div style="color:var(--text3);font-size:9px">MAX LEAN L</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace;color:var(--magenta)">34°</div>
+                    <div style="color:var(--text3);font-size:9px">MAX LEAN R</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace">24</div>
+                    <div style="color:var(--text3);font-size:9px">KURVEN</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:6px;padding:8px;text-align:center">
+                    <div style="font-weight:700;font-size:16px;font-family:monospace">486</div>
+                    <div style="color:var(--text3);font-size:9px">HOEHE (M)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Charts</div>
+                <svg viewBox="0 0 280 60" style="width:100%;height:60px">
+                  <defs>
+                    <linearGradient id="sg2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,50 L30,42 L60,30 L90,18 L120,25 L150,12 L180,22 L210,8 L240,28 L270,22" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+                  <path d="M0,50 L30,42 L60,30 L90,18 L120,25 L150,12 L180,22 L210,8 L240,28 L270,22 L270,60 L0,60Z" fill="url(#sg2)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Focus Layout -->
+          <div id="ipad-mapfocus" class="ipad-layout">
+            <div style="flex:2;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1;min-height:380px">
+                <div class="panel-title">Karte (Grossansicht)</div>
+                <div style="background:linear-gradient(135deg,#1a2a1a,#0d1a2a);border-radius:6px;height:calc(100% - 24px);position:relative">
+                  <svg viewBox="0 0 500 300" style="width:100%;height:100%">
+                    <path d="M30,220 C100,180 140,60 220,90 S350,160 400,50 S470,100 490,60" stroke="var(--cyan)" stroke-width="2.5" fill="none" opacity="0.7"/>
+                    <circle cx="220" cy="90" r="5" fill="var(--cyan)" opacity="0.7"/>
+                    <circle cx="400" cy="50" r="5" fill="var(--magenta)" opacity="0.7"/>
+                    <circle cx="140" cy="100" r="5" fill="var(--cyan)" opacity="0.7"/>
+                    <circle cx="310" cy="130" r="5" fill="var(--magenta)" opacity="0.7"/>
+                    <circle cx="280" cy="120" r="6" fill="var(--green)" stroke="white" stroke-width="2"/>
+                  </svg>
+                  <div style="position:absolute;bottom:8px;right:8px;display:flex;gap:8px;font-size:9px;color:var(--text3)">
+                    <span><span style="color:var(--cyan)">&#9679;</span> Links</span>
+                    <span><span style="color:var(--magenta)">&#9679;</span> Rechts</span>
+                    <span><span style="color:var(--gold)">&#9749;</span> Pausen</span>
+                    <span><span style="color:var(--green)">&#9679;</span> Position</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="flex:0 0 280px;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Stats + Charts</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:10px">
+                  <div style="background:var(--elevated);border-radius:4px;padding:6px;text-align:center">
+                    <div style="font-weight:700;font-family:monospace">42.3 km</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:4px;padding:6px;text-align:center">
+                    <div style="font-weight:700;font-family:monospace">128 km/h</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:4px;padding:6px;text-align:center">
+                    <div style="font-weight:700;font-family:monospace;color:var(--cyan)">38° L</div>
+                  </div>
+                  <div style="background:var(--elevated);border-radius:4px;padding:6px;text-align:center">
+                    <div style="font-weight:700;font-family:monospace;color:var(--magenta)">34° R</div>
+                  </div>
+                </div>
+                <svg viewBox="0 0 240 50" style="width:100%;height:50px;margin-top:8px">
+                  <path d="M0,42 L25,36 L50,26 L75,14 L100,20 L125,10 L150,18 L175,6 L200,24 L225,18" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+                </svg>
+              </div>
+              <div class="ipad-panel" style="flex:0 0 80px">
+                <div class="panel-title">Kurven</div>
+                <div style="display:flex;gap:4px;flex-wrap:wrap">
+                  <span style="background:var(--elevated);border-radius:6px;padding:4px 8px;font-size:9px;color:var(--cyan)">L#1 32°</span>
+                  <span style="background:var(--elevated);border-radius:6px;padding:4px 8px;font-size:9px;color:var(--magenta)">R#2 28°</span>
+                  <span style="background:rgba(0,212,255,0.15);border:1px solid var(--cyan);border-radius:6px;padding:4px 8px;font-size:9px;color:var(--cyan)">L#3 38°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Split View Layout -->
+          <div id="ipad-split" class="ipad-layout">
+            <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Karte</div>
+                <div style="background:linear-gradient(135deg,#1a2a1a,#0d1a2a);border-radius:6px;height:calc(100% - 24px)">
+                  <svg viewBox="0 0 280 350" style="width:100%;height:100%">
+                    <path d="M20,280 C70,240 100,80 160,120 S240,200 260,60" stroke="var(--cyan)" stroke-width="2" fill="none" opacity="0.7"/>
+                    <circle cx="160" cy="120" r="4" fill="var(--cyan)" opacity="0.7"/>
+                    <circle cx="260" cy="60" r="4" fill="var(--magenta)" opacity="0.7"/>
+                    <circle cx="140" cy="140" r="5" fill="var(--green)" stroke="white" stroke-width="1.5"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div style="flex:0 0 240px;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Charts</div>
+                <div style="font-size:9px;color:var(--text3);margin-bottom:4px">Speed</div>
+                <svg viewBox="0 0 200 40" style="width:100%;height:40px">
+                  <path d="M0,35 L25,28 L50,18 L75,10 L100,16 L125,8 L150,14 L175,22 L200,18" stroke="var(--cyan)" stroke-width="1.5" fill="none"/>
+                </svg>
+                <div style="font-size:9px;color:var(--text3);margin:8px 0 4px">Lean</div>
+                <svg viewBox="0 0 200 40" style="width:100%;height:40px">
+                  <path d="M0,20 L25,12 L50,8 L75,16 L100,24 L125,28 L150,18 L175,10 L200,20" stroke="var(--cyan)" stroke-width="1" fill="none" opacity="0.6"/>
+                  <path d="M0,20 L25,28 L50,32 L75,24 L100,16 L125,12 L150,22 L175,30 L200,20" stroke="var(--magenta)" stroke-width="1" fill="none" opacity="0.6"/>
+                </svg>
+              </div>
+              <div class="ipad-panel" style="flex:0 0 60px">
+                <div class="panel-title">Kurven</div>
+                <div style="display:flex;gap:3px;flex-wrap:wrap">
+                  <span style="background:var(--elevated);border-radius:4px;padding:3px 6px;font-size:8px;color:var(--cyan)">L#1</span>
+                  <span style="background:var(--elevated);border-radius:4px;padding:3px 6px;font-size:8px;color:var(--magenta)">R#2</span>
+                  <span style="background:var(--elevated);border-radius:4px;padding:3px 6px;font-size:8px;color:var(--cyan)">L#3</span>
+                </div>
+              </div>
+            </div>
+            <div style="flex:0 0 220px;display:flex;flex-direction:column;gap:2px">
+              <div class="ipad-panel" style="flex:1">
+                <div class="panel-title">Telemetrie + Stats</div>
+                <div style="display:flex;flex-direction:column;gap:4px;font-size:10px">
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Distanz</span>
+                    <span style="font-family:monospace;font-weight:700">42.3 km</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Max Speed</span>
+                    <span style="font-family:monospace;font-weight:700">128 km/h</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Kurven</span>
+                    <span style="font-family:monospace;font-weight:700">24</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Max Lean L</span>
+                    <span style="font-family:monospace;font-weight:700;color:var(--cyan)">38°</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Max Lean R</span>
+                    <span style="font-family:monospace;font-weight:700;color:var(--magenta)">34°</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Dauer</span>
+                    <span style="font-family:monospace;font-weight:700">0:42</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Hoehe</span>
+                    <span style="font-family:monospace;font-weight:700">486 m</span>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;padding:6px;background:var(--elevated);border-radius:4px">
+                    <span style="color:var(--text3)">Avg Speed</span>
+                    <span style="font-family:monospace;font-weight:700">62 km/h</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Layout-Erklaerungen -->
+      <div style="margin-top:40px">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon icon-cyan">&#9638;</div>
+            <h3>Standard</h3>
+            <p>Ausgewogenes 2-Spalten-Layout. Links: Karte + Kurven-Chips. Rechts: Stats-Grid + Charts. Ideal fuer Touren-Analyse.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon icon-green">&#9635;</div>
+            <h3>Map Focus</h3>
+            <p>Grosse Karte (2/3 Breite) mit kompakter Sidebar. Perfekt zum Strecken-Studium und Kurven-Navigation auf der Karte.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon icon-magenta">&#9636;</div>
+            <h3>Split View</h3>
+            <p>3-Spalten-Ansicht: Karte | Charts + Kurven | Telemetrie. Maximaler Informationsgehalt fuer Detail-Analyse.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FEATURES ═══════════════════════════════ -->
+<div id="tab-features" class="tab-content">
+  <div class="container">
+
+    <!-- Karten-Features -->
+    <div class="section">
+      <div class="section-label">Analyse</div>
+      <div class="section-title">Alle Features im Ueberblick</div>
+      <div class="section-desc">Von der Tour-Uebersicht bis zur Einzelkurven-Analyse — alles was Kurvenfokus kann.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#127758;</div>
+          <h3>Interaktive Karte</h3>
+          <p>Apple MapKit mit Track-Visualisierung, 3 Kartenstilen und automatischem Zoom.</p>
+          <ul class="detail-list">
+            <li>Standard, Satellit und Hybrid</li>
+            <li>Antippbare Kurven- und Pausen-Marker</li>
+            <li>Follow-Modus (Karte folgt Position)</li>
+            <li>Vollbild-Ansicht mit Telemetrie-Overlay</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#10554;</div>
+          <h3>Kurvenfokus</h3>
+          <p>Das Kernstueck: Einzelne Kurven analysieren mit allen relevanten Daten.</p>
+          <ul class="detail-list">
+            <li>Gold-Highlight der fokussierten Kurve auf der Karte</li>
+            <li>Entry-, Apex- und Exit-Speed im Vergleich</li>
+            <li>Max &amp; Avg Lean pro Kurve</li>
+            <li>Links/Rechts-Verteilung als Balance-Bar</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#128202;</div>
+          <h3>Kurven-Filter <span class="badge badge-new">NEU</span></h3>
+          <p>Kurven nach Schraeglagen-Intensitaet filtern — nur die spannenden Kurven sehen.</p>
+          <ul class="detail-list">
+            <li>Filter von 0° bis 45° in 5°-Schritten</li>
+            <li>Live-Anzeige der gefilterten Anzahl</li>
+            <li>Auf Karte und in Kurven-Liste aktiv</li>
+            <li>Toggle: Marker komplett ein/aus</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#9749;</div>
+          <h3>Pausen-Erkennung <span class="badge badge-new">NEU</span></h3>
+          <p>Automatisch erkannte Stopps werden auf Karte und Timeline angezeigt.</p>
+          <ul class="detail-list">
+            <li>Erkennung ab 60 Sekunden Stillstand</li>
+            <li>Marker auf Karte antippen = zur Stelle springen</li>
+            <li>Gelbe Zonen auf der Timeline</li>
+            <li>Auto-Skip: Pausen ueberspringen bei Wiedergabe</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#9654;</div>
+          <h3>Wiedergabe-System</h3>
+          <p>Tour als animierte Wiedergabe abspielen — vom Zeitlupen- bis zum 20x-Speed.</p>
+          <ul class="detail-list">
+            <li>8 Geschwindigkeitsstufen (0.25x – 20x)</li>
+            <li>Wischgeste auf Timeline aendert Speed</li>
+            <li>Skip +-10 Sekunden</li>
+            <li>Scrubber mit Live-Kartenposition</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#128200;</div>
+          <h3>Speed &amp; Lean Charts</h3>
+          <p>Geschwindigkeit und Schraeglagen-Verlauf als interaktive Diagramme.</p>
+          <ul class="detail-list">
+            <li>Cyan-Gradient fuer Speed</li>
+            <li>Links/Rechts-Trennung beim Lean</li>
+            <li>Scrubber-Linie bei aktueller Zeit</li>
+            <li>LTTB-Sampling fuer fluessige Performance</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128203;</div>
+          <h3>10 Tour-Statistiken</h3>
+          <p>Alle wichtigen Kennzahlen auf einen Blick im Stats-Panel.</p>
+          <ul class="detail-list">
+            <li>Distanz, Dauer, Max/Avg Speed</li>
+            <li>Max Lean Links &amp; Rechts</li>
+            <li>Kurven-Anzahl, Hoehengewinn</li>
+            <li>Max G-Force, Hoehe Min/Max</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#8644;</div>
+          <h3>Tour-Vergleich <span class="badge badge-pro">PRO</span></h3>
+          <p>Zwei Touren direkt nebeneinander vergleichen — perfekt fuer Fortschrittskontrolle.</p>
+          <ul class="detail-list">
+            <li>Beide Tracks auf einer Karte</li>
+            <li>Parallele Speed- und Lean-Charts</li>
+            <li>Delta-Statistiken (Unterschiede)</li>
+            <li>Synchronisierte Timeline</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#128206;</div>
+          <h3>Tour-Overlay</h3>
+          <p>Mehrere Touren gleichzeitig auf einer Karte darstellen.</p>
+          <ul class="detail-list">
+            <li>Bis zu 8 Touren mit verschiedenen Farben</li>
+            <li>Aggregierte Statistiken</li>
+            <li>Tour-Auswahl per Checkboxen</li>
+            <li>Ideal fuer Strecken-Vergleich</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128228;</div>
+          <h3>Export <span class="badge badge-pro">PRO</span></h3>
+          <p>Tour-Daten exportieren und teilen.</p>
+          <ul class="detail-list">
+            <li>JSON-Export (vollstaendige Telemetrie)</li>
+            <li>Screenshot-Capture des Dashboards</li>
+            <li>iOS Share Sheet (Mail, AirDrop, Files)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#9974;</div>
+          <h3>Vollbild-Karte</h3>
+          <p>Maximales Karten-Erlebnis mit allen Analyse-Tools.</p>
+          <ul class="detail-list">
+            <li>Grosse Speed-Anzeige + Lean-Indikator</li>
+            <li>Kurven-Navigation (Prev/Next)</li>
+            <li>Timeline + Playback-Controls</li>
+            <li>Tap-to-Toggle fuer ablenkungsfreie Ansicht</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128269;</div>
+          <h3>Routen-Matching</h3>
+          <p>Nach dem Import automatisch aehnliche Routen finden.</p>
+          <ul class="detail-list">
+            <li>Fingerprint-basierter Algorithmus</li>
+            <li>Hausdorff-Distanz Berechnung</li>
+            <li>Aehnlichkeits-Score in Prozent</li>
+            <li>Direkter Sprung zum Vergleich</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interaktionen -->
+    <div class="section">
+      <div class="section-label">Bedienung</div>
+      <div class="section-title">Gesten &amp; Interaktionen</div>
+      <div class="section-desc">Intuitive Touch-Steuerung fuer schnelle Navigation durch die Tour-Daten.</div>
+
+      <div class="interaction-grid">
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128070;</div>
+          <div>
+            <h4>Tap auf Kurven-Marker</h4>
+            <p>Fokussiert die Kurve — zeigt Details, zoomt Karte, highlightet Track</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#9749;</div>
+          <div>
+            <h4>Tap auf Pausen-Marker</h4>
+            <p>Springt zur Pausen-Position auf der Timeline</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128400;</div>
+          <div>
+            <h4>Wischen auf Timeline</h4>
+            <p>Vertikal wischen aendert die Wiedergabe-Geschwindigkeit</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128072;</div>
+          <div>
+            <h4>Long Press auf Tour</h4>
+            <p>Aktiviert Multi-Select fuer Overlay oder Batch-Loeschen</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#8596;</div>
+          <div>
+            <h4>Swipe auf Tour-Zeile</h4>
+            <p>Links: Loeschen (Rot). Rechts: Umbenennen (Cyan)</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128393;</div>
+          <div>
+            <h4>Scrubber ziehen</h4>
+            <p>Durch die Tour scrubben — Karte, Charts und Stats folgen live</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128506;</div>
+          <div>
+            <h4>Drag &amp; Drop</h4>
+            <p>GPX/JSON-Dateien direkt in die Tour-Liste ziehen zum Importieren</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128064;</div>
+          <div>
+            <h4>Tap auf Vollbild-Karte</h4>
+            <p>Blendet Controls ein/aus fuer ablenkungsfreie Kartenansicht</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ KARTE ═══════════════════════════════ -->
+<div id="tab-karte" class="tab-content">
+  <div class="container">
+    <div class="section">
+      <div class="section-label">Kartenansicht</div>
+      <div class="section-title">Was auf der Karte passiert</div>
+      <div class="section-desc">Alle visuellen Elemente und Marker auf einen Blick erklaert.</div>
+
+      <!-- Marker Legende -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:24px">
+        <h3 style="font-size:16px;margin-bottom:16px">Marker &amp; Linien</h3>
+        <div class="marker-demo">
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--cyan)"></div>
+            <span class="marker-label">Linkskurve</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--magenta)"></div>
+            <span class="marker-label">Rechtskurve</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--green);border:2px solid white"></div>
+            <span class="marker-label">Aktuelle Position</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--gold)"></div>
+            <span class="marker-label">Pause / Stopp</span>
+          </div>
+          <div class="marker-item">
+            <div style="width:32px;height:4px;background:var(--cyan);border-radius:2px;flex-shrink:0"></div>
+            <span class="marker-label">Track (normal)</span>
+          </div>
+          <div class="marker-item">
+            <div style="width:32px;height:4px;background:var(--cyan);border-radius:2px;flex-shrink:0;opacity:0.3"></div>
+            <span class="marker-label">Track (gedimmt bei Fokus)</span>
+          </div>
+          <div class="marker-item">
+            <div style="width:32px;height:6px;background:var(--gold);border-radius:3px;flex-shrink:0"></div>
+            <span class="marker-label">Fokussierte Kurve</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#127760;</div>
+          <h3>3 Kartenstile</h3>
+          <p><strong>Standard</strong> — Strassenkarte mit Elevation. <strong>Satellit</strong> — Luftbild ohne Labels. <strong>Hybrid</strong> — Satellit mit Strassennamen. POIs sind ausgeblendet fuer eine cleane Darstellung.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#10554;</div>
+          <h3>Antippbare Kurven-Marker</h3>
+          <p>Jeder Kurven-Punkt auf der Karte ist antippbar. Bei Tap wird die Kurve fokussiert: Gold-Highlight auf dem Track, Zoom auf die Kurve, Detail-Panel oeffnet sich. Cyan = Links, Magenta = Rechts.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon icon-gold">&#9749;</div>
+          <h3>Pausen-Marker</h3>
+          <p>Erkannte Stopps (>60 Sekunden) erscheinen als goldene Kaffeetassen-Marker auf der Karte. Antippen springt zur Pausen-Stelle auf der Timeline. Nur sichtbar wenn Pausen-Toggle aktiv.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon icon-green">&#128205;</div>
+          <h3>Position &amp; Follow</h3>
+          <p>Gruener Punkt zeigt die aktuelle Wiedergabe-Position. Follow-Modus (Fadenkreuz-Button) laesst die Karte der Position folgen — ideal beim Abspielen der Tour.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#9974;</div>
+          <h3>Vollbild-Modus</h3>
+          <p>Karte in Vollbild mit Telemetrie-Overlay: Grosse Speed-Anzeige, Lean-Indikator, Timeline und Kurven-Navigation (Prev/Next). Tap blendet UI ein/aus.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#128206;</div>
+          <h3>Multi-Tour Overlay</h3>
+          <p>Bis zu 8 Touren gleichzeitig darstellen. Jede Tour erhaelt eine eigene Farbe. Ideal um verschiedene Fahrten auf derselben Strecke zu vergleichen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ IMPORT ═══════════════════════════════ -->
+<div id="tab-import" class="tab-content">
+  <div class="container">
+    <div class="section">
+      <div class="section-label">Daten-Import</div>
+      <div class="section-title">Tour-Daten importieren</div>
+      <div class="section-desc">Von der Datei bis zur fertigen Analyse — die Import-Pipeline im Detail.</div>
+
+      <!-- Formate -->
+      <div style="display:flex;gap:20px;margin-bottom:40px;flex-wrap:wrap">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;flex:1;min-width:200px">
+          <div style="font-size:28px;margin-bottom:8px">&#128196;</div>
+          <h3 style="font-size:16px;margin-bottom:4px">JSON</h3>
+          <p style="font-size:13px;color:var(--text2)">RideLink WingMan Export-Format. Enthaelt alle Telemetrie-Daten inklusive Lean und G-Force.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;flex:1;min-width:200px">
+          <div style="font-size:28px;margin-bottom:8px">&#128204;</div>
+          <h3 style="font-size:16px;margin-bottom:4px">GPX</h3>
+          <p style="font-size:13px;color:var(--text2)">Standard-GPS-Format. Kompatibel mit Calimoto, Motobit und allen gaengigen GPS-Trackern.</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;flex:1;min-width:200px">
+          <div style="font-size:28px;margin-bottom:8px">&#128506;</div>
+          <h3 style="font-size:16px;margin-bottom:4px">Drag &amp; Drop</h3>
+          <p style="font-size:13px;color:var(--text2)">Dateien direkt aus der Files-App in die Tour-Liste ziehen — funktioniert auf iPhone und iPad.</p>
+        </div>
+      </div>
+
+      <!-- Pipeline -->
+      <h3 style="font-size:18px;margin-bottom:4px">Import-Pipeline</h3>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">Was passiert nach dem Datei-Auswaehlen?</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">01</div>
+          <div class="step-icon">&#128196;</div>
+          <h4>Datei lesen</h4>
+          <p>JSON oder GPX erkennen und parsen</p>
+        </div>
+        <div class="pipeline-arrow">&#10132;</div>
+        <div class="pipeline-step">
+          <div class="step-num">02</div>
+          <div class="step-icon">&#128270;</div>
+          <h4>Qualitaets-Check</h4>
+          <p>GPS, Speed, Pausen, Abtastrate pruefen</p>
+        </div>
+        <div class="pipeline-arrow">&#10132;</div>
+        <div class="pipeline-step">
+          <div class="step-num">03</div>
+          <div class="step-icon">&#128678;</div>
+          <h4>Ampel-Bewertung</h4>
+          <p>Gruen / Gelb / Rot mit Erklaerung</p>
+        </div>
+        <div class="pipeline-arrow">&#10132;</div>
+        <div class="pipeline-step">
+          <div class="step-num">04</div>
+          <div class="step-icon">&#9881;</div>
+          <h4>Optimierung</h4>
+          <p>Glaettung, Spike-Filter, Lean berechnen</p>
+        </div>
+        <div class="pipeline-arrow">&#10132;</div>
+        <div class="pipeline-step">
+          <div class="step-num">05</div>
+          <div class="step-icon">&#10004;</div>
+          <h4>Fertig</h4>
+          <p>Kurven erkennen, Stats berechnen, speichern</p>
+        </div>
+      </div>
+
+      <!-- Ampel -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:16px">Ampel-System</h3>
+      <div class="feature-grid">
+        <div class="feature-card" style="border-left:3px solid var(--green)">
+          <h3 style="color:var(--green)">&#128994; Gruen — Gute Qualitaet</h3>
+          <p>Alle Daten vollstaendig und konsistent. GPS-Koordinaten valide, keine Speed-Spikes, gute Abtastrate. Direkt laden.</p>
+        </div>
+        <div class="feature-card" style="border-left:3px solid var(--gold)">
+          <h3 style="color:var(--gold)">&#128992; Gelb — Akzeptabel</h3>
+          <p>Kleinere Probleme erkannt: vereinzelte Speed-Spikes, Pausen, fehlende Hoehendaten. Optimierung empfohlen.</p>
+        </div>
+        <div class="feature-card" style="border-left:3px solid var(--red)">
+          <h3 style="color:var(--red)">&#128308; Rot — Problematisch</h3>
+          <p>Deutliche Qualitaetsprobleme: viele ungueltige Punkte, starke Spikes, ungleichmaessige Abtastung. Optimierung dringend empfohlen.</p>
+        </div>
+      </div>
+
+      <!-- GPX Besonderheiten -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:8px">GPX-Besonderheiten</h3>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:16px">GPX-Dateien enthalten oft nur GPS-Koordinaten. Kurvenfokus berechnet die fehlenden Daten automatisch:</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Speed-Berechnung</h3>
+          <p>Geschwindigkeit wird aus dem Abstand aufeinanderfolgender GPS-Punkte berechnet (Haversine-Formel). Spike-Filter entfernt unrealistische Werte ueber 200 km/h.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Lean-Berechnung</h3>
+          <p>Schraeglagen werden aus der Kursaenderungsrate (Bearing) und Geschwindigkeit physikalisch berechnet. Gaussian- und Median-Filter sorgen fuer glatte Kurven.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DESIGN ═══════════════════════════════ -->
+<div id="tab-design" class="tab-content">
+  <div class="container">
+    <div class="section">
+      <div class="section-label">Design-System</div>
+      <div class="section-title">Farben, Typografie &amp; Komponenten</div>
+      <div class="section-desc">Konsistentes Dark-Mode-Design mit Motorrad-Racing-Aesthetik.</div>
+
+      <!-- Farbpalette -->
+      <h3 style="font-size:18px;margin-bottom:4px">Farbpalette</h3>
+      <p style="font-size:14px;color:var(--text2);margin-bottom:8px">Funktionale Farbzuordnung — jede Farbe hat eine klare Bedeutung.</p>
+
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#00d4ff"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cyan</div>
+            <div class="swatch-hex">#00d4ff</div>
+            <div class="swatch-use">Primaer-Akzent, Linkskurven, Speed-Chart, Track</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#ff00ff"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Magenta</div>
+            <div class="swatch-hex">#ff00ff</div>
+            <div class="swatch-use">Rechtskurven, Lean-Chart, Sekundaer-Akzent</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#ffd700"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-hex">#ffd700</div>
+            <div class="swatch-use">Kurvenfokus-Highlight, Pausen, Pro-Badge</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#00ff88"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Neon Green</div>
+            <div class="swatch-hex">#00ff88</div>
+            <div class="swatch-use">Position-Marker, Erfolg, Aktiv-Status</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#ff4d4d"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Red</div>
+            <div class="swatch-hex">#ff4d4d</div>
+            <div class="swatch-use">Fehler, Loeschen, Ampel Rot</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#0a0a0a;border-bottom:1px solid var(--border)"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Background</div>
+            <div class="swatch-hex">#0a0a0a</div>
+            <div class="swatch-use">App-Hintergrund</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#141414"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Surface</div>
+            <div class="swatch-hex">#141414</div>
+            <div class="swatch-use">Panel-Hintergrund, Cards</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#1e1e1e"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Elevated</div>
+            <div class="swatch-hex">#1e1e1e</div>
+            <div class="swatch-use">Buttons, Selected, Hover-States</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Typografie -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:16px">Typografie</h3>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:32px;font-weight:700;font-family:'SF Mono',monospace">128</span>
+          <span style="font-size:13px;color:var(--text3)">Mono Large — 32pt Bold — Grosse KPI-Werte</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:20px;font-weight:600;font-family:'SF Mono',monospace">42.3 km</span>
+          <span style="font-size:13px;color:var(--text3)">Mono Medium — 20pt SemiBold — Mittelgrosse Werte</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:14px;font-weight:500;font-family:'SF Mono',monospace">2x Speed</span>
+          <span style="font-size:13px;color:var(--text3)">Mono Small — 14pt Medium — Buttons, kleine Anzeigen</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:11px;font-family:'SF Mono',monospace">04:12 / 12:38</span>
+          <span style="font-size:13px;color:var(--text3)">Mono Caption — 11pt Regular — Zeitanzeigen, Labels</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:24px;font-weight:700">Alpenpass Tour</span>
+          <span style="font-size:13px;color:var(--text3)">Headline Large — 24pt Bold — Seitentitel</span>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:baseline;gap:20px;flex-wrap:wrap">
+          <span style="font-size:16px;font-weight:600">Statistiken</span>
+          <span style="font-size:13px;color:var(--text3)">Label Large — 16pt SemiBold — Panel-Ueberschriften</span>
+        </div>
+      </div>
+
+      <!-- Spacing & Radii -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:16px">Spacing &amp; Radii</h3>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:4px;height:4px;background:var(--cyan);margin:0 auto 8px;border-radius:1px"></div>
+          <div style="font-size:13px;font-weight:600">XS</div>
+          <div style="font-size:11px;color:var(--text3)">4px</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:8px;height:8px;background:var(--cyan);margin:0 auto 8px;border-radius:2px"></div>
+          <div style="font-size:13px;font-weight:600">S</div>
+          <div style="font-size:11px;color:var(--text3)">8px</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:12px;height:12px;background:var(--cyan);margin:0 auto 8px;border-radius:3px"></div>
+          <div style="font-size:13px;font-weight:600">M</div>
+          <div style="font-size:11px;color:var(--text3)">12px</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:16px;height:16px;background:var(--cyan);margin:0 auto 8px;border-radius:4px"></div>
+          <div style="font-size:13px;font-weight:600">L</div>
+          <div style="font-size:11px;color:var(--text3)">16px</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:24px;height:24px;background:var(--cyan);margin:0 auto 8px;border-radius:6px"></div>
+          <div style="font-size:13px;font-weight:600">XL</div>
+          <div style="font-size:11px;color:var(--text3)">24px</div>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;min-width:100px">
+          <div style="width:32px;height:20px;background:var(--surface);border:1px solid var(--cyan);margin:0 auto 8px;border-radius:12px"></div>
+          <div style="font-size:13px;font-weight:600">Radius</div>
+          <div style="font-size:11px;color:var(--text3)">12px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer style="text-align:center;padding:48px 24px;border-top:1px solid var(--border)">
+  <div style="font-size:13px;color:var(--text3)">
+    <span style="color:var(--cyan);font-weight:600">Kurvenfokus</span> v0.0.8 &middot; MVX Labs &middot; 2026
+  </div>
+  <div style="font-size:11px;color:var(--text3);opacity:0.5;margin-top:8px">
+    iPhone &amp; iPad &middot; iOS 16+
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function switchIPadLayout(layout) {
+  document.querySelectorAll('.ipad-layout').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.layout-mode-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('ipad-' + layout).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
