@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurvenfokus Android v0.0.2 – Funktionsuebersicht</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --elevated: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --cyan: #00d4ff;
+    --magenta: #ff00ff;
+    --gold: #ffd700;
+    --green: #00ff88;
+    --red: #ff4d4d;
+    --orange: #ffb300;
+    --text: #ffffff;
+    --text2: rgba(255,255,255,0.6);
+    --text3: rgba(255,255,255,0.4);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', 'Roboto', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Header ─── */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: linear-gradient(180deg, rgba(0,212,255,0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badges {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+    padding: 4px 14px;
+    border-radius: 100px;
+  }
+  .hero-badge.android {
+    color: var(--green);
+    border-color: rgba(0,255,136,0.3);
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--cyan); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ─── Tab Nav ─── */
+  .tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 24px 24px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    padding: 10px 24px;
+    border: none;
+    background: transparent;
+    color: var(--text3);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text2); }
+  .tab-btn.active {
+    color: var(--cyan);
+    border-bottom-color: var(--cyan);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── Container ─── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── Section ─── */
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  /* ─── Feature Cards ─── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(0,212,255,0.2);
+  }
+  .feature-card .icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  .icon-cyan { background: rgba(0,212,255,0.12); }
+  .icon-gold { background: rgba(255,215,0,0.12); }
+  .icon-magenta { background: rgba(255,0,255,0.12); }
+  .icon-green { background: rgba(0,255,136,0.12); }
+  .icon-red { background: rgba(255,77,77,0.12); }
+  .icon-orange { background: rgba(255,179,0,0.12); }
+
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .feature-card .detail-list {
+    margin-top: 12px;
+    padding: 0;
+    list-style: none;
+  }
+  .feature-card .detail-list li {
+    font-size: 13px;
+    color: var(--text3);
+    padding: 4px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .feature-card .detail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    opacity: 0.5;
+  }
+
+  /* ─── Screenshot Gallery ─── */
+  .screenshot-gallery {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .screenshot-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    text-align: center;
+  }
+  .screenshot-frame {
+    width: 260px;
+    background: #1a1a1a;
+    border-radius: 28px;
+    padding: 12px;
+    border: 3px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .screenshot-frame img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+  }
+  .screenshot-label {
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+  }
+  .screenshot-sublabel {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  /* ─── KPI Grid ─── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .kpi-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+  .kpi-item .kpi-val {
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', 'Roboto Mono', monospace;
+    color: var(--cyan);
+  }
+  .kpi-item .kpi-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .kpi-item .kpi-desc {
+    font-size: 10px;
+    color: var(--text3);
+    opacity: 0.6;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ─── Import Pipeline ─── */
+  .pipeline {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .pipeline-step {
+    flex: 1;
+    min-width: 140px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+  .pipeline-step:first-child { border-radius: 12px 0 0 12px; }
+  .pipeline-step:last-child { border-radius: 0 12px 12px 0; }
+  .pipeline-step .step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--cyan);
+    opacity: 0.5;
+    margin-bottom: 6px;
+  }
+  .pipeline-step .step-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .pipeline-step h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .pipeline-step p {
+    font-size: 11px;
+    color: var(--text3);
+  }
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--text3);
+    font-size: 18px;
+    padding: 0 2px;
+  }
+
+  /* ─── Color Palette ─── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .color-swatch {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .color-swatch .swatch-color {
+    height: 56px;
+  }
+  .color-swatch .swatch-info {
+    padding: 10px 12px;
+    background: var(--surface);
+  }
+  .color-swatch .swatch-name {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .color-swatch .swatch-hex {
+    font-size: 10px;
+    font-family: 'SF Mono', 'Menlo', 'Roboto Mono', monospace;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .color-swatch .swatch-use {
+    font-size: 10px;
+    color: var(--text3);
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  /* ─── Comparison Badge ─── */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-pro {
+    background: rgba(255,215,0,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(255,215,0,0.3);
+  }
+  .badge-new {
+    background: rgba(0,255,136,0.15);
+    color: var(--green);
+    border: 1px solid rgba(0,255,136,0.3);
+  }
+  .badge-planned {
+    background: rgba(255,255,255,0.08);
+    color: var(--text3);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ─── Feature Matrix ─── */
+  .feature-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .feature-matrix th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text3);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-matrix td {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-matrix tr:hover td {
+    background: rgba(0,212,255,0.03);
+  }
+  .feature-matrix .status-ok {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .feature-matrix .status-partial {
+    color: var(--orange);
+    font-weight: 600;
+  }
+  .feature-matrix .status-planned {
+    color: var(--text3);
+  }
+
+  /* ─── Interaction Grid ─── */
+  .interaction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+  .interaction-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .interaction-item .gesture-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .interaction-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .interaction-item p {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  /* ─── Marker Demo ─── */
+  .marker-demo {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .marker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .marker-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .marker-label {
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  /* ─── Test-App Banner ─── */
+  .test-banner {
+    background: linear-gradient(135deg, rgba(255,179,0,0.12), rgba(255,215,0,0.08));
+    border: 1px solid rgba(255,179,0,0.3);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 32px auto;
+    max-width: 720px;
+    text-align: center;
+  }
+  .test-banner .banner-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  .test-banner h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .test-banner p {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .test-banner a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .test-banner a:hover {
+    text-decoration: underline;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .section-title { font-size: 22px; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipeline-step { border-radius: 12px !important; }
+    .pipeline-arrow { justify-content: center; transform: rotate(90deg); }
+    .tab-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 0; }
+    .tab-btn { white-space: nowrap; font-size: 12px; padding: 10px 14px; }
+    .screenshot-frame { width: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badges">
+    <span class="hero-badge">Version 0.0.2</span>
+    <span class="hero-badge android">Android</span>
+  </div>
+  <h1><span>Kurvenfokus</span> Funktionsuebersicht</h1>
+  <p>Motorrad-Telemetrie visualisieren und analysieren — auf Android-Smartphones.</p>
+
+  <div class="test-banner">
+    <div class="banner-icon">&#9888;</div>
+    <h3>Android Test-App — noch nicht oeffentlich verfuegbar</h3>
+    <p>Die Android-Version von Kurvenfokus befindet sich aktuell in der geschlossenen Testphase und ist noch nicht im Google Play Store verfuegbar.<br>
+    Du moechtest frueher Zugang? Schreib mir gerne eine Nachricht per E-Mail — ich kann dich in den Tester-Verteiler aufnehmen.</p>
+    <p style="margin-top:12px;"><a href="mailto:kurvenfokus@gmail.com">kurvenfokus@gmail.com</a></p>
+  </div>
+</header>
+
+<!-- TABS -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('screens')">Screenshots</button>
+  <button class="tab-btn" onclick="switchTab('features')">Alle Features</button>
+  <button class="tab-btn" onclick="switchTab('karte')">Karte</button>
+  <button class="tab-btn" onclick="switchTab('import')">Import</button>
+  <button class="tab-btn" onclick="switchTab('matrix')">Feature-Matrix</button>
+  <button class="tab-btn" onclick="switchTab('design')">Design-System</button>
+</nav>
+
+<!-- ═══════════════════════ SCREENSHOTS ═══════════════════════ -->
+<div id="tab-screens" class="tab-content active">
+  <div class="container">
+
+    <div class="section">
+      <div class="section-label">Android App</div>
+      <div class="section-title">Jetpack Compose UI</div>
+      <div class="section-desc">Material 3 Dark Theme — optimiert fuer vertikales Scrolling mit kompaktem Dashboard-Layout.</div>
+
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-1-tourliste.png" alt="Tour-Liste">
+          </div>
+          <div class="screenshot-label">Tour-Liste</div>
+          <div class="screenshot-sublabel">5 Touren mit Qualitaets-Badge</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-2-dashboard.png" alt="Dashboard">
+          </div>
+          <div class="screenshot-label">Dashboard</div>
+          <div class="screenshot-sublabel">Karte + Stats + Kurvenverteilung</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-3-kurvenverteilung.png" alt="Kurvenverteilung">
+          </div>
+          <div class="screenshot-label">Kurven-Analyse</div>
+          <div class="screenshot-sublabel">L/R Balance + Detail-KPIs + Charts</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-4-charts.png" alt="Charts">
+          </div>
+          <div class="screenshot-label">Telemetrie-Charts</div>
+          <div class="screenshot-sublabel">Speed + Schraeglage-Diagramme</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-5-vollbildkarte.png" alt="Vollbild-Karte">
+          </div>
+          <div class="screenshot-label">Vollbild-Karte</div>
+          <div class="screenshot-sublabel">Topo + Route + Kurven + Pausen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen-Beschreibungen -->
+    <div class="section">
+      <div class="section-label">5 Screens</div>
+      <div class="section-title">App-Architektur</div>
+      <div class="section-desc">Navigation via Drawer-Menu mit klarer Trennung zwischen Tour-Liste, Analyse-Dashboard und Vollbild-Karte.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">1</div>
+          <h3>Tour-Liste</h3>
+          <p>Startscreen mit allen importierten Touren, sortiert nach Datum.</p>
+          <ul class="detail-list">
+            <li>Qualitaets-Badge (Gut / OK / Niedrig)</li>
+            <li>Distanz, Dauer, Kurven-Anzahl</li>
+            <li>Swipe-to-Delete mit Bestaetigungs-Dialog</li>
+            <li>Long-Press zum Umbenennen</li>
+            <li>FAB-Button fuer neuen Import</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">2</div>
+          <h3>Dashboard</h3>
+          <p>Haupt-Analyse-Ansicht fuer eine einzelne Tour — alles auf einen Blick.</p>
+          <ul class="detail-list">
+            <li>Interaktive Karte mit Route</li>
+            <li>Timeline-Slider mit Playback</li>
+            <li>Quick-Stats (Dauer, Distanz, Speed, Lean, Kurven)</li>
+            <li>Kurven-Verteilung (L/R Balance)</li>
+            <li>Geschwindigkeits- und Schraeglagen-Chart</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">3</div>
+          <h3>Vollbild-Karte</h3>
+          <p>Maximale Kartenansicht mit allen Overlays und Steuerungselementen.</p>
+          <ul class="detail-list">
+            <li>Kartenstil-Wechsel (4 Stile)</li>
+            <li>Kurven-Filter (5 Stufen)</li>
+            <li>Pausen-Toggle mit Markern</li>
+            <li>Fit-to-Route Button</li>
+            <li>Start/End-Marker + Legende</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">4</div>
+          <h3>About</h3>
+          <p>App-Informationen, Feature-Uebersicht und rechtliche Links.</p>
+          <ul class="detail-list">
+            <li>Feature-Showcase (4 Kategorien)</li>
+            <li>Support-Links (Website, Email)</li>
+            <li>Datenschutzerklaerung + AGB</li>
+            <li>Versions-Info (Name + Build-Code)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-orange">5</div>
+          <h3>Drawer-Menu</h3>
+          <p>Seitliches Navigations-Menu mit allen Hauptbereichen.</p>
+          <ul class="detail-list">
+            <li>Tour-Liste</li>
+            <li>Tour importieren</li>
+            <li>Kurvenfokus Pro</li>
+            <li>Ueber Kurvenfokus</li>
+            <li>Footer: Datenschutz, AGB, Support</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">6</div>
+          <h3>Paywall <span class="badge badge-pro">PRO</span></h3>
+          <p>Subscription-Screen fuer Kurvenfokus Pro mit Feature-Uebersicht.</p>
+          <ul class="detail-list">
+            <li>Feature-Liste mit Icons</li>
+            <li>Preis: 4,99 EUR/Monat</li>
+            <li>7 Tage kostenlose Testphase</li>
+            <li>Kaeufe wiederherstellen</li>
+            <li>Free-Limit: 3 Touren</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ ALLE FEATURES ═══════════════════════ -->
+<div id="tab-features" class="tab-content">
+  <div class="container">
+
+    <!-- Kurvenanalyse -->
+    <div class="section">
+      <div class="section-label">Kernfeature</div>
+      <div class="section-title">Kurvenanalyse</div>
+      <div class="section-desc">Automatische Erkennung und Klassifikation aller Kurven — mit zwei Erkennungs-Modi je nach Datenquelle.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-magenta">IMU</div>
+          <h3>Lean-basierte Erkennung</h3>
+          <p>Praezise Kurvenerkennung ueber IMU-Schraeglagendaten (nur RideLink JSON).</p>
+          <ul class="detail-list">
+            <li>Schwellwert: Schraeglage > 6 Grad</li>
+            <li>Mindestdauer: 2 Sekunden</li>
+            <li>Segmentierung mit Gap-Merging (&lt; 1s)</li>
+            <li>Links/Rechts-Klassifikation</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">GPS</div>
+          <h3>Heading-basierte Erkennung</h3>
+          <p>GPS-Fallback fuer GPX-Dateien ohne Schraeglagen-Sensor.</p>
+          <ul class="detail-list">
+            <li>Kursaenderung > 15 Grad/Sekunde</li>
+            <li>Geschwindigkeit aus GPS berechnet</li>
+            <li>Weniger praezise als IMU-Modus</li>
+            <li>Automatisch bei fehlenden IMU-Daten</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">L/R</div>
+          <h3>Kurven-Verteilung</h3>
+          <p>Visuelle Aufschluesselung der Links/Rechts-Balance.</p>
+          <ul class="detail-list">
+            <li>Prozentuale Verteilung mit Balkendiagramm</li>
+            <li>Durchschnittliche Schraeglage (L/R)</li>
+            <li>Durchschnittliche Eingangsgeschwindigkeit</li>
+            <li>Maximale Schraeglage (L/R)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <div class="kpi-val">342</div>
+          <div class="kpi-label">Erkannte Kurven</div>
+          <div class="kpi-desc">Automatisch erkannt und klassifiziert</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="color:var(--cyan)">56%</div>
+          <div class="kpi-label">Linkskurven</div>
+          <div class="kpi-desc">193 Kurven nach links</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="color:var(--magenta)">43%</div>
+          <div class="kpi-label">Rechtskurven</div>
+          <div class="kpi-desc">149 Kurven nach rechts</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="color:var(--gold)">35.8&deg;</div>
+          <div class="kpi-label">Max Lean Links</div>
+          <div class="kpi-desc">Maximale Schraeglage links</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="color:var(--gold)">34.6&deg;</div>
+          <div class="kpi-label">Max Lean Rechts</div>
+          <div class="kpi-desc">Maximale Schraeglage rechts</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="section">
+      <div class="section-label">Visualisierung</div>
+      <div class="section-title">Telemetrie-Charts</div>
+      <div class="section-desc">Canvas-basierte Echtzeit-Diagramme mit synchronisiertem Playback und Zeitmarker.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">km/h</div>
+          <h3>Geschwindigkeits-Chart</h3>
+          <p>Zeitverlauf der Geschwindigkeit mit Live-Indikator.</p>
+          <ul class="detail-list">
+            <li>Canvas-basierte Linie (Cyan)</li>
+            <li>Aktueller Speed-Wert in km/h</li>
+            <li>Zeitmarker (weisse Linie)</li>
+            <li>Auto-Skalierung der Y-Achse</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">Lean</div>
+          <h3>Schraeglagen-Chart</h3>
+          <p>Schraeglage ueber die gesamte Tour — nur bei RideLink-Daten.</p>
+          <ul class="detail-list">
+            <li>Canvas-basierte Linie (Magenta)</li>
+            <li>Nulllinie als Referenz</li>
+            <li>Links/Rechts-Indikator (L/R + Grad)</li>
+            <li>Kurven-Anzahl im Chart</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">5</div>
+          <h3>Quick-Stats</h3>
+          <p>Kompakte Statistik-Karte mit den 5 wichtigsten Metriken.</p>
+          <ul class="detail-list">
+            <li>Dauer (formatiert h/m/s)</li>
+            <li>Distanz (km oder Meter)</li>
+            <li>Max Speed (km/h, Cyan)</li>
+            <li>Max Lean (Grad, Magenta, nur bei IMU)</li>
+            <li>Kurven-Anzahl (Gruen)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Playback -->
+    <div class="section">
+      <div class="section-label">Interaktion</div>
+      <div class="section-title">Playback &amp; Timeline</div>
+      <div class="section-desc">Fahrt nacherleben — mit synchronisierter Wiedergabe ueber Karte, Charts und Stats.</div>
+
+      <div class="interaction-grid">
+        <div class="interaction-item">
+          <div class="gesture-icon">&#9654;</div>
+          <div>
+            <h4>Play / Pause</h4>
+            <p>Animierte Wiedergabe der Tour mit Positions-Marker auf der Karte</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#8634;</div>
+          <div>
+            <h4>Reset</h4>
+            <p>Zurueck zum Anfang der Tour</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#9646;&#9646;</div>
+          <div>
+            <h4>Timeline-Slider</h4>
+            <p>Manuelles Scrubben mit Zeitanzeige (MM:SS)</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128506;</div>
+          <div>
+            <h4>Auto-Follow</h4>
+            <p>Karte folgt automatisch dem Positions-Marker waehrend Playback</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#128200;</div>
+          <div>
+            <h4>Chart-Sync</h4>
+            <p>Zeitmarker in Speed- und Lean-Chart synchronisiert</p>
+          </div>
+        </div>
+        <div class="interaction-item">
+          <div class="gesture-icon">&#9881;</div>
+          <div>
+            <h4>Multi-Touch</h4>
+            <p>Pinch-to-Zoom und Pan auf der Karte</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pausen -->
+    <div class="section">
+      <div class="section-label">Intelligent</div>
+      <div class="section-title">Pausen-Erkennung</div>
+      <div class="section-desc">Automatische Erkennung von Stopps waehrend der Tour mit Markern auf der Karte.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-orange">&#9749;</div>
+          <h3>Automatische Erkennung</h3>
+          <p>Zeitluecken von 30+ Sekunden werden als Pause erkannt.</p>
+          <ul class="detail-list">
+            <li>GPS-Position der Pause</li>
+            <li>Dauer-Berechnung und -Formatierung</li>
+            <li>Orange Marker auf der Karte</li>
+            <li>Toggle-Button (Kaffeetasse-Icon)</li>
+            <li>Pausen-Badge mit Anzahl</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tour-Verwaltung -->
+    <div class="section">
+      <div class="section-label">Verwaltung</div>
+      <div class="section-title">Tour-Management</div>
+      <div class="section-desc">Persistierung, Umbenennung, Loeschung — alles lokal auf dem Geraet.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128190;</div>
+          <h3>Lokale Persistierung</h3>
+          <p>JSON-basierte Speicherung mit Index-Datei fuer schnelle Uebersicht.</p>
+          <ul class="detail-list">
+            <li>Atomic Writes (tmp > final)</li>
+            <li>Mutex-gesicherte Index-Updates</li>
+            <li>Auto-Rebuild bei fehlender Index</li>
+            <li>Keine Cloud — alle Daten lokal</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-red">&#128465;</div>
+          <h3>Tour-Aktionen</h3>
+          <p>Swipe-Gesten und Dialoge fuer schnelle Tour-Verwaltung.</p>
+          <ul class="detail-list">
+            <li>Swipe-to-Delete (Links-Wisch)</li>
+            <li>Bestaetigungs-Dialog vor dem Loeschen</li>
+            <li>Long-Press zum Umbenennen</li>
+            <li>Dialog mit Auto-Fokus und Validierung</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#9733;</div>
+          <h3>Qualitaets-Bewertung</h3>
+          <p>Automatische Bewertung der importierten Telemetrie-Daten.</p>
+          <ul class="detail-list">
+            <li>Score von 0.0 bis 1.0</li>
+            <li>3 Stufen: Gut / OK / Niedrig</li>
+            <li>Farbcodierte Badges</li>
+            <li>Basierend auf validen vs. totalen Punkten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pro Features -->
+    <div class="section">
+      <div class="section-label">Premium</div>
+      <div class="section-title">Kurvenfokus Pro <span class="badge badge-pro">PRO</span></div>
+      <div class="section-desc">Erweiterte Features fuer ambitionierte Fahrer — Free-Version ist auf 3 Touren limitiert.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-gold">&#8734;</div>
+          <h3>Unbegrenzte Touren</h3>
+          <p>Kein Limit bei der Anzahl gespeicherter Touren.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128228;</div>
+          <h3>Export-Funktionen <span class="badge badge-planned">GEPLANT</span></h3>
+          <p>Touren exportieren und teilen — in Entwicklung.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128260;</div>
+          <h3>Vergleichs-Modus <span class="badge badge-planned">GEPLANT</span></h3>
+          <p>Zwei Touren nebeneinander vergleichen — in Entwicklung.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128202;</div>
+          <h3>Detaillierte Statistiken <span class="badge badge-planned">GEPLANT</span></h3>
+          <p>Erweiterte Analyse-Metriken — in Entwicklung.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ KARTE ═══════════════════════ -->
+<div id="tab-karte" class="tab-content">
+  <div class="container">
+
+    <div class="section">
+      <div class="section-label">OpenStreetMap</div>
+      <div class="section-title">Interaktive Karte</div>
+      <div class="section-desc">osmdroid-basierte Karte mit 4 Kartenstilen, farbcodierten Kurven-Overlays und Pausen-Markern.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#127758;</div>
+          <h3>4 Kartenstile</h3>
+          <p>Wechselbar ueber den Kartenstil-Picker in der Toolbar.</p>
+          <ul class="detail-list">
+            <li>Topo — OpenTopoMap (topografisch)</li>
+            <li>Dark — CartoDB Dark Matter</li>
+            <li>Standard — OpenStreetMap Mapnik</li>
+            <li>Voyager — CartoDB Voyager (hell)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#128312;</div>
+          <h3>Route &amp; Overlays</h3>
+          <p>Magenta-Hauptroute mit farbcodierten Kurven-Highlights.</p>
+          <ul class="detail-list">
+            <li>Route-Polyline (Magenta, 10px)</li>
+            <li>Linkskurven: Cyan (#00D4FF)</li>
+            <li>Rechtskurven: Magenta (#FF00FF)</li>
+            <li>Start-Marker (Gruen), End-Marker (Rot)</li>
+            <li>Pausen-Marker (Orange) mit Dauer</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#128270;</div>
+          <h3>Kurven-Filter</h3>
+          <p>5-stufiger Filter fuer gezielte Kurven-Analyse auf der Karte.</p>
+          <ul class="detail-list">
+            <li>OFF — Keine Kurven-Highlights</li>
+            <li>ALL — Alle Kurven (&gt;0 Grad)</li>
+            <li>&gt;15 Grad — Moderate Kurven</li>
+            <li>&gt;25 Grad — Sportliche Kurven</li>
+            <li>&gt;35 Grad — Extreme Kurven</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legende -->
+      <div style="margin-top:32px;">
+        <div class="section-label">Karten-Legende</div>
+        <div class="marker-demo">
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--magenta)"></div>
+            <span class="marker-label">Route (Magenta)</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--cyan)"></div>
+            <span class="marker-label">Linkskurven (Cyan)</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--magenta)"></div>
+            <span class="marker-label">Rechtskurven (Magenta)</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--green)"></div>
+            <span class="marker-label">Start</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--red)"></div>
+            <span class="marker-label">Ende</span>
+          </div>
+          <div class="marker-item">
+            <div class="marker-dot" style="background:var(--orange)"></div>
+            <span class="marker-label">Pausen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ IMPORT ═══════════════════════ -->
+<div id="tab-import" class="tab-content">
+  <div class="container">
+
+    <div class="section">
+      <div class="section-label">Daten-Import</div>
+      <div class="section-title">Import-Pipeline</div>
+      <div class="section-desc">Unterstuetzt RideLink JSON und GPX — mit automatischer Format-Erkennung, Vorschau und Qualitaets-Bewertung.</div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">01</div>
+          <div class="step-icon">&#128193;</div>
+          <h4>Datei waehlen</h4>
+          <p>SAF File-Picker<br>GPX oder JSON</p>
+        </div>
+        <div class="pipeline-arrow">&#9654;</div>
+        <div class="pipeline-step">
+          <div class="step-num">02</div>
+          <div class="step-icon">&#128269;</div>
+          <h4>Format-Erkennung</h4>
+          <p>Automatisch<br>GPX / RideLink JSON</p>
+        </div>
+        <div class="pipeline-arrow">&#9654;</div>
+        <div class="pipeline-step">
+          <div class="step-num">03</div>
+          <div class="step-icon">&#128203;</div>
+          <h4>Vorschau</h4>
+          <p>Import-Precheck<br>Messpunkte, Dauer</p>
+        </div>
+        <div class="pipeline-arrow">&#9654;</div>
+        <div class="pipeline-step">
+          <div class="step-num">04</div>
+          <div class="step-icon">&#9881;</div>
+          <h4>Verarbeitung</h4>
+          <p>Smoothing, Kurven,<br>Qualitaets-Score</p>
+        </div>
+        <div class="pipeline-arrow">&#9654;</div>
+        <div class="pipeline-step">
+          <div class="step-num">05</div>
+          <div class="step-icon">&#9989;</div>
+          <h4>Zusammenfassung</h4>
+          <p>Import-Summary<br>mit Warnungen</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Formate</div>
+      <div class="section-title">Unterstuetzte Datenquellen</div>
+      <div class="section-desc">Zwei Import-Formate mit unterschiedlichem Datenumfang.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">JSON</div>
+          <h3>RideLink WingMan</h3>
+          <p>Volle Telemetrie mit GPS, Schraeglage und G-Kraefte.</p>
+          <ul class="detail-list">
+            <li>GPS-Koordinaten (Lat/Lon/Alt)</li>
+            <li>Schraeglage (IMU-Sensor)</li>
+            <li>G-Kraefte (Beschleunigung)</li>
+            <li>Geschwindigkeit</li>
+            <li>Praezise Lean-basierte Kurvenerkennung</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">GPX</div>
+          <h3>GPS Exchange Format</h3>
+          <p>Standard-GPS-Track von Calimoto, Motobit, Komoot und anderen.</p>
+          <ul class="detail-list">
+            <li>GPS-Koordinaten (Lat/Lon/Alt)</li>
+            <li>Geschwindigkeit (aus GPS berechnet)</li>
+            <li>Keine Schraeglage (kein IMU)</li>
+            <li>Heading-basierte Kurvenerkennung</li>
+            <li>Zeitstempel-Synthese bei fehlenden Timestamps</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Qualitaet</div>
+      <div class="section-title">Datenverarbeitung</div>
+      <div class="section-desc">Automatische Glaettung, Validierung und Qualitaets-Bewertung aller importierten Daten.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128200;</div>
+          <h3>Smoothing-Pipeline</h3>
+          <p>Zweistufige Glaettung fuer saubere Kurven und Charts.</p>
+          <ul class="detail-list">
+            <li>Stufe 1: Median-Filter (Ausreisser entfernen)</li>
+            <li>Stufe 2: Gaussian-Filter (Glaetten)</li>
+            <li>Angewendet auf Speed, Lean, Heading</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#9733;</div>
+          <h3>Import-Dialoge</h3>
+          <p>Transparente Vorschau vor und Zusammenfassung nach dem Import.</p>
+          <ul class="detail-list">
+            <li>Precheck: Dateiname, Format, Messpunkte</li>
+            <li>Precheck: Geschaetzte Dauer und Strecke</li>
+            <li>Summary: Verfuegbare Daten-Uebersicht</li>
+            <li>Summary: GPS-Qualitaet und Warnungen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ FEATURE-MATRIX ═══════════════════════ -->
+<div id="tab-matrix" class="tab-content">
+  <div class="container">
+
+    <div class="section">
+      <div class="section-label">Uebersicht</div>
+      <div class="section-title">Feature-Matrix v0.0.2</div>
+      <div class="section-desc">Vollstaendige Uebersicht aller implementierten, teilweise fertigen und geplanten Features.</div>
+
+      <table class="feature-matrix">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Status</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>GPX Import</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Calimoto, Motobit, Komoot u.a.</td>
+          </tr>
+          <tr>
+            <td>RideLink JSON Import</td>
+            <td class="status-ok">Implementiert</td>
+            <td>GPS + Schraeglage + G-Kraefte</td>
+          </tr>
+          <tr>
+            <td>Import-Vorschau</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Precheck-Dialog vor dem Import</td>
+          </tr>
+          <tr>
+            <td>Import-Zusammenfassung</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Summary-Dialog nach dem Import</td>
+          </tr>
+          <tr>
+            <td>4 Kartenstile</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Topo, Dark, Standard, Voyager</td>
+          </tr>
+          <tr>
+            <td>Kurven-Highlights</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Cyan (Links) / Magenta (Rechts)</td>
+          </tr>
+          <tr>
+            <td>Kurven-Filter</td>
+            <td class="status-ok">Implementiert</td>
+            <td>5 Stufen: Off, All, >15, >25, >35 Grad</td>
+          </tr>
+          <tr>
+            <td>Pausen-Erkennung</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Zeitluecken &ge;30s, Orange Marker</td>
+          </tr>
+          <tr>
+            <td>Speed-Chart</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Canvas-basiert, Cyan</td>
+          </tr>
+          <tr>
+            <td>Lean-Chart</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Canvas-basiert, Magenta (nur RideLink)</td>
+          </tr>
+          <tr>
+            <td>Kurven-Verteilung</td>
+            <td class="status-ok">Implementiert</td>
+            <td>L/R Balance + Detail-KPIs</td>
+          </tr>
+          <tr>
+            <td>Playback / Timeline</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Play/Pause/Reset mit Karten-Sync</td>
+          </tr>
+          <tr>
+            <td>Vollbild-Karte</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Eigener Screen mit allen Overlays</td>
+          </tr>
+          <tr>
+            <td>Tour loeschen</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Swipe + Bestaetigungs-Dialog</td>
+          </tr>
+          <tr>
+            <td>Tour umbenennen</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Long-Press + Rename-Dialog</td>
+          </tr>
+          <tr>
+            <td>Qualitaets-Badge</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Gut / OK / Niedrig (farbcodiert)</td>
+          </tr>
+          <tr>
+            <td>Drawer-Menu</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Navigation + Legal-Links</td>
+          </tr>
+          <tr>
+            <td>About Screen</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Features, Support, Rechtliches</td>
+          </tr>
+          <tr>
+            <td>Smoothing-Pipeline</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Median + Gaussian Filter</td>
+          </tr>
+          <tr>
+            <td>Lokale Persistierung</td>
+            <td class="status-ok">Implementiert</td>
+            <td>JSON + Index, Atomic Writes</td>
+          </tr>
+          <tr>
+            <td>Paywall UI</td>
+            <td class="status-partial">Teilweise</td>
+            <td>UI fertig, Google Play Billing Placeholder</td>
+          </tr>
+          <tr>
+            <td>Subscription</td>
+            <td class="status-partial">Teilweise</td>
+            <td>Free-Limit 3 Touren, Billing ausstehend</td>
+          </tr>
+          <tr>
+            <td>ZIP Import</td>
+            <td class="status-planned">Geplant</td>
+            <td>File-Picker akzeptiert alle Formate</td>
+          </tr>
+          <tr>
+            <td>Export / Share</td>
+            <td class="status-planned">Geplant</td>
+            <td>ProFeature definiert</td>
+          </tr>
+          <tr>
+            <td>Vergleichs-Modus</td>
+            <td class="status-planned">Geplant</td>
+            <td>ProFeature definiert</td>
+          </tr>
+          <tr>
+            <td>Overlay-Modus</td>
+            <td class="status-planned">Geplant</td>
+            <td>ProFeature definiert</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Techstack -->
+    <div class="section">
+      <div class="section-label">Architektur</div>
+      <div class="section-title">Tech-Stack</div>
+      <div class="section-desc">Modern Android mit Jetpack Compose, Hilt und Kotlin Coroutines.</div>
+
+      <div class="kpi-grid">
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">Kotlin</div>
+          <div class="kpi-label">Sprache</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">Compose</div>
+          <div class="kpi-label">UI Framework</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">Material 3</div>
+          <div class="kpi-label">Design-System</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">Hilt</div>
+          <div class="kpi-label">Dependency Injection</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">MVVM</div>
+          <div class="kpi-label">Architektur-Pattern</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">osmdroid</div>
+          <div class="kpi-label">Karten-SDK</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">Canvas</div>
+          <div class="kpi-label">Chart-Rendering</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-val" style="font-size:16px">API 29+</div>
+          <div class="kpi-label">Min SDK (Android 10)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ DESIGN-SYSTEM ═══════════════════════ -->
+<div id="tab-design" class="tab-content">
+  <div class="container">
+
+    <div class="section">
+      <div class="section-label">Farbpalette</div>
+      <div class="section-title">Dark Theme Farben</div>
+      <div class="section-desc">Konsistentes Dark-First Farbschema — identisch zur iOS-Version fuer plattformuebergreifende Wiedererkennung.</div>
+
+      <div class="color-grid">
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#00D4FF"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cyan</div>
+            <div class="swatch-hex">#00D4FF</div>
+            <div class="swatch-use">Primaerfarbe, Linkskurven, Speed</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#FF00FF"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Magenta</div>
+            <div class="swatch-hex">#FF00FF</div>
+            <div class="swatch-use">Route, Rechtskurven, Lean</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#FFD700"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-hex">#FFD700</div>
+            <div class="swatch-use">Pro Badge, Highlights</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#00FF88"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gruen</div>
+            <div class="swatch-hex">#00FF88</div>
+            <div class="swatch-use">Start-Marker, Kurvenanzahl, Gut-Badge</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#FF4D4D"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Rot</div>
+            <div class="swatch-hex">#FF4D4D</div>
+            <div class="swatch-use">End-Marker, Loeschen</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#FFB300"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Orange</div>
+            <div class="swatch-hex">#FFB300</div>
+            <div class="swatch-use">Pausen-Marker</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#0a0a0a"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Background</div>
+            <div class="swatch-hex">#0A0A0A</div>
+            <div class="swatch-use">Hintergrund</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-color" style="background:#141414"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Surface</div>
+            <div class="swatch-hex">#141414</div>
+            <div class="swatch-use">Karten, Panels</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Typografie</div>
+      <div class="section-title">Schriften &amp; Stile</div>
+      <div class="section-desc">Roboto als System-Schrift, Roboto Mono fuer Daten und Metriken.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">Aa</div>
+          <h3>Roboto</h3>
+          <p>Android-Systemschrift fuer alle UI-Elemente.</p>
+          <ul class="detail-list">
+            <li>Titel: 20-28px, Bold</li>
+            <li>Labels: 11-14px, SemiBold</li>
+            <li>Body: 14-15px, Regular</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">01</div>
+          <h3>Roboto Mono</h3>
+          <p>Monospace fuer Metriken, KPIs und Zeitanzeigen.</p>
+          <ul class="detail-list">
+            <li>KPI-Werte: 16-22px, Bold</li>
+            <li>Zeitanzeige: 11-12px, Regular</li>
+            <li>Chart-Labels: 10-12px</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer style="text-align:center; padding:60px 24px; border-top:1px solid var(--border);">
+  <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text3); margin-bottom:12px;">Kurvenfokus Android v0.0.2</div>
+  <div style="font-size:14px; color:var(--text2);">Erstellt am 15. Februar 2026</div>
+  <div style="font-size:12px; color:var(--text3); margin-top:8px;">Motorrad-Telemetrie — Kurven im Fokus</div>
+</footer>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
