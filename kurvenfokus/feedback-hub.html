@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurvenfokus – Feedback Hub</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        .intro {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,206,209,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #cbd5e1;
+            text-align: center;
+        }
+        .intro strong { color: #00CED1; }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00CED1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .card {
+            display: block;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0,206,209,0.4);
+            box-shadow: 0 8px 25px rgba(0,206,209,0.15);
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .card-meta {
+            font-size: 13px;
+            color: #64748b;
+        }
+        .card-desc {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-left: 62px;
+        }
+        .card-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .tag-start { background: rgba(34,197,94,0.2); color: #4ade80; }
+        .tag-later { background: rgba(148,163,184,0.2); color: #94a3b8; }
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            margin-top: 10px;
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 26px; }
+            .card { padding: 18px; }
+            .card-desc { margin-left: 0; margin-top: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+
+        <div class="logo">&#128172;</div>
+        <h1>Feedback Hub</h1>
+        <p class="subtitle">Wähle den passenden Fragebogen</p>
+
+        <div class="intro">
+            Dein Feedback ist Gold wert! Jeder Bogen dauert <strong>3–5 Minuten</strong> und ist anonym.<br>
+            Du musst nicht alle ausfüllen – such dir den aus, der gerade passt.
+        </div>
+
+        <div class="section-label">Zum Einstieg</div>
+        <div class="cards">
+            <a href="feedback.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#127937;</div>
+                    <div>
+                        <div class="card-title">Beta Feedback <span class="card-tag tag-start">Zuerst</span></div>
+                        <div class="card-meta">13 Fragen &middot; 5 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Allgemeiner Eindruck: Features, Bugs, Weiterempfehlung, Zahlungsbereitschaft.</div>
+            </a>
+
+            <a href="feedback-onboarding.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#128640;</div>
+                    <div>
+                        <div class="card-title">Onboarding <span class="card-tag tag-start">Zuerst</span></div>
+                        <div class="card-meta">11 Fragen &middot; 4 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Deine ersten 5 Minuten mit der App: Orientierung, Import, erster Aha-Moment.</div>
+            </a>
+        </div>
+
+        <div class="section-label" style="margin-top: 30px;">Nach ein paar Touren</div>
+        <div class="cards">
+            <a href="feedback-ux.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#127912;</div>
+                    <div>
+                        <div class="card-title">UX & Bedienung <span class="card-tag tag-later">Nach 2–3 Nutzungen</span></div>
+                        <div class="card-meta">10 Fragen &middot; 3 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Design, Navigation, Icons, Lesbarkeit – wie fühlt sich die App an?</div>
+            </a>
+
+            <a href="feedback-kurven.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#128739;</div>
+                    <div>
+                        <div class="card-title">Kurven-Analyse <span class="card-tag tag-later">Nach 3+ Touren</span></div>
+                        <div class="card-meta">10 Fragen &middot; 3 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Genauigkeit der Kurven-Erkennung, Schräglage, Marker auf der Karte.</div>
+            </a>
+        </div>
+
+        <div class="section-label" style="margin-top: 30px;">Für erfahrene Tester</div>
+        <div class="cards">
+            <a href="feedback-features.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#128161;</div>
+                    <div>
+                        <div class="card-title">Feature-Wünsche <span class="card-tag tag-later">Nach 1–2 Wochen</span></div>
+                        <div class="card-meta">10 Fragen &middot; 3 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Welche Features sollen wir als nächstes bauen? Hilf uns priorisieren.</div>
+            </a>
+
+            <a href="feedback-pricing.html" class="card">
+                <div class="card-header">
+                    <div class="card-icon">&#128176;</div>
+                    <div>
+                        <div class="card-title">Pro & Preise <span class="card-tag tag-later">Nach 2+ Wochen</span></div>
+                        <div class="card-meta">10 Fragen &middot; 3 Min.</div>
+                    </div>
+                </div>
+                <div class="card-desc">Was ist dir Kurvenfokus wert? Preismodell, Pro-Features, Zahlungsbereitschaft.</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
