@@ -225,9 +225,42 @@
             .section { padding: 18px; }
             .stars label { font-size: 28px; }
         }
+        .error-msg {
+            background: rgba(248,113,113,0.15);
+            border: 1px solid rgba(248,113,113,0.3);
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 15px;
+            color: #fca5a5;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .sending-text { display: none; }
+        .submit-btn.sending .default-text { display: none; }
+        .submit-btn.sending .sending-text { display: inline; }
     </style>
 </head>
 <body>
+    <!-- Firebase SDK (compat version for simple usage) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyDGp-tnzzBafPP8jeug1Fk0b8RUleEBcs8",
+            authDomain: "kurvenfokus-feedback.firebaseapp.com",
+            projectId: "kurvenfokus-feedback",
+            storageBucket: "kurvenfokus-feedback.firebasestorage.app",
+            messagingSenderId: "1089431031172",
+            appId: "1:1089431031172:web:8e3c3f037f9d9ceeaea1d1"
+        });
+        const db = firebase.firestore();
+    </script>
     <div class="container">
         <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
 
@@ -405,7 +438,11 @@
             </div>
 
             <div class="submit-section">
-                <button type="submit" class="submit-btn">Feedback absenden</button>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="default-text">Feedback absenden</span>
+                    <span class="sending-text">Wird gesendet...</span>
+                </button>
+                <div class="error-msg" id="errorMsg"></div>
                 <p class="counter">Dauert nur noch einen Klick.</p>
             </div>
         </form>
@@ -420,14 +457,22 @@
     </div>
 
     <script>
-        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+        document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const form = e.target;
+            const btn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+
+            // UI: disable button, show sending state
+            btn.disabled = true;
+            btn.classList.add('sending');
+            errorMsg.style.display = 'none';
+
+            // Collect form data
             const data = new FormData(form);
             const result = {};
 
-            // Collect all form data
             for (const [key, value] of data.entries()) {
                 if (result[key]) {
                     if (Array.isArray(result[key])) {
@@ -440,25 +485,25 @@
                 }
             }
 
-            // Store locally (localStorage)
-            const submissions = JSON.parse(localStorage.getItem('kurvenfokus_feedback') || '[]');
             result.timestamp = new Date().toISOString();
-            submissions.push(result);
-            localStorage.setItem('kurvenfokus_feedback', JSON.stringify(submissions));
+            result.userAgent = navigator.userAgent;
 
-            // Send via mailto as fallback
-            const subject = encodeURIComponent('Kurvenfokus Beta Feedback');
-            const body = encodeURIComponent(JSON.stringify(result, null, 2));
+            try {
+                // Send to Firebase Firestore
+                await db.collection('feedback').add(result);
 
-            // Try to send email silently
-            const mailLink = document.createElement('a');
-            mailLink.href = 'mailto:kurvenfokus@gmail.com?subject=' + subject + '&body=' + body;
-            mailLink.click();
-
-            // Show thanks
-            form.style.display = 'none';
-            document.getElementById('thanksMessage').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                // Show thanks
+                form.style.display = 'none';
+                document.getElementById('thanksMessage').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                // Show error
+                errorMsg.textContent = 'Senden fehlgeschlagen. Bitte versuche es erneut.';
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.classList.remove('sending');
+                console.error('Firebase error:', error);
+            }
         });
     </script>
 </body>
