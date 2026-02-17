@@ -33,10 +33,10 @@
     </div>
 
     <h1>Datenschutzerklärung</h1>
-    <p class="date">Stand: Februar 2024</p>
+    <p class="date">Stand: Februar 2026</p>
 
     <div class="highlight">
-        <strong>Kurzfassung:</strong> Kurvenfokus ist eine Offline-App. Wir sammeln keine personenbezogenen Daten, tracken keine Nutzer und senden keine Daten an Server.
+        <strong>Kurzfassung:</strong> Kurvenfokus ist eine Offline-App. Alle Tour-Daten bleiben auf deinem Gerät – wir tracken keine Nutzer und senden keine App-Daten an Server. Während der Beta-Phase nutzen wir auf unserer Website anonyme Feedback-Formulare, die über Google Firebase verarbeitet werden (siehe Abschnitt 6).
     </div>
 
     <h2>1. Verantwortlicher</h2>
@@ -84,10 +84,47 @@
     <h2>5. Karten-Darstellung</h2>
     <p>Für die Kartenanzeige nutzt die App Apple MapKit. Dabei gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</p>
 
-    <h2>6. In-App-Käufe</h2>
+    <h2>6. Beta-Feedback (Website)</h2>
+    <p>Während der Beta-Phase bieten wir auf unserer Website freiwillige, anonyme Feedback-Formulare an. Hierbei kommen folgende Technologien und Dienste zum Einsatz:</p>
+
+    <h3>6.1 Eingesetzte Technologien</h3>
+    <ul>
+        <li><strong>Google Firebase Firestore</strong> – Cloud-Datenbank zur Speicherung der Feedback-Einträge (Betreiber: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland)</li>
+        <li><strong>GitHub Pages</strong> – Hosting der Website (Betreiber: GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA)</li>
+        <li><strong>Firebase JavaScript SDK</strong> – Client-seitige Bibliothek zur Übermittlung der Formulardaten</li>
+    </ul>
+
+    <h3>6.2 Welche Daten werden erhoben?</h3>
+    <p>Die Feedback-Formulare erheben <strong>ausschließlich anonyme Daten</strong>:</p>
+    <ul>
+        <li>Deine Antworten auf die Feedback-Fragen (z.B. Bewertungen, Auswahlen, Freitexte)</li>
+        <li>Zeitstempel der Absendung</li>
+        <li>Browser User-Agent (zur technischen Zuordnung)</li>
+    </ul>
+    <p>Es werden <strong>keine</strong> personenbezogenen Daten erhoben – kein Name, keine E-Mail-Adresse, keine IP-Adresse, keine Cookies, kein Tracking.</p>
+
+    <h3>6.3 Speicherort und Sicherheit</h3>
+    <ul>
+        <li>Die Daten werden in <strong>Google Cloud Firestore</strong> in der Region <strong>europe-west3 (Frankfurt, Deutschland)</strong> gespeichert</li>
+        <li>Die Datenbank ist durch Firebase Security Rules geschützt: Nur das Erstellen neuer Einträge ist möglich – kein Lesen, Ändern oder Löschen von außen</li>
+        <li>Der Zugriff auf die gespeicherten Daten erfolgt ausschließlich durch den Verantwortlichen über ein geschütztes Admin-Konto</li>
+    </ul>
+
+    <h3>6.4 Rechtsgrundlage</h3>
+    <p>Die Verarbeitung erfolgt auf Grundlage deiner <strong>freiwilligen Einwilligung</strong> (Art. 6 Abs. 1 lit. a DSGVO) durch das aktive Absenden des Formulars.</p>
+
+    <h3>6.5 Löschung der Feedback-Daten</h3>
+    <div class="highlight">
+        <strong>Wichtig:</strong> Alle Beta-Feedback-Einträge werden nach dem offiziellen Produktstart von Kurvenfokus <strong>vollständig und unwiderruflich gelöscht</strong>. Die Daten dienen ausschließlich der Verbesserung der App während der Beta-Phase.
+    </div>
+
+    <h3>6.6 Auftragsverarbeitung</h3>
+    <p>Für die Nutzung von Google Firebase besteht ein Auftragsverarbeitungsvertrag (Data Processing Agreement) mit Google gemäß Art. 28 DSGVO. Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Datenschutz</a>.</p>
+
+    <h2>7. In-App-Käufe</h2>
     <p>Falls du ein Abonnement abschließt, wird die Zahlung über Apple abgewickelt. Wir haben keinen Zugriff auf deine Zahlungsdaten. Es gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</p>
 
-    <h2>7. Deine Rechte (DSGVO)</h2>
+    <h2>8. Deine Rechte (DSGVO)</h2>
     <p>Du hast das Recht auf:</p>
     <ul>
         <li><strong>Auskunft:</strong> Welche Daten wir haben (Antwort: keine)</li>
@@ -95,11 +132,11 @@
         <li><strong>Beschwerde:</strong> Bei der zuständigen Datenschutzbehörde</li>
     </ul>
 
-    <h2>8. Änderungen</h2>
+    <h2>9. Änderungen</h2>
     <p>Bei Änderungen dieser Datenschutzerklärung wird das Datum oben aktualisiert.</p>
 
     <div class="contact">
-        <h2>9. Kontakt</h2>
+        <h2>10. Kontakt</h2>
         <p>Bei Fragen zum Datenschutz:</p>
         <p><strong>E-Mail:</strong> kurvenfokus@gmail.com</p>
     </div>
