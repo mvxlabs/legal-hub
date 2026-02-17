@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurvenfokus – Onboarding Feedback</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        .intro {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,206,209,0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+        .intro strong { color: #00CED1; }
+        .section {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,206,209,0.3);
+            color: #00CED1;
+        }
+        .question {
+            margin-bottom: 22px;
+        }
+        .question:last-child { margin-bottom: 0; }
+        .question label.q-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #e2e8f0;
+        }
+        .question .q-hint {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #cbd5e1;
+            transition: background 0.2s;
+        }
+        .radio-group label:hover, .checkbox-group label:hover {
+            background: rgba(0,206,209,0.1);
+        }
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: #00CED1;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .stars {
+            display: flex;
+            gap: 4px;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+        .stars input { display: none; }
+        .stars label {
+            font-size: 32px;
+            color: #334155;
+            cursor: pointer;
+            transition: color 0.15s;
+            line-height: 1;
+        }
+        .stars input:checked ~ label,
+        .stars label:hover,
+        .stars label:hover ~ label {
+            color: #00CED1;
+        }
+        .star-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: #00CED1;
+        }
+        textarea { min-height: 80px; }
+        .required::after {
+            content: " *";
+            color: #f87171;
+        }
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #00CED1, #22c55e);
+            color: #1a1a2e;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 16px 48px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,206,209,0.3);
+        }
+        .submit-btn:active { transform: translateY(0); }
+        .thanks {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .thanks h2 {
+            font-size: 28px;
+            color: #00CED1;
+            margin-bottom: 15px;
+        }
+        .thanks p { color: #94a3b8; font-size: 16px; }
+        .thanks .big-check {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00CED1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .back-link:hover { text-decoration: underline; }
+        .counter {
+            text-align: center;
+            font-size: 13px;
+            color: #475569;
+            margin-top: 10px;
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 26px; }
+            .section { padding: 18px; }
+            .stars label { font-size: 28px; }
+        }
+        .error-msg {
+            background: rgba(248,113,113,0.15);
+            border: 1px solid rgba(248,113,113,0.3);
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 15px;
+            color: #fca5a5;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .sending-text { display: none; }
+        .submit-btn.sending .default-text { display: none; }
+        .submit-btn.sending .sending-text { display: inline; }
+    </style>
+</head>
+<body>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyDGp-tnzzBafPP8jeug1Fk0b8RUleEBcs8",
+            authDomain: "kurvenfokus-feedback.firebaseapp.com",
+            projectId: "kurvenfokus-feedback",
+            storageBucket: "kurvenfokus-feedback.firebasestorage.app",
+            messagingSenderId: "1089431031172",
+            appId: "1:1089431031172:web:8e3c3f037f9d9ceeaea1d1"
+        });
+        const db = firebase.firestore();
+    </script>
+    <div class="container">
+        <a href="index.html" class="back-link">&larr; Zurück zur Startseite</a>
+
+        <div class="logo">&#128640;</div>
+        <h1>Onboarding Feedback</h1>
+        <p class="subtitle">Wie war dein erster Eindruck von Kurvenfokus?</p>
+
+        <div class="intro">
+            Dieser Fragebogen fokussiert sich auf <strong>deine ersten 5 Minuten</strong> mit der App.
+            Vom Öffnen bis zur ersten analysierten Tour. 11 Fragen, <strong>ca. 3–4 Minuten</strong>. Anonym.
+        </div>
+
+        <form id="feedbackForm">
+
+            <!-- ABSCHNITT 1: Wer bist du? -->
+            <div class="section">
+                <div class="section-title">Wer bist du?</div>
+
+                <div class="question">
+                    <label class="q-label required">Wie würdest du dich beschreiben?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="persona" value="neuling" required> Neuling – noch nie eine Telemetrie-App genutzt</label>
+                        <label><input type="radio" name="persona" value="tourenfahrer"> Tourenfahrer – kenne Tracking-Apps, will schnelle Ergebnisse</label>
+                        <label><input type="radio" name="persona" value="profi"> Daten-Profi – will Parameter, Details und Transparenz</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Woher kennst du Kurvenfokus?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="source" value="freund" required> Von einem Freund / Bekannten</label>
+                        <label><input type="radio" name="source" value="forum"> Motorrad-Forum</label>
+                        <label><input type="radio" name="source" value="social"> Social Media (Instagram, LinkedIn etc.)</label>
+                        <label><input type="radio" name="source" value="appstore"> App Store / Play Store</label>
+                        <label><input type="radio" name="source" value="sonstig"> Sonstiges</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABSCHNITT 2: Erster Start -->
+            <div class="section">
+                <div class="section-title">Erster Start (die ersten 60 Sekunden)</div>
+
+                <div class="question">
+                    <label class="q-label required">War beim ersten Öffnen klar, was du tun sollst?</label>
+                    <div class="stars">
+                        <input type="radio" name="orientation" id="or5" value="5" required>
+                        <label for="or5">&#9733;</label>
+                        <input type="radio" name="orientation" id="or4" value="4">
+                        <label for="or4">&#9733;</label>
+                        <input type="radio" name="orientation" id="or3" value="3">
+                        <label for="or3">&#9733;</label>
+                        <input type="radio" name="orientation" id="or2" value="2">
+                        <label for="or2">&#9733;</label>
+                        <input type="radio" name="orientation" id="or1" value="1">
+                        <label for="or1">&#9733;</label>
+                    </div>
+                    <div class="star-labels">
+                        <span>Total verloren</span>
+                        <span>Sofort klar</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Was hast du als erstes gemacht?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="first_action" value="demo" required> Demo-Tour geöffnet</label>
+                        <label><input type="radio" name="first_action" value="import"> Eigene Datei importiert</label>
+                        <label><input type="radio" name="first_action" value="explore"> Erstmal rumgeklickt / umgeschaut</label>
+                        <label><input type="radio" name="first_action" value="closed"> App wieder geschlossen</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Hast du dich sicher gefühlt bezüglich deiner Daten?</label>
+                    <p class="q-hint">Kurvenfokus verarbeitet alles lokal auf deinem Gerät.</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="data_trust" value="yes" required> Ja, war mir klar dass alles lokal bleibt</label>
+                        <label><input type="radio" name="data_trust" value="unsure"> Unsicher – wusste nicht was mit meinen Daten passiert</label>
+                        <label><input type="radio" name="data_trust" value="no"> Nein, hatte Bedenken</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABSCHNITT 3: Import-Erlebnis -->
+            <div class="section">
+                <div class="section-title">Import-Erlebnis</div>
+
+                <div class="question">
+                    <label class="q-label required">Welches Format hast du importiert?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="import_format" value="gpx" required> GPX (Calimoto, Komoot, Motobit etc.)</label>
+                        <label><input type="radio" name="import_format" value="ridelink_json"> RideLink JSON</label>
+                        <label><input type="radio" name="import_format" value="demo"> Nur die Demo-Tour genutzt</label>
+                        <label><input type="radio" name="import_format" value="unknown"> Weiß nicht genau</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Wie leicht war der Import?</label>
+                    <div class="stars">
+                        <input type="radio" name="import_ease" id="ie5" value="5" required>
+                        <label for="ie5">&#9733;</label>
+                        <input type="radio" name="import_ease" id="ie4" value="4">
+                        <label for="ie4">&#9733;</label>
+                        <input type="radio" name="import_ease" id="ie3" value="3">
+                        <label for="ie3">&#9733;</label>
+                        <input type="radio" name="import_ease" id="ie2" value="2">
+                        <label for="ie2">&#9733;</label>
+                        <input type="radio" name="import_ease" id="ie1" value="1">
+                        <label for="ie1">&#9733;</label>
+                    </div>
+                    <div class="star-labels">
+                        <span>Bin nicht durchgekommen</span>
+                        <span>Lief sofort</span>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Wo bist du beim Import hängen geblieben?</label>
+                    <textarea name="import_problem" placeholder="z.B. Datei nicht gefunden, falsches Format, keine Anleitung..."></textarea>
+                </div>
+            </div>
+
+            <!-- ABSCHNITT 4: Erster Aha-Moment -->
+            <div class="section">
+                <div class="section-title">Erster Aha-Moment</div>
+
+                <div class="question">
+                    <label class="q-label required">Was hat dich am meisten beeindruckt?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="aha_moment" value="map" required> Die Karte mit meiner Route</label>
+                        <label><input type="radio" name="aha_moment" value="curves"> Die automatische Kurven-Erkennung</label>
+                        <label><input type="radio" name="aha_moment" value="charts"> Die Charts (Speed, Schräglage)</label>
+                        <label><input type="radio" name="aha_moment" value="stats"> Die Tour-Statistiken</label>
+                        <label><input type="radio" name="aha_moment" value="nothing"> Nichts davon</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Hast du die Kurven-Markierungen auf der Karte verstanden?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="curve_markers_clear" value="immediately" required> Sofort klar (Links/Rechts, Farben)</label>
+                        <label><input type="radio" name="curve_markers_clear" value="after_thinking"> Musste kurz nachdenken</label>
+                        <label><input type="radio" name="curve_markers_clear" value="not_understood"> Nicht verstanden</label>
+                        <label><input type="radio" name="curve_markers_clear" value="not_noticed"> Gar nicht bemerkt</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label required">Wie schnell hattest du das Gefühl "Das bringt mir was"?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="time_to_value" value="immediately" required> Sofort beim ersten Blick</label>
+                        <label><input type="radio" name="time_to_value" value="2-3min"> Nach 2–3 Minuten</label>
+                        <label><input type="radio" name="time_to_value" value="5min_plus"> Nach 5+ Minuten</label>
+                        <label><input type="radio" name="time_to_value" value="never"> Gar nicht</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABSCHNITT 5: Abschluss -->
+            <div class="section">
+                <div class="section-title">Abschluss</div>
+
+                <div class="question">
+                    <label class="q-label">Was hat dich beim ersten Mal am meisten gestört?</label>
+                    <textarea name="biggest_frustration" placeholder="z.B. Kein Tutorial, unklare Icons, zu viele Infos auf einmal..."></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Was hat gefehlt, das du sofort erwartet hättest?</label>
+                    <textarea name="missing_expectation" placeholder="z.B. Höhenprofil, Erklärung der Farben, Hilfe-Button..."></textarea>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="default-text">Feedback absenden</span>
+                    <span class="sending-text">Wird gesendet...</span>
+                </button>
+                <div class="error-msg" id="errorMsg"></div>
+                <p class="counter">11 Fragen geschafft – nur noch absenden!</p>
+            </div>
+        </form>
+
+        <div class="thanks" id="thanksMessage">
+            <div class="big-check">&#10003;</div>
+            <h2>Danke für dein Feedback!</h2>
+            <p>Dein Onboarding-Feedback hilft uns, den ersten Eindruck zu verbessern.</p>
+            <p style="margin-top: 15px; color: #94a3b8;">Du hast auch den <a href="feedback.html" style="color: #00CED1;">allgemeinen Beta-Fragebogen</a> noch nicht ausgefüllt?</p>
+            <p style="margin-top: 20px; color: #64748b;">Ride safe! &#128640;</p>
+            <a href="index.html" class="back-link" style="margin-top: 30px;">&larr; Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const btn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+
+            btn.disabled = true;
+            btn.classList.add('sending');
+            errorMsg.style.display = 'none';
+
+            const data = new FormData(form);
+            const result = {};
+
+            for (const [key, value] of data.entries()) {
+                if (result[key]) {
+                    if (Array.isArray(result[key])) {
+                        result[key].push(value);
+                    } else {
+                        result[key] = [result[key], value];
+                    }
+                } else {
+                    result[key] = value;
+                }
+            }
+
+            result.timestamp = new Date().toISOString();
+            result.userAgent = navigator.userAgent;
+
+            try {
+                await db.collection('feedback-onboarding').add(result);
+
+                form.style.display = 'none';
+                document.getElementById('thanksMessage').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                errorMsg.textContent = 'Senden fehlgeschlagen. Bitte versuche es erneut.';
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.classList.remove('sending');
+                console.error('Firebase error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
