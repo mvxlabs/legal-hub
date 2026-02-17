@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurvenfokus – UX & Bedienung Feedback</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #fff; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; }
+        .container { max-width: 680px; margin: 0 auto; padding: 40px 20px 80px; }
+        .logo { width: 80px; height: 80px; background: linear-gradient(135deg, #00CED1, #22c55e); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 40px; }
+        h1 { font-size: 32px; text-align: center; margin-bottom: 6px; background: linear-gradient(135deg, #00CED1, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 30px; font-size: 15px; }
+        .intro { background: rgba(255,255,255,0.05); border: 1px solid rgba(0,206,209,0.2); border-radius: 12px; padding: 20px; margin-bottom: 30px; font-size: 15px; color: #cbd5e1; }
+        .intro strong { color: #00CED1; }
+        .section { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 24px; margin-bottom: 20px; }
+        .section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(0,206,209,0.3); color: #00CED1; }
+        .question { margin-bottom: 22px; }
+        .question:last-child { margin-bottom: 0; }
+        .question label.q-label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 15px; color: #e2e8f0; }
+        .question .q-hint { font-size: 13px; color: #64748b; margin-bottom: 8px; }
+        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 6px; }
+        .radio-group label, .checkbox-group label { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #cbd5e1; transition: background 0.2s; }
+        .radio-group label:hover, .checkbox-group label:hover { background: rgba(0,206,209,0.1); }
+        input[type="radio"], input[type="checkbox"] { accent-color: #00CED1; width: 18px; height: 18px; cursor: pointer; }
+        .stars { display: flex; gap: 4px; flex-direction: row-reverse; justify-content: flex-end; }
+        .stars input { display: none; }
+        .stars label { font-size: 32px; color: #334155; cursor: pointer; transition: color 0.15s; line-height: 1; }
+        .stars input:checked ~ label, .stars label:hover, .stars label:hover ~ label { color: #00CED1; }
+        .star-labels { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-top: 4px; }
+        textarea { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: #fff; font-family: inherit; font-size: 14px; resize: vertical; min-height: 80px; transition: border-color 0.2s; }
+        textarea:focus { outline: none; border-color: #00CED1; }
+        .required::after { content: " *"; color: #f87171; }
+        .submit-section { text-align: center; margin-top: 30px; }
+        .submit-btn { background: linear-gradient(135deg, #00CED1, #22c55e); color: #1a1a2e; font-size: 18px; font-weight: 700; padding: 16px 48px; border: none; border-radius: 12px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,206,209,0.3); }
+        @media (max-width: 480px) { h1 { font-size: 26px; } .section { padding: 18px; } .stars label { font-size: 28px; } }
+        .error-msg {
+            background: rgba(248,113,113,0.15);
+            border: 1px solid rgba(248,113,113,0.3);
+            border-radius: 10px;
+            padding: 14px;
+            margin-top: 15px;
+            color: #fca5a5;
+            font-size: 14px;
+            display: none;
+            text-align: center;
+        }
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        .sending-text { display: none; }
+        .submit-btn.sending .default-text { display: none; }
+        .submit-btn.sending .sending-text { display: inline; }
+        .thanks {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .thanks h2 {
+            font-size: 28px;
+            color: #00CED1;
+            margin-bottom: 15px;
+        }
+        .thanks p { color: #94a3b8; font-size: 16px; }
+        .thanks .big-check {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    <script>
+        firebase.initializeApp({
+            apiKey: "AIzaSyDGp-tnzzBafPP8jeug1Fk0b8RUleEBcs8",
+            authDomain: "kurvenfokus-feedback.firebaseapp.com",
+            projectId: "kurvenfokus-feedback",
+            storageBucket: "kurvenfokus-feedback.firebasestorage.app",
+            messagingSenderId: "1089431031172",
+            appId: "1:1089431031172:web:8e3c3f037f9d9ceeaea1d1"
+        });
+        const db = firebase.firestore();
+    </script>
+
+    <div class="container">
+
+        <div class="logo">&#127912;</div>
+        <h1>UX & Bedienung</h1>
+        <p class="subtitle">Wie fühlt sich die App an?</p>
+
+        <div class="intro">
+            Hier geht es um <strong>Navigation, Design und Verständlichkeit</strong>.
+            10 Fragen, ca. 3 Minuten. Anonym.
+        </div>
+
+        <form id="feedbackForm">
+
+            <div class="section">
+                <div class="section-title">Design & Look</div>
+
+                <div class="question">
+                    <label class="q-label required">Wie findest du das Design der App insgesamt?</label>
+                    <div class="stars">
+                        <input type="radio" name="design_rating" id="dr5" value="5" required><label for="dr5">&#9733;</label>
+                        <input type="radio" name="design_rating" id="dr4" value="4"><label for="dr4">&#9733;</label>
+                        <input type="radio" name="design_rating" id="dr3" value="3"><label for="dr3">&#9733;</label>
+                        <input type="radio" name="design_rating" id="dr2" value="2"><label for="dr2">&#9733;</label>
+                        <input type="radio" name="design_rating" id="dr1" value="1"><label for="dr1">&#9733;</label>
+                    </div>
+                    <div class="star-labels"><span>Hässlich</span><span>Richtig gut</span></div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Wie findest du die Farbgebung?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="colors" value="great"> Gefällt mir</label>
+                        <label><input type="radio" name="colors" value="neutral"> Neutral</label>
+                        <label><input type="radio" name="colors" value="bad"> Gefällt mir nicht</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Wie findest du Schriftgröße und Lesbarkeit?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="readability" value="perfect"> Perfekt</label>
+                        <label><input type="radio" name="readability" value="small"> Etwas klein</label>
+                        <label><input type="radio" name="readability" value="too_small"> Zu klein</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Navigation & Bedienung</div>
+
+                <div class="question">
+                    <label class="q-label">Findest du dich in der Navigation zurecht?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="navigation" value="easy"> Sofort klar</label>
+                        <label><input type="radio" name="navigation" value="mostly"> Meistens, ab und zu gesucht</label>
+                        <label><input type="radio" name="navigation" value="lost"> Oft verloren</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Sind die Icons und Symbole verständlich?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="icons" value="all_clear"> Alle klar</label>
+                        <label><input type="radio" name="icons" value="some_unclear"> Manche unklar</label>
+                        <label><input type="radio" name="icons" value="most_unclear"> Die meisten unklar</label>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Welches Icon oder Symbol hat dich verwirrt?</label>
+                    <textarea name="confusing_icon" placeholder="z.B. Das Burger-Menü war nicht klar, Kurven-Filter Icon..."></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Nutzt du die App eher mit einer Hand oder zwei?</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="hand_usage" value="one"> Eine Hand</label>
+                        <label><input type="radio" name="hand_usage" value="two"> Zwei Hände</label>
+                        <label><input type="radio" name="hand_usage" value="both"> Beides</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Übersichtlichkeit</div>
+
+                <div class="question">
+                    <label class="q-label">Wie übersichtlich ist der Dashboard-Screen?</label>
+                    <div class="stars">
+                        <input type="radio" name="dashboard_clarity" id="dc5" value="5"><label for="dc5">&#9733;</label>
+                        <input type="radio" name="dashboard_clarity" id="dc4" value="4"><label for="dc4">&#9733;</label>
+                        <input type="radio" name="dashboard_clarity" id="dc3" value="3"><label for="dc3">&#9733;</label>
+                        <input type="radio" name="dashboard_clarity" id="dc2" value="2"><label for="dc2">&#9733;</label>
+                        <input type="radio" name="dashboard_clarity" id="dc1" value="1"><label for="dc1">&#9733;</label>
+                    </div>
+                    <div class="star-labels"><span>Überladen</span><span>Perfekt aufgeräumt</span></div>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Gibt es einen Screen der dich überfordert hat?</label>
+                    <textarea name="overwhelming_screen" placeholder="z.B. Zu viele Charts gleichzeitig, Karte + Legende zu voll..."></textarea>
+                </div>
+
+                <div class="question">
+                    <label class="q-label">Was würdest du an der Bedienung sofort ändern?</label>
+                    <textarea name="change_suggestion" placeholder="z.B. Buttons größer, Menü anders sortieren, Swipe-Gesten..."></textarea>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="default-text">Feedback absenden</span>
+                    <span class="sending-text">Wird gesendet...</span>
+                </button>
+                <div class="error-msg" id="errorMsg"></div>
+            </div>
+        </form>
+
+        <div class="thanks" id="thanksMessage">
+            <div class="big-check">&#10003;</div>
+            <h2>Danke für dein Feedback!</h2>
+            <p>Deine Antworten helfen uns Kurvenfokus besser zu machen.</p>
+            <p style="margin-top: 20px; color: #64748b;">Ride safe!</p>
+            <a href="index.html" class="back-link" style="margin-top: 30px;">&larr; Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+            btn.disabled = true;
+            btn.classList.add('sending');
+            errorMsg.style.display = 'none';
+            const data = new FormData(form);
+            const result = {};
+            for (const [key, value] of data.entries()) {
+                if (result[key]) {
+                    if (Array.isArray(result[key])) { result[key].push(value); }
+                    else { result[key] = [result[key], value]; }
+                } else { result[key] = value; }
+            }
+            result.timestamp = new Date().toISOString();
+            result.userAgent = navigator.userAgent;
+            try {
+                await db.collection('feedback-ux').add(result);
+                form.style.display = 'none';
+                document.getElementById('thanksMessage').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                errorMsg.textContent = 'Senden fehlgeschlagen. Bitte versuche es erneut.';
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.classList.remove('sending');
+                console.error('Firebase error:', error);
+            }
+        });
+    </script>
+</body>
+</html>
