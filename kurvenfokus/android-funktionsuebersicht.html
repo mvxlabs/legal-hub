@@ -529,6 +529,90 @@
     .tab-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 0; }
     .tab-btn { white-space: nowrap; font-size: 12px; padding: 10px 14px; }
     .screenshot-frame { width: 220px; }
+    .version-timeline .version-block { flex-direction: column; }
+  }
+
+  /* ─── Version Timeline ─── */
+  .version-timeline {
+    margin-top: 40px;
+  }
+  .version-block {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 40px;
+  }
+  .version-block::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--cyan), rgba(0,212,255,0.1));
+  }
+  .version-dot {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cyan);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 12px rgba(0,212,255,0.4);
+  }
+  .version-dot.old {
+    background: var(--text3);
+    box-shadow: none;
+  }
+  .version-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .version-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: rgba(0,212,255,0.15);
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+  }
+  .version-tag.old {
+    background: rgba(255,255,255,0.05);
+    color: var(--text3);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .version-date {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .version-desc {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .screenshot-gallery-small {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 12px 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .screenshot-gallery-small .screenshot-frame {
+    width: 180px;
+    padding: 8px;
+    border-radius: 20px;
+    border-width: 2px;
+    opacity: 0.7;
+  }
+  .screenshot-gallery-small .screenshot-label {
+    font-size: 11px;
   }
 </style>
 </head>
@@ -537,7 +621,7 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-badges">
-    <span class="hero-badge">Version 0.0.2</span>
+    <span class="hero-badge">Version 0.0.6</span>
     <span class="hero-badge android">Android</span>
   </div>
   <h1><span>Kurvenfokus</span> Funktionsübersicht</h1>
@@ -611,6 +695,103 @@
           <div class="screenshot-label">Vollbild-Karte</div>
           <div class="screenshot-sublabel">Topo + Route + Kurven + Pausen</div>
         </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-6-speed-color.png" alt="Speed-Farbcodierung">
+          </div>
+          <div class="screenshot-label">Speed-Karte <span class="badge badge-new">NEU</span></div>
+          <div class="screenshot-sublabel">Route farbcodiert nach Geschwindigkeit</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android/screenshot-7-lean-color.png" alt="Lean-Farbcodierung">
+          </div>
+          <div class="screenshot-label">Lean-Karte <span class="badge badge-new">NEU</span></div>
+          <div class="screenshot-sublabel">Route farbcodiert nach Schräglage</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Versions-Timeline -->
+    <div class="section">
+      <div class="section-label">Entwicklung</div>
+      <div class="section-title">Version History</div>
+      <div class="section-desc">Die Entwicklung der Android-App von der ersten Version bis heute.</div>
+
+      <div class="version-timeline">
+
+        <!-- v0.0.6 (aktuell) -->
+        <div class="version-block">
+          <div class="version-dot"></div>
+          <div class="version-header">
+            <span class="version-tag">v0.0.6</span>
+            <span class="version-date">Februar 2026 — aktuell</span>
+          </div>
+          <div class="version-desc">
+            Speed- und Lean-Farbcodierung auf der Karte. AES-256-GCM Verschlüsselung für DSGVO-konforme Datenspeicherung.
+            Neues Dashboard-Layout mit optimierter Kartenansicht.
+          </div>
+        </div>
+
+        <!-- v0.0.5 -->
+        <div class="version-block">
+          <div class="version-dot old"></div>
+          <div class="version-header">
+            <span class="version-tag old">v0.0.5</span>
+            <span class="version-date">Februar 2026</span>
+          </div>
+          <div class="version-desc">
+            AES-256-GCM Verschlüsselung für alle gespeicherten Ride-Daten. Schlüssel-Management über Android Keystore.
+          </div>
+        </div>
+
+        <!-- v0.0.2 (erste öffentliche) -->
+        <div class="version-block">
+          <div class="version-dot old"></div>
+          <div class="version-header">
+            <span class="version-tag old">v0.0.2</span>
+            <span class="version-date">Februar 2026 — erste Version</span>
+          </div>
+          <div class="version-desc">
+            Erste funktionsfähige Version mit Tour-Liste, Dashboard, Kurvenverteilung, Telemetrie-Charts und Vollbild-Karte.
+            Grundlegende Import-Pipeline für CSV/JSON/ZIP.
+          </div>
+          <div class="screenshot-gallery-small">
+            <div class="screenshot-item">
+              <div class="screenshot-frame">
+                <img src="screenshots/android/v002/screenshot-1-tourliste.png" alt="Tour-Liste v0.0.2">
+              </div>
+              <div class="screenshot-label">Tour-Liste</div>
+            </div>
+            <div class="screenshot-item">
+              <div class="screenshot-frame">
+                <img src="screenshots/android/v002/screenshot-2-dashboard.png" alt="Dashboard v0.0.2">
+              </div>
+              <div class="screenshot-label">Dashboard</div>
+            </div>
+            <div class="screenshot-item">
+              <div class="screenshot-frame">
+                <img src="screenshots/android/v002/screenshot-3-kurvenverteilung.png" alt="Kurvenverteilung v0.0.2">
+              </div>
+              <div class="screenshot-label">Kurven-Analyse</div>
+            </div>
+            <div class="screenshot-item">
+              <div class="screenshot-frame">
+                <img src="screenshots/android/v002/screenshot-4-charts.png" alt="Charts v0.0.2">
+              </div>
+              <div class="screenshot-label">Charts</div>
+            </div>
+            <div class="screenshot-item">
+              <div class="screenshot-frame">
+                <img src="screenshots/android/v002/screenshot-5-vollbildkarte.png" alt="Vollbild-Karte v0.0.2">
+              </div>
+              <div class="screenshot-label">Vollbild-Karte</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1006,13 +1187,35 @@
         <div class="feature-card">
           <div class="icon icon-magenta">&#128312;</div>
           <h3>Route &amp; Overlays</h3>
-          <p>Magenta-Hauptroute mit farbcodierten Kurven-Highlights.</p>
+          <p>Farbcodierte Route mit mehreren Darstellungs-Modi.</p>
           <ul class="detail-list">
-            <li>Route-Polyline (Magenta, 10px)</li>
+            <li>Standard: Magenta-Route (10px)</li>
             <li>Linkskurven: Cyan (#00D4FF)</li>
             <li>Rechtskurven: Magenta (#FF00FF)</li>
             <li>Start-Marker (Grün), End-Marker (Rot)</li>
             <li>Pausen-Marker (Orange) mit Dauer</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#127912;</div>
+          <h3>Speed-Farbcodierung <span class="badge badge-new">NEU</span></h3>
+          <p>Route nach Geschwindigkeit eingefärbt — von Blau (langsam) über Grün/Gelb zu Rot (schnell).</p>
+          <ul class="detail-list">
+            <li>Dynamische Farbskala (Blau → Rot)</li>
+            <li>Umschaltbar über Karten-Layer-Button</li>
+            <li>Sofort sichtbar, welche Streckenabschnitte schnell oder langsam gefahren wurden</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#127912;</div>
+          <h3>Lean-Farbcodierung <span class="badge badge-new">NEU</span></h3>
+          <p>Route nach Schräglage eingefärbt — Grün (aufrecht) bis Cyan/Magenta (maximale Schräglage).</p>
+          <ul class="detail-list">
+            <li>Farbskala zeigt Intensität der Schräglage</li>
+            <li>Umschaltbar über Karten-Layer-Button</li>
+            <li>Nur bei Touren mit IMU-Daten (RideLink JSON)</li>
           </ul>
         </div>
 
@@ -1186,7 +1389,7 @@
 
     <div class="section">
       <div class="section-label">Übersicht</div>
-      <div class="section-title">Feature-Matrix v0.0.2</div>
+      <div class="section-title">Feature-Matrix v0.0.6</div>
       <div class="section-desc">Vollständige Übersicht aller implementierten, teilweise fertigen und geplanten Features.</div>
 
       <table class="feature-matrix">
@@ -1262,6 +1465,21 @@
             <td>Vollbild-Karte</td>
             <td class="status-ok">Implementiert</td>
             <td>Eigener Screen mit allen Overlays</td>
+          </tr>
+          <tr>
+            <td>Speed-Farbcodierung <span class="badge badge-new">NEU</span></td>
+            <td class="status-ok">Implementiert</td>
+            <td>Route nach Geschwindigkeit eingefärbt</td>
+          </tr>
+          <tr>
+            <td>Lean-Farbcodierung <span class="badge badge-new">NEU</span></td>
+            <td class="status-ok">Implementiert</td>
+            <td>Route nach Schräglage eingefärbt</td>
+          </tr>
+          <tr>
+            <td>AES-256-GCM Verschlüsselung <span class="badge badge-new">NEU</span></td>
+            <td class="status-ok">Implementiert</td>
+            <td>DSGVO-konforme Telemetrie-Verschlüsselung</td>
           </tr>
           <tr>
             <td>Tour loeschen</td>
@@ -1489,8 +1707,8 @@
 
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <footer style="text-align:center; padding:60px 24px; border-top:1px solid var(--border);">
-  <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text3); margin-bottom:12px;">Kurvenfokus Android v0.0.2</div>
-  <div style="font-size:14px; color:var(--text2);">Erstellt am 15. Februar 2026</div>
+  <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--text3); margin-bottom:12px;">Kurvenfokus Android v0.0.6</div>
+  <div style="font-size:14px; color:var(--text2);">Aktualisiert am 20. Februar 2026</div>
   <div style="font-size:12px; color:var(--text3); margin-top:8px;">Motorrad-Telemetrie — Kurven im Fokus</div>
 </footer>
 

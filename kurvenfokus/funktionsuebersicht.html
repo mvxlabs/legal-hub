@@ -688,6 +688,7 @@
     .pipeline-arrow { justify-content: center; transform: rotate(90deg); }
     .tab-nav { overflow-x: auto; justify-content: flex-start; padding-bottom: 0; }
     .tab-btn { white-space: nowrap; font-size: 12px; padding: 10px 14px; }
+    .screenshot-frame { width: 220px; }
   }
 
   /* ─── Legend Marker ─── */
@@ -711,6 +712,45 @@
   .marker-label {
     font-size: 13px;
     color: var(--text2);
+  }
+
+  /* ─── Screenshot Gallery ─── */
+  .screenshot-gallery {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .screenshot-item {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    text-align: center;
+  }
+  .screenshot-frame {
+    width: 260px;
+    background: #1a1a1a;
+    border-radius: 28px;
+    padding: 12px;
+    border: 3px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .screenshot-frame img {
+    width: 100%;
+    border-radius: 18px;
+    display: block;
+  }
+  .screenshot-label {
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+  }
+  .screenshot-sublabel {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
   }
 </style>
 </head>
@@ -736,6 +776,80 @@
 <!-- ═══════════════════════════════ IPHONE ═══════════════════════════════ -->
 <div id="tab-iphone" class="tab-content active">
   <div class="container">
+
+    <!-- Screenshot Gallery -->
+    <div class="section">
+      <div class="section-label">iOS App — v0.0.9</div>
+      <div class="section-title">Screenshots</div>
+      <div class="section-desc">SwiftUI + MapKit — Dark Theme mit interaktivem Dashboard, Kurvenfokus-Modus und Telemetrie-Charts.</div>
+
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/01_sicherheitshinweis.png" alt="Sicherheitshinweis">
+          </div>
+          <div class="screenshot-label">Sicherheitshinweis</div>
+          <div class="screenshot-sublabel">Erststart-Dialog mit Disclaimer</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/02_tourliste.png" alt="Tourliste">
+          </div>
+          <div class="screenshot-label">Tourliste</div>
+          <div class="screenshot-sublabel">Touren mit Distanz, Kurven, Dauer</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/03_dashboard_karte.png" alt="Dashboard">
+          </div>
+          <div class="screenshot-label">Dashboard</div>
+          <div class="screenshot-sublabel">Karte + Stats + Kurven + Speed-Chart</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/06_kurvenfokus.png" alt="Kurvenfokus">
+          </div>
+          <div class="screenshot-label">Kurvenfokus</div>
+          <div class="screenshot-sublabel">Kurve fokussiert, Karte gezoomt</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/07_lean_chart.png" alt="Lean-Chart">
+          </div>
+          <div class="screenshot-label">Schräglagen-Chart</div>
+          <div class="screenshot-sublabel">Lean-Diagramm in Magenta</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/08_kurvenverteilung.png" alt="Kurvenverteilung">
+          </div>
+          <div class="screenshot-label">Kurvenverteilung</div>
+          <div class="screenshot-sublabel">L/R Balance + Detail-KPIs</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/04_burger_menu.png" alt="Burger-Menü">
+          </div>
+          <div class="screenshot-label">Menü</div>
+          <div class="screenshot-sublabel">Import, Export, Hilfe, About</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/ios/05_about.png" alt="Über Kurvenfokus">
+          </div>
+          <div class="screenshot-label">Über Kurvenfokus</div>
+          <div class="screenshot-sublabel">Features, Support, Rechtliches</div>
+        </div>
+      </div>
+    </div>
+
     <div class="section">
       <div class="section-label">iPhone Layout</div>
       <div class="section-title">Kompakt und übersichtlich</div>
