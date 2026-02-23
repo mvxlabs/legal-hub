@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kurvenfokus v1.0.0 – Funktionsübersicht</title>
+<title>Kurvenfokus v0.0.10 – Funktionsübersicht</title>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -758,7 +758,7 @@
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <header class="hero">
-  <div class="hero-badge">Version 1.0.0</div>
+  <div class="hero-badge">Version 0.0.10</div>
   <h1><span>Kurvenfokus</span> Funktionsübersicht</h1>
   <p>Motorrad-Telemetrie visualisieren, analysieren und vergleichen — auf iPhone und iPad.</p>
 </header>
@@ -779,7 +779,7 @@
 
     <!-- Screenshot Gallery -->
     <div class="section">
-      <div class="section-label">iOS App — v0.0.9</div>
+      <div class="section-label">iOS App — v0.0.10</div>
       <div class="section-title">Screenshots</div>
       <div class="section-desc">SwiftUI + MapKit — Dark Theme mit interaktivem Dashboard, Kurvenfokus-Modus und Telemetrie-Charts.</div>
 
@@ -1692,17 +1692,55 @@
         </div>
       </div>
 
+      <!-- Smart Import (NEU in v0.0.10) -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:16px">Smart Import <span style="font-size:12px;color:var(--cyan);border:1px solid rgba(0,212,255,0.3);padding:2px 8px;border-radius:100px;margin-left:8px">NEU</span></h3>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>P95 Speed-Spike-Erkennung</h3>
+          <p>Erkennt unrealistische Geschwindigkeitswerte automatisch anhand des 95. Perzentils. Spikes über 150% der P95-Geschwindigkeit werden als Messfehler markiert.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Bereinigt importieren</h3>
+          <p>Wahl zwischen „Bereinigt importieren" (entfernt Anomalie-Punkte) und „Komplett importieren" (behält alle Daten). Details zu erkannten Messfehlern aufklappbar.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Speed-Detection Info</h3>
+          <p>Zeigt die erkannte Höchstgeschwindigkeit im Precheck an. Bei Speed-Spikes werden Details mit Zeitpunkt und Wert angezeigt.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Import-Bericht</h3>
+          <p>Nachträglicher Import-Bericht über das Burger-Menü abrufbar. Zeigt Qualitätsscore, verfügbare Daten, erkannte Anomalien und Import-Details.</p>
+        </div>
+      </div>
+
+      <!-- Interaktive Charts (NEU in v0.0.10) -->
+      <h3 style="font-size:18px;margin-top:40px;margin-bottom:16px">Interaktive Charts <span style="font-size:12px;color:var(--cyan);border:1px solid rgba(0,212,255,0.3);padding:2px 8px;border-radius:100px;margin-left:8px">NEU</span></h3>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Chart-Tap</h3>
+          <p>Tippe auf den Speed- oder Lean-Chart, um direkt zum Zeitpunkt zu springen. Der Kartenmarker bewegt sich mit. Auch Drag durch den Chart möglich.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Map-Tap</h3>
+          <p>Tippe auf den Track auf der Karte, um zum nächsten Telemetrie-Punkt zu springen. Scrubber und Charts synchronisieren sich automatisch.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Speed-Overlay Toggle</h3>
+          <p>Farbcodierter Speed-Track ist standardmäßig ausgeschaltet für schnelleren App-Start. Per Pinsel-Button jederzeit einschaltbar.</p>
+        </div>
+      </div>
+
       <!-- GPX Besonderheiten -->
       <h3 style="font-size:18px;margin-top:40px;margin-bottom:8px">GPX-Besonderheiten</h3>
       <p style="font-size:14px;color:var(--text2);margin-bottom:16px">GPX-Dateien enthalten oft nur GPS-Koordinaten. Kurvenfokus berechnet die fehlenden Daten automatisch:</p>
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Speed-Berechnung</h3>
-          <p>Geschwindigkeit wird aus dem Abstand aufeinanderfolgender GPS-Punkte berechnet (Haversine-Formel). Spike-Filter entfernt unrealistische Werte über 200 km/h.</p>
+          <p>Geschwindigkeit wird aus dem Abstand aufeinanderfolgender GPS-Punkte berechnet (Haversine-Formel). P95-basierter Spike-Filter entfernt unrealistische Werte automatisch.</p>
         </div>
         <div class="feature-card">
           <h3>Lean-Berechnung</h3>
-          <p>Schräglagen werden aus der Kursänderungsrate (Bearing) und Geschwindigkeit physikalisch berechnet. Gaussian- und Median-Filter sorgen für glatte Kurven.</p>
+          <p>Schräglagen werden aus der Kursänderungsrate (Bearing) und Geschwindigkeit physikalisch berechnet (±35° Clamp). Gaussian-Filter mit verstärkter Glättung sorgen für realistische Werte.</p>
         </div>
       </div>
     </div>
