@@ -1013,7 +1013,7 @@
               <div class="gesture-icon" style="color:var(--gold)">&#9749;</div>
               <div>
                 <h4>Pausen-Erkennung</h4>
-                <p>Automatisch erkannte Stopps (>60s) als Marker auf Karte und Timeline. Antippbar — springt zur Stelle. Toggle per Kaffeetassen-Button.</p>
+                <p>Automatisch erkannte Stopps (>30s) als Marker auf Karte und Timeline. Antippbar — springt zur Stelle. Toggle per Kaffeetassen-Button.</p>
               </div>
             </div>
             <div class="interaction-item">
@@ -1430,7 +1430,7 @@
           <h3>Pausen-Erkennung</h3>
           <p>Automatisch erkannte Stopps werden auf Karte und Timeline angezeigt.</p>
           <ul class="detail-list">
-            <li>Erkennung ab 60 Sekunden Stillstand</li>
+            <li>Erkennung ab 30 Sekunden Stillstand</li>
             <li>Marker auf Karte antippen = zur Stelle springen</li>
             <li>Gelbe Zonen auf der Timeline</li>
             <li>Auto-Skip: Pausen überspringen bei Wiedergabe</li>
@@ -1487,7 +1487,7 @@
 
         <div class="feature-card">
           <div class="icon icon-green">&#128206;</div>
-          <h3>Tour-Overlay</h3>
+          <h3>Tour-Overlay <span class="badge badge-pro">PRO</span></h3>
           <p>Mehrere Touren gleichzeitig auf einer Karte darstellen.</p>
           <ul class="detail-list">
             <li>Bis zu 8 Touren mit verschiedenen Farben</li>
@@ -1592,11 +1592,11 @@
         <div class="feature-card">
           <div class="icon icon-cyan">&#128279;</div>
           <h3>Auto-Merge <span class="badge badge-new">NEU</span></h3>
-          <p>Gesplittete Touren automatisch zusammenführen — erkennt zusammengehörende Teilstücke.</p>
+          <p>Gesplittete RideLink-Touren automatisch zusammenführen — erkennt zusammengehörende Teilstücke.</p>
           <ul class="detail-list">
-            <li>Zeitbasierte Erkennung (kurze Unterbrechung)</li>
-            <li>Ortsbasierte Erkennung (nahe Start/End-Punkte)</li>
-            <li>Automatisch beim Import</li>
+            <li>Gleiche BikeID + gleicher Kalendertag</li>
+            <li>Lücke unter 2 Stunden = zusammenführen</li>
+            <li>Automatisch beim Batch-Import</li>
             <li>Zusammengeführte Tour als einzelne Strecke</li>
           </ul>
         </div>
@@ -1621,7 +1621,7 @@
             <li>Multi-Select per Long-Press</li>
             <li>Aggregierte Stats der Auswahl</li>
             <li>Ideal für Wochenend- oder Urlaubsauswertung</li>
-            <li>Export der Selektion möglich</li>
+            <li>Overlay oder Vergleich direkt starten</li>
           </ul>
         </div>
 
@@ -1787,7 +1787,7 @@
         <div class="feature-card">
           <div class="icon icon-gold">&#9749;</div>
           <h3>Pausen-Marker</h3>
-          <p>Erkannte Stopps (>60 Sekunden) erscheinen als goldene Kaffeetassen-Marker auf der Karte. Antippen springt zur Pausen-Stelle auf der Timeline. Nur sichtbar wenn Pausen-Toggle aktiv.</p>
+          <p>Erkannte Stopps (>30 Sekunden) erscheinen als goldene Kaffeetassen-Marker auf der Karte. Antippen springt zur Pausen-Stelle auf der Timeline. Nur sichtbar wenn Pausen-Toggle aktiv.</p>
         </div>
         <div class="feature-card">
           <div class="icon icon-green">&#128205;</div>
