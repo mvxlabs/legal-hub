@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datengenauigkeit - Kurvenfokus</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .page-header .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff4d4d;
+            border: 1px solid rgba(255,77,77,0.3);
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .page-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+        .page-header p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin: 48px 0 16px;
+            color: #fff;
+        }
+        h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 28px 0 10px;
+            color: #00d4ff;
+        }
+        p { margin-bottom: 14px; color: rgba(255,255,255,0.7); }
+        strong { color: #fff; }
+        a { color: #00d4ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Cards */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        @media (max-width: 600px) {
+            .comparison { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .card-sensor {
+            border-color: rgba(0,255,136,0.3);
+        }
+        .card-gps {
+            border-color: rgba(255,77,77,0.3);
+        }
+        .card .card-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .card-sensor .card-badge {
+            color: #00ff88;
+            background: rgba(0,255,136,0.12);
+        }
+        .card-gps .card-badge {
+            color: #ff4d4d;
+            background: rgba(255,77,77,0.12);
+        }
+        .card h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .card p { font-size: 14px; margin-bottom: 8px; }
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .card ul li {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .card ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: rgba(255,255,255,0.04);
+            border-left: 3px solid #00d4ff;
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .info-box p { margin-bottom: 6px; }
+        .info-box .formula {
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 15px;
+            color: #00d4ff;
+            background: rgba(0,212,255,0.08);
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin: 12px 0;
+            text-align: center;
+        }
+
+        /* Beta Banner */
+        .beta-section {
+            background: linear-gradient(135deg, rgba(255,77,77,0.08), rgba(255,77,77,0.02));
+            border: 1px solid rgba(255,77,77,0.2);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 32px 0;
+        }
+        .beta-section h3 {
+            color: #ff4d4d;
+            margin-top: 0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th {
+            text-align: left;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.5);
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.7);
+        }
+        td:first-child { color: #fff; font-weight: 500; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer a {
+            color: rgba(255,255,255,0.4);
+            margin: 0 12px;
+            font-size: 13px;
+        }
+        .footer a:hover { color: #00d4ff; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="page-header">
+        <span class="badge">Transparenz</span>
+        <h1>Datengenauigkeit</h1>
+        <p>Wie Kurvenfokus die Schräglage schätzt — und wo die Grenzen liegen.</p>
+    </div>
+
+    <!-- Zwei Datenquellen -->
+    <h2>Zwei Datenquellen — zwei Genauigkeitsstufen</h2>
+    <p>Kurvenfokus verarbeitet Touren aus verschiedenen Quellen. Je nach Datenquelle unterscheidet sich die Genauigkeit der Schräglage-Werte erheblich.</p>
+
+    <div class="comparison">
+        <div class="card card-sensor">
+            <span class="card-badge">gemessen</span>
+            <h4>RideLink-Sensor</h4>
+            <p>Schräglage wird <strong>direkt gemessen</strong> über IMU/Gyroskop im RideLink WingMan.</p>
+            <ul>
+                <li>Direkte physikalische Messung</li>
+                <li>Hohe Präzision (±1–2°)</li>
+                <li>Unabhängig von GPS-Qualität</li>
+                <li>Immer sichtbar im Dashboard</li>
+            </ul>
+        </div>
+        <div class="card card-gps">
+            <span class="card-badge">Beta</span>
+            <h4>Schräglage (GPS-Schätzung)</h4>
+            <p>Schräglage wird aus GPS-Geschwindigkeit und Kurvenverlauf <strong>geschätzt</strong> — kein Sensor, sondern ein Trendindikator.</p>
+            <ul>
+                <li>Ideal zum Vergleichen: enge vs. weite Kurven</li>
+                <li>Genauigkeit abhängig von GPS-Qualität</li>
+                <li>Keine exakte Gradzahl — kein IMU-Ersatz</li>
+                <li>Muss aktiv freigeschaltet werden</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Wie es funktioniert -->
+    <h2>Schräglage (GPS-Schätzung)</h2>
+    <p>Wir schätzen die Schräglage aus GPS-Geschwindigkeit und dem Kurvenverlauf (Richtungsänderung). Das ist ideal, um Kurvenfahrten zu vergleichen und enge/weite Passagen zu erkennen. Die Anzeige ist eine <strong>Schätzung</strong> und kann je nach GPS-Qualität, niedriger Geschwindigkeit, Kurven-Erkennung und Glättung vom realen Winkel abweichen.</p>
+
+    <div class="info-box" style="border-left-color: #ff4d4d;">
+        <p><strong>Die Schräglage ist eine GPS-basierte Schätzung aus Geschwindigkeit und Kurvenverlauf. Sie eignet sich zum Vergleichen von Kurven (enger/weiter), ersetzt aber keine Sensormessung.</strong></p>
+    </div>
+
+    <p>Je höher die Geschwindigkeit und je stärker die Richtungsänderung, desto größer die geschätzte Schräglage.</p>
+
+    <h3>Warum schwankt das?</h3>
+    <div class="info-box">
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="padding: 6px 0; color: rgba(255,255,255,0.7);">• GPS ist nicht überall gleich gut (Wald, Schluchten, Stadt, Tunnel).</li>
+            <li style="padding: 6px 0; color: rgba(255,255,255,0.7);">• Bei niedriger Geschwindigkeit wird die Richtungsbestimmung unruhiger.</li>
+            <li style="padding: 6px 0; color: rgba(255,255,255,0.7);">• Wie Kurven erkannt werden (Start/Ende) beeinflusst den Maximalwert.</li>
+            <li style="padding: 6px 0; color: rgba(255,255,255,0.7);">• Glättung reduziert Rauschen, kann aber Spitzen etwas abmildern.</li>
+        </ul>
+    </div>
+
+    <p><strong>Tipps für bessere Werte:</strong> Gute GPS-Sicht, möglichst 5–10 Hz Aufzeichnung, keine Tunnels/Abschattungen, gleichmäßige Kurvenfahrt. 1 Hz funktioniert, 5–10 Hz liefert deutlich stabilere Kurvenwerte.</p>
+
+    <p>Calimoto, Motobit und Komoot liefern in der Regel gute Daten mit ausreichender Auflösung.</p>
+
+    <!-- Technische Details (ausklappbar) -->
+    <details style="margin: 24px 0;">
+        <summary style="cursor: pointer; color: #00d4ff; font-weight: 600; font-size: 14px; padding: 8px 0;">Technische Details anzeigen</summary>
+        <div class="info-box" style="margin-top: 12px;">
+            <p>Vereinfachtes Modell (ebene Fahrbahn, stationäre Kurve): tan(θ) ≈ a<sub>y</sub>/g, wobei a<sub>y</sub> aus Geschwindigkeit und Kurvenverlauf geschätzt wird. Ergebnis: theoretische Schräglage, nicht IMU-Messung.</p>
+            <div class="formula">tan(θ) = v · ω / g</div>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.4);">θ = Schräglage · v = Geschwindigkeit · ω = Kursänderungsrate · g = Erdbeschleunigung</p>
+        </div>
+    </details>
+
+    <!-- Beta-Gate -->
+    <div class="beta-section">
+        <h3>Warum ist die Kurvenanalyse ein Beta-Feature?</h3>
+        <p>Wir möchten transparent kommunizieren: Die GPS-basierte Schräglage ist eine <strong>Näherung, keine exakte Messung</strong>. Deshalb:</p>
+        <ul style="list-style: none; padding: 0; margin: 12px 0;">
+            <li style="padding: 6px 0; padding-left: 24px; position: relative; color: rgba(255,255,255,0.7);">
+                <span style="position: absolute; left: 0;">✓</span>
+                Die Funktion muss <strong>aktiv freigeschaltet</strong> werden — kein Nutzer sieht unaufgefordert berechnete Werte.
+            </li>
+            <li style="padding: 6px 0; padding-left: 24px; position: relative; color: rgba(255,255,255,0.7);">
+                <span style="position: absolute; left: 0;">✓</span>
+                Ein <strong style="color: #ff4d4d;">roter „Beta"-Badge</strong> kennzeichnet berechnete Werte in der gesamten App.
+            </li>
+            <li style="padding: 6px 0; padding-left: 24px; position: relative; color: rgba(255,255,255,0.7);">
+                <span style="position: absolute; left: 0;">✓</span>
+                Der Algorithmus wird <strong>ständig verbessert</strong> — Feedback von Beta-Testern fließt direkt ein.
+            </li>
+            <li style="padding: 6px 0; padding-left: 24px; position: relative; color: rgba(255,255,255,0.7);">
+                <span style="position: absolute; left: 0;">✓</span>
+                RideLink-Sensor-Daten (<strong style="color: #00ff88;">grüner „gemessen"-Badge</strong>) sind davon nicht betroffen.
+            </li>
+        </ul>
+    </div>
+
+    <!-- Aktivierung -->
+    <h2>So funktioniert die Aktivierung</h2>
+    <p>Beim Öffnen einer GPX-Tour erscheint im Dashboard ein Banner:</p>
+
+    <div class="card" style="margin: 20px 0; text-align: center; border-color: rgba(255,77,77,0.3);">
+        <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+            <span style="font-size: 20px;">🧪</span>
+            <span style="font-size: 16px; font-weight: 600; color: #fff;">Kurvenanalyse (Beta)</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.5); font-size: 13px; margin-bottom: 14px;">GPS-basierte Schräglage-Berechnung</p>
+        <span style="display: inline-block; background: #ff4d4d; color: #fff; font-weight: 600; font-size: 13px; padding: 8px 20px; border-radius: 8px;">Aktivieren</span>
+    </div>
+
+    <p>Nach dem Tippen auf <strong>„Aktivieren"</strong> erscheint ein Hinweis-Dialog:</p>
+
+    <div class="info-box" style="border-left-color: #ff4d4d;">
+        <p><strong>„Die Schräglage wird aus GPS-Daten berechnet — eine Näherung, keine exakte Messung. Der Algorithmus wird ständig verbessert."</strong></p>
+    </div>
+
+    <p>Die Einstellung bleibt dauerhaft gespeichert. Beim nächsten Öffnen einer GPX-Tour sind alle Lean-Features sofort sichtbar.</p>
+
+    <!-- Was wird ausgeblendet -->
+    <h2>Was wird ohne Aktivierung ausgeblendet?</h2>
+    <p>Ohne Beta-Freischaltung bei GPS-Touren sind folgende Elemente nicht sichtbar:</p>
+
+    <table>
+        <tr>
+            <th>Element</th>
+            <th>Sichtbarkeit</th>
+        </tr>
+        <tr>
+            <td>Schräglage-Chart</td>
+            <td>Ausgeblendet</td>
+        </tr>
+        <tr>
+            <td>Kurvenliste</td>
+            <td>→ Beta-Banner stattdessen</td>
+        </tr>
+        <tr>
+            <td>Kurvenfokus-Modus</td>
+            <td>Ausgeblendet</td>
+        </tr>
+        <tr>
+            <td>Kurven-Verteilung (L/R)</td>
+            <td>Ausgeblendet</td>
+        </tr>
+        <tr>
+            <td>Max. geschätzte Schräglage / Ø Lean (Stats)</td>
+            <td>Ausgeblendet</td>
+        </tr>
+        <tr>
+            <td>Lean-Farbmodus (Karte)</td>
+            <td>Übersprungen</td>
+        </tr>
+        <tr>
+            <td>Kurven-Marker (Karte)</td>
+            <td>Ausgeblendet</td>
+        </tr>
+        <tr>
+            <td>Karte + Speed-Chart + Stats</td>
+            <td style="color: #00ff88;">Immer sichtbar</td>
+        </tr>
+    </table>
+
+    <p>Bei <strong>RideLink-Sensor-Touren</strong> sind alle Features immer sichtbar — ohne Aktivierung, ohne Beta-Badge.</p>
+
+    <!-- Verbesserungen -->
+    <h2>Kontinuierliche Verbesserung</h2>
+    <p>Der Algorithmus wird aktiv weiterentwickelt. Geplante Verbesserungen:</p>
+    <ul style="list-style: none; padding: 0;">
+        <li style="padding: 8px 0; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative;">
+            <span style="position: absolute; left: 0; color: #00d4ff;">→</span>
+            Bessere Glättung bei niedrigauflösenden GPS-Daten
+        </li>
+        <li style="padding: 8px 0; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative;">
+            <span style="position: absolute; left: 0; color: #00d4ff;">→</span>
+            Konfidenz-Indikator pro Kurve (Wie sicher ist der Wert?)
+        </li>
+        <li style="padding: 8px 0; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative;">
+            <span style="position: absolute; left: 0; color: #00d4ff;">→</span>
+            Kalibrierung anhand bekannter Referenzstrecken
+        </li>
+        <li style="padding: 8px 0; color: rgba(255,255,255,0.7); padding-left: 24px; position: relative;">
+            <span style="position: absolute; left: 0; color: #00d4ff;">→</span>
+            Kombination mehrerer GPS-Fahrten für bessere Genauigkeit
+        </li>
+    </ul>
+
+    <p style="margin-top: 24px;">Hast du Feedback zur Genauigkeit? Wir freuen uns über jede Rückmeldung:</p>
+    <p><a href="mailto:kurvenfokus@gmail.com" style="color: #00d4ff; font-weight: 600;">kurvenfokus@gmail.com</a></p>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="index.html">Startseite</a>
+        <a href="support.html">Support</a>
+        <a href="terms-of-service.html">Nutzungsbedingungen</a>
+        <a href="privacy-policy.html">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
+        <p style="color: rgba(255,255,255,0.2); font-size: 11px; margin-top: 24px;">© 2026 Kurvenfokus</p>
+    </div>
+
+</div>
+</body>
+</html>

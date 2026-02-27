@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erste Schritte - Kurvenfokus</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .hero .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #00CED1;
+            border: 1px solid rgba(0,206,209,0.3);
+            padding: 4px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 17px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        p { color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+        strong { color: #fff; }
+        a { color: #00CED1; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Numbered Steps */
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(0,206,209,0.15);
+            color: #00CED1;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        /* Feature Cards */
+        .features-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+        .feature-item .icon {
+            font-size: 22px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .feature-item .text {
+            flex: 1;
+        }
+        .feature-item .text strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+        .feature-item .text span {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Info Box (Schräglage) */
+        .lean-box {
+            background: linear-gradient(135deg, rgba(255,77,77,0.08), rgba(255,77,77,0.02));
+            border: 1px solid rgba(255,77,77,0.25);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin: 20px 0;
+        }
+        .lean-box .lean-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ff4d4d;
+            background: rgba(255,77,77,0.12);
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+        .lean-box p { font-size: 14px; margin-bottom: 8px; }
+        .lean-box p:last-child { margin-bottom: 0; }
+
+        /* Tips */
+        .tips {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 14px;
+        }
+        .tip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        .tip .check {
+            color: #22c55e;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Start Tipp */
+        .start-tip {
+            background: rgba(0,206,209,0.08);
+            border: 1px solid rgba(0,206,209,0.2);
+            border-radius: 12px;
+            padding: 18px 22px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .start-tip p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer .back-btn {
+            display: inline-block;
+            background: #00CED1;
+            color: #000;
+            font-weight: 600;
+            font-size: 15px;
+            padding: 12px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: transform 0.2s;
+            margin-bottom: 16px;
+        }
+        .footer .back-btn:hover {
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        .footer .detail-link {
+            display: block;
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 12px;
+        }
+        .footer .detail-link:hover { color: #00CED1; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+        <span class="badge">60 Sekunden</span>
+        <h1>Kurvenfokus — kurz erklärt</h1>
+        <p>In 60 Sekunden weißt du, was die Werte bedeuten.</p>
+    </div>
+
+    <!-- 1) Was du bekommst -->
+    <div class="section">
+        <h2><span class="step-number">1</span> Was du bekommst</h2>
+        <div class="features-mini">
+            <div class="feature-item">
+                <span class="icon">🔍</span>
+                <div class="text">
+                    <strong>Kurven automatisch erkannt</strong>
+                    <span>Links- und Rechtskurven werden aus deiner Tour-Datei identifiziert.</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="icon">🏆</span>
+                <div class="text">
+                    <strong>Top-Kurven & Max-Werte pro Tour</strong>
+                    <span>Deine engsten Kurven, höchste Schräglage und Geschwindigkeiten auf einen Blick.</span>
+                </div>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📍</span>
+                <div class="text">
+                    <strong>Direkt zur Stelle auf der Karte springen</strong>
+                    <span>Tippe auf eine Kurve — die Karte zoomt hin und zeigt den Abschnitt.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2) Schräglage — wichtig zu wissen -->
+    <div class="section">
+        <h2><span class="step-number">2</span> Schräglage — wichtig zu wissen</h2>
+        <div class="lean-box">
+            <span class="lean-badge">GPS-Schätzung</span>
+            <p>Die Schräglage ist eine <strong>GPS-basierte Schätzung</strong> aus Geschwindigkeit und Kurvenverlauf.</p>
+            <p>Perfekt zum <strong>Vergleichen</strong> (enger/weiter gefahrene Kurven) — ersetzt aber <strong>keine Sensormessung</strong>.</p>
+            <p style="color: rgba(255,255,255,0.5); font-size: 13px;">Abweichungen sind möglich (GPS-Qualität, niedrige Geschwindigkeit, Tunnel, Kurven-Segmentierung).</p>
+        </div>
+    </div>
+
+    <!-- 3) So werden Werte besser -->
+    <div class="section">
+        <h2><span class="step-number">3</span> So werden Werte besser</h2>
+        <div class="tips">
+            <div class="tip">
+                <span class="check">✓</span>
+                Gute GPS-Sicht / wenig Abschattung
+            </div>
+            <div class="tip">
+                <span class="check">✓</span>
+                Wenn möglich 5–10 Hz statt 1 Hz Aufzeichnung
+            </div>
+            <div class="tip">
+                <span class="check">✓</span>
+                Wenig GPS-Aussetzer (Tunnel, Schluchten meiden)
+            </div>
+        </div>
+    </div>
+
+    <!-- 4) Start-Tipp -->
+    <div class="section">
+        <h2><span class="step-number">4</span> Start-Tipp</h2>
+        <div class="start-tip">
+            <p>Öffne zuerst deine <strong>Top-Kurven</strong> und tippe dann einzelne Kurven für Details.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="index.html" class="back-btn">Zurück zu Kurvenfokus</a>
+        <a href="datengenauigkeit.html" class="detail-link">Mehr technische Details zur Datengenauigkeit</a>
+    </div>
+
+</div>
+</body>
+</html>

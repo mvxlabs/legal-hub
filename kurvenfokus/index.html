@@ -70,6 +70,10 @@
             color: #aaa;
             font-size: 14px;
         }
+        .onboarding-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0,206,209,0.15);
+        }
         .android-hint {
             background: linear-gradient(135deg, rgba(34,197,94,0.12), rgba(0,206,209,0.08));
             border: 1px solid rgba(34,197,94,0.35);
@@ -169,31 +173,44 @@
         <h1>Kurvenfokus</h1>
         <p class="tagline">Motorrad-Telemetrie-Analyse für iOS & Android</p>
 
+        <a href="erste-schritte.html" class="onboarding-card" style="display: block; max-width: 560px; margin: 0 auto 40px; background: linear-gradient(135deg, rgba(0,206,209,0.10), rgba(0,206,209,0.04)); border: 1px solid rgba(0,206,209,0.25); border-radius: 16px; padding: 22px 28px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.25s ease, box-shadow 0.3s ease;">
+            <span style="display: inline-block; background: #00CED1; color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px;">Neu hier?</span>
+            <p style="font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 4px;">60-Sekunden-Überblick</p>
+            <p style="font-size: 14px; color: #aaa; margin-bottom: 12px;">So liest du Kurvenfokus — inkl. GPS-Schräglage einfach erklärt.</p>
+            <span style="display: inline-block; background: #00CED1; color: #000; font-weight: 600; font-size: 13px; padding: 8px 22px; border-radius: 20px;">Erste Schritte</span>
+            <p style="font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 10px; margin-bottom: 0;">Schräglage = GPS-Schätzung (keine IMU)</p>
+        </a>
+
         <div class="features">
             <div class="feature">
                 <h3>📊 Kurven-Analyse</h3>
-                <p>Automatische Erkennung von Links- und Rechtskurven mit rechnerisch geschätzten Schräglage-Werten (Näherungswerte auf Basis von GPS-Daten).</p>
+                <p>Automatische Erkennung von Links- und Rechtskurven. Schräglage wird je nach Datenquelle <strong>gemessen</strong> (RideLink-Sensor) oder <strong>berechnet</strong> (GPS-Näherung, Beta).</p>
             </div>
             <div class="feature">
                 <h3>🗺️ Strecken-Visualisierung</h3>
-                <p>Interaktive Karten mit farbcodierter Darstellung der geschätzten Schräglage.</p>
+                <p>Interaktive Karten mit farbcodierter Darstellung nach Geschwindigkeit oder Schräglage.</p>
             </div>
             <div class="feature">
                 <h3>📈 Telemetrie-Charts</h3>
-                <p>Geschwindigkeit und geschätzte Schräglage im zeitlichen Verlauf.</p>
+                <p>Geschwindigkeit, Schräglage und Höhenprofil im zeitlichen Verlauf.</p>
             </div>
             <div class="feature">
                 <h3>🔄 Tour-Vergleich</h3>
                 <p>Vergleiche zwei Fahrten auf derselben Strecke.</p>
             </div>
+            <a href="datengenauigkeit.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(255,77,77,0.3);">
+                <h3 style="color: #ff4d4d;">🔬 Datengenauigkeit</h3>
+                <p>Wie wird die Schräglage berechnet? Was bedeutet „Beta"? Gemessen vs. berechnet.</p>
+                <span style="display: inline-block; margin-top: 10px; background: #ff4d4d; color: #fff; font-weight: 700; font-size: 12px; padding: 3px 12px; border-radius: 20px;">Transparenz</span>
+            </a>
             <a href="funktionsuebersicht.html" class="feature" style="text-decoration: none; color: inherit;">
                 <h3>📋 iOS Funktionsübersicht</h3>
-                <p>Alle Features von v0.0.12 im Detail – iPhone & iPad.</p>
+                <p>Alle Features von v0.0.14 im Detail – iPhone & iPad.</p>
                 <span style="display: inline-block; margin-top: 10px; background: #00CED1; color: #000; font-weight: 700; font-size: 12px; padding: 3px 12px; border-radius: 20px;">iOS / iPadOS 17.0+</span>
             </a>
             <a href="android-funktionsuebersicht.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(0,255,136,0.3);">
                 <h3 style="color: #22c55e;">📱 Android Funktionsübersicht</h3>
-                <p>Alle Features von v0.0.7 im Detail – Android.</p>
+                <p>Alle Features von v0.0.9 im Detail – Android.</p>
                 <span style="display: inline-block; margin-top: 10px; background: #22c55e; color: #000; font-weight: 700; font-size: 12px; padding: 3px 12px; border-radius: 20px;">Android 10+</span>
             </a>
             <a href="changelog.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(255,215,0,0.3);">
@@ -219,6 +236,8 @@
 
         <div class="links">
             <a href="feedback-hub.html" style="background: linear-gradient(135deg, #00CED1, #22c55e); color: #1a1a2e; padding: 8px 18px; border-radius: 8px; font-weight: 700; text-decoration: none;">Beta Feedback</a>
+            <a href="erste-schritte.html">Erste Schritte</a>
+            <a href="datengenauigkeit.html">Datengenauigkeit</a>
             <a href="impressum.html">Impressum</a>
             <a href="privacy-policy.html">Datenschutz</a>
             <a href="terms-of-service.html">Nutzungsbedingungen</a>
