@@ -350,32 +350,118 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val">v0.0.12</div>
+        <div class="stat-val">v0.0.17</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">65</div>
+        <div class="stat-val">86</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">7</div>
+        <div class="stat-val">11</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">92</div>
+        <div class="stat-val">116</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>
 
     <div class="timeline">
 
-      <!-- v0.0.12 -->
+      <!-- v0.0.17 -->
       <div class="version-entry">
         <div class="version-dot current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.17</span>
+          <span class="version-title">Tour-Gruppierung &amp; Sortierung</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">02. Mär 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+8 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Tour-Gruppierung (3 Modi)</span>
+            <span class="highlight-tag">Route-Cache</span>
+            <span class="highlight-tag">Bundesland-Filter</span>
+            <span class="highlight-tag">Batch-Retitle</span>
+            <span class="highlight-tag">Sortier-Fix</span>
+            <span class="highlight-tag">Async Sections</span>
+            <span class="highlight-tag">Match-Highlighting</span>
+            <span class="highlight-tag">89 Unit-Tests</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">📂</span><span class="feature-text"><strong>Tour-Gruppierung (3 Modi):</strong> Tour-Liste nach Datum, Region oder Route gruppieren — per Chip-Leiste umschaltbar</span></li>
+          <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Bundesland-Filter:</strong> Drill-Down auf Bundesland-Ebene innerhalb eines Landes (z.B. Bayern, BaWü, Thüringen)</span></li>
+          <li><span class="feature-icon">🔁</span><span class="feature-text"><strong>Route-Matching:</strong> Ähnliche Strecken automatisch gruppieren — Hausdorff-Distanz + Fingerprint-Matching</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Route-Cache:</strong> Cluster-Berechnung O(n²) → O(n) durch Dictionary-Lookup, Pre-Compute bei App-Start</span></li>
+          <li><span class="feature-icon">✏️</span><span class="feature-text"><strong>Batch-Retitle:</strong> Generische Tour-Titel (Calimoto/Datums-Muster) automatisch durch Ortsnamen ersetzen</span></li>
+          <li><span class="feature-icon">🔃</span><span class="feature-text"><strong>Sortier-Fix:</strong> Sections respektieren jetzt die gewählte Sortier-Option (Kurven, Lean, Distanz, Datum)</span></li>
+          <li><span class="feature-icon">🏷️</span><span class="feature-text"><strong>Match-Highlighting:</strong> Cyan-Seitenstreifen + MATCH-Badge bei gruppierten Routen</span></li>
+          <li><span class="feature-icon">🧪</span><span class="feature-text"><strong>89 Unit-Tests:</strong> 9 Test-Suiten abdecken alle Kern-Algorithmen (Kurven, Stats, Smoothing, GeoMath, Routing)</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.16 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.16</span>
+          <span class="version-title">GeoCurveDetector &amp; Performance</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">28. Feb 2026</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">📐</span><span class="feature-text"><strong>GeoCurveDetector:</strong> Geometrische Kurven-Erkennung via Bearing-Änderung — erkennt Kurven auch ohne Lean-Daten</span></li>
+          <li><span class="feature-icon">🚫</span><span class="feature-text"><strong>Tour-Ausschluss:</strong> Einzelne Touren per Swipe aus der Gesamtstatistik ausschließen (50% Opacity + EXCL-Badge)</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Max-Lean-Anzeige:</strong> Höchste Schräglage pro Tour in der Liste sichtbar (rot bei &gt;50°)</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Async Restore:</strong> Backup-Wiederherstellung mit Progress-Overlay — App friert nicht mehr ein</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Farbmodus-Performance:</strong> Binary Search O(n log m), async Segmentberechnung, optimierte Buckets</span></li>
+          <li><span class="feature-icon">🧪</span><span class="feature-text"><strong>75 Unit-Tests:</strong> 6 Test-Suiten registriert und verifiziert (Kurven, Stats, Smoothing, GeoMath, Optimizer, GPS)</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.15 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.15</span>
+          <span class="version-title">UX-Polish &amp; Design-Review</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">27. Feb 2026</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">☰</span><span class="feature-text"><strong>Burger-Menü überall:</strong> Menü jetzt auf beiden Screens verfügbar (Tour-Liste + Dashboard)</span></li>
+          <li><span class="feature-icon">🔬</span><span class="feature-text"><strong>Beta-Toggle:</strong> GPS-Lean an/aus im Burger-Menü — für Beta-Tests schnell umschaltbar</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Design-Review:</strong> Spacing, Theme-Farben, FilterChip-Komponenten und InfoButton überarbeitet</span></li>
+          <li><span class="feature-icon">📦</span><span class="feature-text"><strong>Menü-Reorganisation:</strong> Backup/Restore/Löschen ins Burger-Menü verschoben, ⋯-Overflow entfernt</span></li>
+          <li><span class="feature-icon">⏸️</span><span class="feature-text"><strong>Pausen-Default AUS:</strong> Pausen-Anzeige per Default deaktiviert für bessere Performance</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.13 – v0.0.14 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.13 – v0.0.14</span>
+          <span class="version-title">Wartung &amp; Stabilisierung</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">25. Feb 2026</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Stabile Snapshots:</strong> Sichere Checkpoint-Versionen nach dem großen Batch-Import-Release</span></li>
+          <li><span class="feature-icon">🧹</span><span class="feature-text"><strong>Build-Bereinigung:</strong> Xcode-Artefakte und Build-Caches aus allen Releases entfernt (~544 KB)</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.12 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.12</span>
           <span class="version-title">Batch-Import, Backup &amp; Quellen</span>
-          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">24. Feb 2026</span>
         </div>
         <div class="highlight-card featured">
@@ -524,7 +610,7 @@
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">86</div>
+        <div class="stat-val android-color">116</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>

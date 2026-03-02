@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kurvenfokus v0.0.12 – Funktionsübersicht</title>
+<title>Kurvenfokus v0.0.17 – Funktionsübersicht</title>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -758,9 +758,9 @@
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <header class="hero">
-  <div class="hero-badge">Version 0.0.12</div>
+  <div class="hero-badge">Version 0.0.17</div>
   <h1><span>Kurvenfokus</span> Funktionsübersicht</h1>
-  <p>65 Features — Motorrad-Telemetrie visualisieren, analysieren und vergleichen — auf iPhone und iPad.</p>
+  <p>86 Features — Motorrad-Telemetrie visualisieren, analysieren und vergleichen — auf iPhone und iPad.</p>
 </header>
 
 <!-- ═══════════════════════════════ TABS ═══════════════════════════════ -->
@@ -779,7 +779,7 @@
 
     <!-- Screenshot Gallery -->
     <div class="section">
-      <div class="section-label">iOS App — v0.0.12</div>
+      <div class="section-label">iOS App — v0.0.17</div>
       <div class="section-title">Screenshots</div>
       <div class="section-desc">SwiftUI + MapKit — Dark Theme mit interaktivem Dashboard, Kurvenfokus-Modus und Telemetrie-Charts.</div>
 
@@ -1036,7 +1036,7 @@
 
     <!-- iPad Screenshot Gallery -->
     <div class="section">
-      <div class="section-label">iPadOS App — v0.0.12</div>
+      <div class="section-label">iPadOS App — v0.0.17</div>
       <div class="section-title">iPad Screenshots</div>
       <div class="section-desc">Kurvenfokus nutzt den großen iPad-Bildschirm mit adaptiven Layouts, Side-by-Side-Panels und vollständiger Telemetrie-Analyse.</div>
 
@@ -1534,16 +1534,133 @@
       </div>
     </div>
 
-    <!-- NEU in v0.0.12 -->
+    <!-- NEU in v0.0.17 -->
     <div class="section">
-      <div class="section-label">Neu in v0.0.12</div>
-      <div class="section-title">Neue Features <span style="font-size:16px;color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:2px 10px;border-radius:100px;margin-left:8px">v0.0.12</span></div>
+      <div class="section-label">Neu in v0.0.17</div>
+      <div class="section-title">Neue Features <span style="font-size:16px;color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:2px 10px;border-radius:100px;margin-left:8px">v0.0.13 – v0.0.17</span></div>
+      <div class="section-desc">Tour-Gruppierung, GeoCurveDetector, Bundesland-Filter, Performance-Optimierung und vieles mehr.</div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon icon-cyan">📂</div>
+          <h3>Tour-Gruppierung <span class="badge badge-new">NEU</span></h3>
+          <p>Tour-Liste nach Datum, Region oder Route gruppieren — per Chip-Leiste umschaltbar.</p>
+          <ul class="detail-list">
+            <li>3 Modi: Datum, Region, Route</li>
+            <li>Hausdorff-Distanz für Route-Matching</li>
+            <li>Fingerprint-Matching für ähnliche Strecken</li>
+            <li>Cyan-Seitenstreifen + MATCH-Badge</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">🗺️</div>
+          <h3>Bundesland-Filter <span class="badge badge-new">NEU</span></h3>
+          <p>Drill-Down auf Bundesland-Ebene innerhalb eines Landes.</p>
+          <ul class="detail-list">
+            <li>Unterfilter-Chips bei Länder-Auswahl</li>
+            <li>Nur Bundesländer mit 2+ Touren</li>
+            <li>▾ Indikator bei aktivem Drill-Down</li>
+            <li>Toggle-Logik (erneut tippen = deselektieren)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">📐</div>
+          <h3>GeoCurveDetector <span class="badge badge-new">NEU</span></h3>
+          <p>Geometrische Kurven-Erkennung via Bearing-Änderung — erkennt Kurven auch ohne Lean-Daten.</p>
+          <ul class="detail-list">
+            <li>Bearing → Cumulative Angle → CurveCategory</li>
+            <li>Standstill-Filter (5 km/h Minimum)</li>
+            <li>maxDuration 30s (echte Motorradkurven)</li>
+            <li>minTotalAngle 30°, minArcLength 15m</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">⚡</div>
+          <h3>Route-Cache <span class="badge badge-new">NEU</span></h3>
+          <p>Cluster-Berechnung massiv beschleunigt — Pre-Compute bei App-Start.</p>
+          <ul class="detail-list">
+            <li>O(n²) → O(n) durch Dictionary-Lookup</li>
+            <li>Pre-Filter: Distanz ±30%, BBox ≥30%</li>
+            <li>Async Sections (nicht als computed property)</li>
+            <li>300ms Suchfeld-Debounce</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">✏️</div>
+          <h3>Batch-Retitle <span class="badge badge-new">NEU</span></h3>
+          <p>Generische Tour-Titel automatisch durch Ortsnamen ersetzen.</p>
+          <ul class="detail-list">
+            <li>Erkennt Calimoto/Datums-Muster</li>
+            <li>Geocoding mit Retry-Logik</li>
+            <li>Rate-Limit-konform (Apple API)</li>
+            <li>Nur generische Titel werden ersetzt</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-red">🚫</div>
+          <h3>Tour-Ausschluss <span class="badge badge-new">NEU</span></h3>
+          <p>Einzelne Touren per Swipe aus der Gesamtstatistik ausschließen.</p>
+          <ul class="detail-list">
+            <li>Swipe-Aktion zum Ausschließen/Einschließen</li>
+            <li>50% Opacity + EXCL-Badge</li>
+            <li>"(X excl.)" in Stats-Header</li>
+            <li>Max-Lean pro Tour in Liste (rot bei >50°)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">🔃</div>
+          <h3>Sortier-Optionen <span class="badge badge-new">NEU</span></h3>
+          <p>5 Sortier-Optionen mit korrekter Section-Umsortierung.</p>
+          <ul class="detail-list">
+            <li>Neueste/Älteste zuerst</li>
+            <li>Längste Distanz, Meiste Kurven, Höchste Schräglage</li>
+            <li>Sections folgen der gewählten Sortierung</li>
+            <li>Aufsteigende Sortierung bei "Älteste zuerst"</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">☰</div>
+          <h3>UX-Verbesserungen <span class="badge badge-new">NEU</span></h3>
+          <p>Design-Review, Menü-Reorganisation und Performance-Optimierung.</p>
+          <ul class="detail-list">
+            <li>Burger-Menü auf allen Screens</li>
+            <li>Beta-Toggle für GPS-Lean</li>
+            <li>Async Restore mit Progress-Overlay</li>
+            <li>Farbmodus-Performance (Binary Search)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">🧪</div>
+          <h3>89 Unit-Tests <span class="badge badge-new">NEU</span></h3>
+          <p>9 Test-Suiten abdecken alle Kern-Algorithmen.</p>
+          <ul class="detail-list">
+            <li>CurveDetection, StatsCalculator, Smoothing</li>
+            <li>GeoMath, TourOptimizer, GeoCurveDetector</li>
+            <li>GpsQuality, CurveScorer, RouteMatcher</li>
+            <li>Alle Tests PASSED (xcodebuild test)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- v0.0.12 -->
+    <div class="section">
+      <div class="section-label">v0.0.12</div>
+      <div class="section-title">Features aus v0.0.12 <span style="font-size:16px;color:var(--green);border:1px solid rgba(0,255,136,0.3);padding:2px 10px;border-radius:100px;margin-left:8px">v0.0.12</span></div>
       <div class="section-desc">Batch-Import, Quellen-Erkennung, Backup/Restore, Gesamtstatistik und vieles mehr.</div>
 
       <div class="feature-grid">
         <div class="feature-card">
           <div class="icon icon-cyan">&#128230;</div>
-          <h3>Batch-Import <span class="badge badge-new">NEU</span></h3>
+          <h3>Batch-Import</h3>
           <p>Mehrere Dateien gleichzeitig importieren — ideal für große Sammlungen.</p>
           <ul class="detail-list">
             <li>Multi-File-Auswahl im File-Picker</li>
@@ -1555,7 +1672,7 @@
 
         <div class="feature-card">
           <div class="icon icon-green">&#128203;</div>
-          <h3>Gesamtstatistik <span class="badge badge-new">NEU</span></h3>
+          <h3>Gesamtstatistik</h3>
           <p>Aggregierte Statistiken über alle importierten Touren auf einen Blick.</p>
           <ul class="detail-list">
             <li>Gesamtdistanz, Gesamtdauer, Gesamtkurven</li>
@@ -1567,7 +1684,7 @@
 
         <div class="feature-card">
           <div class="icon icon-magenta">&#128278;</div>
-          <h3>Quellen-Filter <span class="badge badge-new">NEU</span></h3>
+          <h3>Quellen-Filter</h3>
           <p>Touren nach Datenquelle filtern — RideLink, Calimoto, Motobit, Komoot.</p>
           <ul class="detail-list">
             <li>Automatische Quellen-Erkennung beim Import</li>
@@ -1579,7 +1696,7 @@
 
         <div class="feature-card">
           <div class="icon icon-gold">&#128190;</div>
-          <h3>Backup &amp; Restore <span class="badge badge-new">NEU</span></h3>
+          <h3>Backup &amp; Restore</h3>
           <p>Lokale Datensicherung — alle Touren als JSON exportieren und wiederherstellen.</p>
           <ul class="detail-list">
             <li>Backup erstellen (alle Touren als JSON)</li>
@@ -1591,7 +1708,7 @@
 
         <div class="feature-card">
           <div class="icon icon-cyan">&#128279;</div>
-          <h3>Auto-Merge <span class="badge badge-new">NEU</span></h3>
+          <h3>Auto-Merge</h3>
           <p>Gesplittete RideLink-Touren automatisch zusammenführen — erkennt zusammengehörende Teilstücke.</p>
           <ul class="detail-list">
             <li>Gleiche BikeID + gleicher Kalendertag</li>
@@ -1603,7 +1720,7 @@
 
         <div class="feature-card">
           <div class="icon icon-green">&#128197;</div>
-          <h3>Jahres-Gruppierung <span class="badge badge-new">NEU</span></h3>
+          <h3>Jahres-Gruppierung</h3>
           <p>Tour-Liste automatisch nach Jahren sortiert — übersichtlich bei vielen Touren.</p>
           <ul class="detail-list">
             <li>Automatische Sections (2024, 2025, 2026...)</li>
@@ -1615,7 +1732,7 @@
 
         <div class="feature-card">
           <div class="icon icon-magenta">&#128203;</div>
-          <h3>Selektions-Statistik <span class="badge badge-new">NEU</span></h3>
+          <h3>Selektions-Statistik</h3>
           <p>Mehrere Touren auswählen und aggregierte Statistiken sehen.</p>
           <ul class="detail-list">
             <li>Multi-Select per Long-Press</li>
@@ -1627,7 +1744,7 @@
 
         <div class="feature-card">
           <div class="icon icon-gold">&#128506;</div>
-          <h3>Geplante Touren <span class="badge badge-new">NEU</span></h3>
+          <h3>Geplante Touren</h3>
           <p>GPX-Routenplanungen importieren und als geplante Tour anzeigen.</p>
           <ul class="detail-list">
             <li>Unterstützung von rte/rtept (GPX Route)</li>
@@ -1639,7 +1756,7 @@
 
         <div class="feature-card">
           <div class="icon icon-red">&#128295;</div>
-          <h3>Toleranter Import <span class="badge badge-new">NEU</span></h3>
+          <h3>Toleranter Import</h3>
           <p>Fehlerhafte Dateien werden nicht mehr abgelehnt — brauchbare Daten werden gerettet.</p>
           <ul class="detail-list">
             <li>Teilweise Import bei beschädigten Dateien</li>
@@ -1651,7 +1768,7 @@
 
         <div class="feature-card">
           <div class="icon icon-red">&#128465;</div>
-          <h3>Alle Touren löschen <span class="badge badge-new">NEU</span></h3>
+          <h3>Alle Touren löschen</h3>
           <p>Batch-Löschung aller Touren mit Sicherheitsabfrage.</p>
           <ul class="detail-list">
             <li>Über Burger-Menü erreichbar</li>
