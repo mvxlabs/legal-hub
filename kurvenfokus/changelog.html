@@ -350,32 +350,88 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val">v0.0.17</div>
+        <div class="stat-val">v0.0.19</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">86</div>
+        <div class="stat-val">96</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">11</div>
+        <div class="stat-val">13</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">116</div>
+        <div class="stat-val">130</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>
 
     <div class="timeline">
 
-      <!-- v0.0.17 -->
+      <!-- v0.0.19 -->
       <div class="version-entry">
         <div class="version-dot current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.19</span>
+          <span class="version-title">Stabilität &amp; Speed-Cap</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">13. Mär 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Bugfixes &amp; Verbesserungen <span class="highlight-count">+5 Fixes</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Rescan-Crash Fix</span>
+            <span class="highlight-tag">Vmax 280 km/h</span>
+            <span class="highlight-tag">Font-Wrapping Fix</span>
+            <span class="highlight-tag">Sort-Label</span>
+            <span class="highlight-tag">Safe Subscript</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Rescan-Absturz behoben:</strong> Bei 272+ Touren stürzte die App beim Moduswechsel ab — Batch-Processing (10 pro Batch), autoreleasepool, inkrementelle UI-Updates</span></li>
+          <li><span class="feature-icon">&#127942;</span><span class="feature-text"><strong>Vmax Speed-Cap 280 km/h:</strong> Reale Geschwindigkeiten über 200 km/h wurden fälschlich als GPS-Spikes gefiltert — Cap von 200 auf 280 km/h angehoben</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Schrift-Umbruch behoben:</strong> Stats in Tour-Karten brachen auf zwei Zeilen um — .fixedSize(), .lineLimit(1), "Kurven" → "Kurv."</span></li>
+          <li><span class="feature-icon">&#128203;</span><span class="feature-text"><strong>Sort-Label gekürzt:</strong> "Höchste Schräglage" → "Max. Schräglage" für bessere Lesbarkeit</span></li>
+          <li><span class="feature-icon">&#128737;</span><span class="feature-text"><strong>Safe Collection Subscript:</strong> Bounds-geprüfter Array-Zugriff verhindert Index-Crashes bei Batch-Verarbeitung</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.18 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.18</span>
+          <span class="version-title">Detection Profiles &amp; QA</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">08. Mär 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+5 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Detection Profiles</span>
+            <span class="highlight-tag">Auto-Profil</span>
+            <span class="highlight-tag">Profil-Badge</span>
+            <span class="highlight-tag">QA Screenshots</span>
+            <span class="highlight-tag">DetectionMode-Picker</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
+          <li><span class="feature-icon">&#9889;</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt automatisch das passende Erkennungsprofil</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Profil-Badge:</strong> Farbiger Chip in der StatsCard zeigt das aktive Profil (Grün=Calimoto, Blau=Motobit)</span></li>
+          <li><span class="feature-icon">&#128248;</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
+          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü mit Info-Dialog</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.17 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.17</span>
           <span class="version-title">Tour-Gruppierung &amp; Sortierung</span>
-          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">02. Mär 2026</span>
         </div>
         <div class="highlight-card featured">
@@ -598,32 +654,105 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val android-color">v0.0.11</div>
+        <div class="stat-val android-color">v0.0.14</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">50</div>
+        <div class="stat-val android-color">65</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">10</div>
+        <div class="stat-val android-color">13</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">116</div>
+        <div class="stat-val android-color">130</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>
 
     <div class="timeline">
 
-      <!-- v0.0.11 -->
+      <!-- v0.0.14 -->
       <div class="version-entry">
         <div class="version-dot android current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.14</span>
+          <span class="version-title">Monats-Gruppierung &amp; Pausen-Anzeige</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">15. Mär 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+3 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Monats-Gruppierung</span>
+            <span class="highlight-tag">Monats-Statistik</span>
+            <span class="highlight-tag">Pausen-Anzeige</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">&#128197;</span><span class="feature-text"><strong>Monats-Gruppierung:</strong> Touren nach Monat gruppieren (März 2026, Februar 2026 etc.) — neuer Gruppierungsmodus neben Jahr</span></li>
+          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Monats-Statistik:</strong> Jede Monats-Sektion zeigt kompakte KPIs — Distanz, Kurven und Fahrzeit auf einen Blick</span></li>
+          <li><span class="feature-icon">&#9208;</span><span class="feature-text"><strong>Pausen-Anzeige:</strong> Automatische Erkennung von Pausen (Telemetrie-Lücken >30s) im QuickStatsStrip — Gold-Badge mit Anzahl</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Changelog-Dialog:</strong> Wird bei jedem Start angezeigt mit „Nicht mehr anzeigen" Checkbox</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.13 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.13</span>
+          <span class="version-title">Detection Profiles &amp; Bugfixes</span>
+          <span class="version-date">13. Mär 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Features &amp; Bugfixes <span class="highlight-count">+5 Features, +3 Fixes</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Detection Profiles</span>
+            <span class="highlight-tag">Auto-Profil</span>
+            <span class="highlight-tag">Profil-Badge</span>
+            <span class="highlight-tag">DetectionMode-Picker</span>
+            <span class="highlight-tag">Vmax 280 km/h</span>
+            <span class="highlight-tag">Umlaut-Fix</span>
+            <span class="highlight-tag">maxLines Fix</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
+          <li><span class="feature-icon">&#9889;</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt das passende Erkennungsprofil</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Profil-Badge:</strong> Farbiger Chip in StatsCard zeigt aktives Profil (Grün=Calimoto, Blau=Motobit)</span></li>
+          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Vmax Speed-Cap 280 km/h:</strong> Reale Geschwindigkeiten über 200 km/h wurden fälschlich gefiltert — 4 Stellen in GpxImporter korrigiert</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>17 Umlaut-Fehler korrigiert:</strong> ASCII-Ersetzungen durch echte UTF-8 Umlaute ersetzt (ü, ö, ä, ß in 5 Dateien)</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Text-Umbruch verhindert:</strong> maxLines=1 in allen Stats-Texten der Tour-Liste</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.12 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.12</span>
+          <span class="version-title">QA &amp; Score-Modus</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">08. Mär 2026</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">&#128248;</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
+          <li><span class="feature-icon">&#127991;</span><span class="feature-text"><strong>TestTag-Verbesserungen:</strong> Konsistente TestTags mit indexierter Ride-Navigation für UI-Automation</span></li>
+          <li><span class="feature-icon">&#127752;</span><span class="feature-text"><strong>Score-Farbmodus:</strong> Kurven-Performance als Heatmap auf der Karte (Grün=gut, Rot=schlecht)</span></li>
+          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>CurveScorer:</strong> Physikbasierte Kurven-Bewertung im Straßen-Modus</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.11 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.11</span>
           <span class="version-title">GeoCurveDetector &amp; Tour-Ausschluss</span>
-          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">01. Mär 2026</span>
         </div>
         <div class="highlight-card featured-android">
