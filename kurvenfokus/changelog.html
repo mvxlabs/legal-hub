@@ -374,26 +374,40 @@
         <div class="version-dot current"></div>
         <div class="version-header">
           <span class="version-number">v0.0.19</span>
-          <span class="version-title">Stabilität &amp; Speed-Cap</span>
+          <span class="version-title">Story-Card Export, Motobit-Import &amp; erweiterte Filter</span>
           <span class="version-badge badge-dev">Aktuell</span>
-          <span class="version-date">13. Mär 2026</span>
+          <span class="version-date">16. Mär 2026</span>
         </div>
         <div class="highlight-card featured">
-          <div class="highlight-title">Bugfixes &amp; Verbesserungen <span class="highlight-count">+5 Fixes</span></div>
+          <div class="highlight-title">Neue Features &amp; Bugfixes <span class="highlight-count">+8 Features, +6 Fixes</span></div>
           <div class="highlight-features">
-            <span class="highlight-tag">Rescan-Crash Fix</span>
-            <span class="highlight-tag">Vmax 280 km/h</span>
-            <span class="highlight-tag">Font-Wrapping Fix</span>
-            <span class="highlight-tag">Sort-Label</span>
-            <span class="highlight-tag">Safe Subscript</span>
+            <span class="highlight-tag">Story-Card Export</span>
+            <span class="highlight-tag">Motobit Import</span>
+            <span class="highlight-tag">Datentyp-Filter</span>
+            <span class="highlight-tag">Format-Badge</span>
+            <span class="highlight-tag">Quellen-Icons</span>
+            <span class="highlight-tag">Vmax Spike-Fix</span>
+            <span class="highlight-tag">Gap-Segmentation</span>
+            <span class="highlight-tag">Card-Redesign</span>
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Rescan-Absturz behoben:</strong> Bei 272+ Touren stürzte die App beim Moduswechsel ab — Batch-Processing (10 pro Batch), autoreleasepool, inkrementelle UI-Updates</span></li>
-          <li><span class="feature-icon">&#127942;</span><span class="feature-text"><strong>Vmax Speed-Cap 280 km/h:</strong> Reale Geschwindigkeiten über 200 km/h wurden fälschlich als GPS-Spikes gefiltert — Cap von 200 auf 280 km/h angehoben</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Schrift-Umbruch behoben:</strong> Stats in Tour-Karten brachen auf zwei Zeilen um — .fixedSize(), .lineLimit(1), "Kurven" → "Kurv."</span></li>
-          <li><span class="feature-icon">&#128203;</span><span class="feature-text"><strong>Sort-Label gekürzt:</strong> "Höchste Schräglage" → "Max. Schräglage" für bessere Lesbarkeit</span></li>
-          <li><span class="feature-icon">&#128737;</span><span class="feature-text"><strong>Safe Collection Subscript:</strong> Bounds-geprüfter Array-Zugriff verhindert Index-Crashes bei Batch-Verarbeitung</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Story-Card Export:</strong> 6 verschiedene Instagram-Story-Styles (1080×1920) mit Kurvenfokus Brand Design — Crosshair-Logo, Cyan-Stats-Grid, Kurvenverteilungsbalken. Direkt in Fotos speichern.</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Lean Map Story-Card:</strong> Strecke farbcodiert nach Schräglage — nur bei Touren mit echten Sensordaten sichtbar.</span></li>
+          <li><span class="feature-icon">&#128229;</span><span class="feature-text"><strong>Motobit DSGVO-Import:</strong> Direktimport von Motobit-Exportdaten (JSON). Automatische Format-Erkennung, GPS-basierte Lean-Berechnung.</span></li>
+          <li><span class="feature-icon">&#128269;</span><span class="feature-text"><strong>Datentyp-Filter:</strong> Neue Filter-Dimension — Voll-Telemetrie (Lean + Acc) vs GPS-only. Chip-Zeile unter Quellen-Filter.</span></li>
+          <li><span class="feature-icon">&#127991;</span><span class="feature-text"><strong>Format-Badge:</strong> JSON/GPX Badge in jeder Tour-Zeile (Cyan = JSON, Grau = GPX) mit Monospace-Schrift.</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Semantische Quellen-Icons:</strong> Buchstaben-Kreise ersetzt durch aussagekräftige Symbole — RideLink (Antenna), Calimoto (Map), Motobit (Speedometer), Komoot (Mountain).</span></li>
+          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Tour-Liste Card-Redesign:</strong> Hero Stats Grid (4 Spalten), Status-Badges (PLANUNG, EXCL, LEAN~, MATCH), Secondary Stats im Footer.</span></li>
+          <li><span class="feature-icon">&#128154;</span><span class="feature-text"><strong>Calimoto-Plus Support:</strong> Eigene Teal-Farbe + „C+" Display-Name als separate Import-Quelle.</span></li>
+        </ul>
+        <ul class="feature-list" style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Vmax Spike-Detection Fix:</strong> 250 km/h Minimum-Floor — Geschwindigkeiten unter 250 km/h werden nie als GPS-Spike gefiltert. Formel: min(max(P95×1.5, 250), 280 km/h).</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Gap-Segmentation:</strong> Telemetrie wird bei >30s Pausen aufgesplittet — keine Phantom-Kurven mehr an Tankstopps.</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Speed-Filter:</strong> Kurven mit &lt;2 km/h Durchschnitt werden gefiltert — eliminiert falsche Kurven beim Schieben/Rangieren.</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Rescan-Absturz behoben:</strong> Bei 272+ Touren stürzte die App beim Moduswechsel ab — Batch-Processing mit autoreleasepool.</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Schrift-Umbruch behoben:</strong> Stats in Tour-Karten brachen auf zwei Zeilen um.</span></li>
+          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Safe Collection Subscript:</strong> Bounds-geprüfter Array-Zugriff verhindert Index-Crashes bei Batch-Verarbeitung.</span></li>
         </ul>
       </div>
 
