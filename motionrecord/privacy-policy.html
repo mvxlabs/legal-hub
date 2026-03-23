@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung - MotionRecord</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #f9f9f9;
+        }
+        h1 { color: #00E5FF; margin-bottom: 10px; }
+        h2 { color: #333; margin: 30px 0 15px; border-bottom: 2px solid #00E5FF; padding-bottom: 5px; }
+        h3 { margin: 20px 0 10px; }
+        p, ul { margin-bottom: 15px; }
+        ul { padding-left: 25px; }
+        .app-info { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .highlight { background: #e0f7fa; padding: 15px; border-left: 4px solid #00E5FF; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .contact { background: #fff; padding: 20px; border-radius: 10px; margin-top: 30px; }
+        .date { color: #666; font-size: 14px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #ddd; }
+        th { background: #f0f0f0; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="app-info">
+        <h1>MotionRecord</h1>
+        <p>Hochfrequenz-Sensordaten-Aufnahme für Bewegungsanalyse</p>
+    </div>
+
+    <h1>Datenschutzerklärung</h1>
+    <p class="date">Stand: März 2026</p>
+
+    <div class="highlight">
+        <strong>Kurzfassung:</strong> MotionRecord ist eine reine Offline-App. Alle aufgezeichneten Sensordaten (Beschleunigung, GPS, Gyroskop, Barometer) bleiben ausschließlich auf deinem Gerät. Wir übertragen keine Daten an Server, tracken keine Nutzer und verwenden keine Analytics-Dienste.
+    </div>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+        Marco Fuhrmann<br>
+        Edisonstraße 4<br>
+        85716 Unterschleißheim<br>
+        Deutschland<br>
+        E-Mail: <a href="mailto:kurvenfokus@gmail.com">kurvenfokus@gmail.com</a>
+    </p>
+
+    <h2>2. Welche Daten erfasst die App?</h2>
+    <p>MotionRecord zeichnet ausschließlich Sensordaten des Geräts auf, die du aktiv durch Drücken des Aufnahme-Buttons startest:</p>
+
+    <table>
+        <tr>
+            <th>Datentyp</th>
+            <th>Sensor</th>
+            <th>Zweck</th>
+        </tr>
+        <tr>
+            <td>Beschleunigung (3-Achsen)</td>
+            <td>Accelerometer</td>
+            <td>Bewegungsanalyse</td>
+        </tr>
+        <tr>
+            <td>Drehrate (3-Achsen)</td>
+            <td>Gyroskop</td>
+            <td>Rotationserkennung</td>
+        </tr>
+        <tr>
+            <td>Magnetfeld (3-Achsen)</td>
+            <td>Magnetometer</td>
+            <td>Kompass / Orientierung</td>
+        </tr>
+        <tr>
+            <td>GPS-Position</td>
+            <td>GNSS</td>
+            <td>Streckenaufzeichnung, Geschwindigkeit</td>
+        </tr>
+        <tr>
+            <td>Luftdruck</td>
+            <td>Barometer</td>
+            <td>Höhenmessung</td>
+        </tr>
+        <tr>
+            <td>Gerätelage</td>
+            <td>Rotation Vector</td>
+            <td>Neigungswinkel-Berechnung</td>
+        </tr>
+    </table>
+
+    <h2>3. Wie werden die Daten gespeichert?</h2>
+    <ul>
+        <li><strong>Speicherort:</strong> Alle Daten werden ausschließlich lokal auf deinem Gerät im App-internen Speicher gespeichert.</li>
+        <li><strong>Format:</strong> JSON-Dateien im App-Sandbox-Verzeichnis (nicht für andere Apps zugänglich).</li>
+        <li><strong>Verschlüsselung:</strong> Die Daten unterliegen der geräteseitigen Verschlüsselung (Android Full-Disk / File-Based Encryption).</li>
+        <li><strong>Keine Cloud:</strong> Es findet kein Upload, keine Synchronisation und keine Übertragung an Dritte statt.</li>
+    </ul>
+
+    <h2>4. GPS-Standortdaten</h2>
+    <div class="highlight">
+        <strong>Warum benötigt die App Standortzugriff?</strong><br>
+        MotionRecord zeichnet GPS-Daten auf, um Streckenverläufe, Geschwindigkeiten und Höhenprofile als Teil der Bewegungsanalyse zu erfassen. Die Standortdaten werden ausschließlich lokal gespeichert und niemals an Server übertragen.
+    </div>
+    <ul>
+        <li>Der GPS-Zugriff erfolgt nur während einer aktiven Aufnahme (erkennbar an der Benachrichtigung).</li>
+        <li>Die App nutzt einen Vordergrund-Dienst (Foreground Service), damit die Aufnahme bei ausgeschaltetem Bildschirm weiterläuft.</li>
+        <li>Du kannst die Standortberechtigung jederzeit in den Android-Einstellungen widerrufen. Die App funktioniert dann ohne GPS — nur IMU-Sensoren werden aufgezeichnet.</li>
+    </ul>
+
+    <h2>5. Hochfrequenz-Sensorzugriff</h2>
+    <p>Die App fordert die Berechtigung <code>HIGH_SAMPLING_RATE_SENSORS</code> an, um Sensordaten mit bis zu 100 Hz aufzuzeichnen (statt der Standard-Rate von ~50 Hz). Dies ermöglicht präzisere Bewegungsanalysen, insbesondere bei schnellen Richtungsänderungen.</p>
+
+    <h2>6. Datenexport</h2>
+    <p>Du kannst aufgezeichnete Sessions als JSON-Datei exportieren und über die Android-Teilen-Funktion weitergeben. Der Export erfolgt ausschließlich auf deine Initiative — die App teilt niemals selbstständig Daten.</p>
+
+    <h2>7. Keine Datenerhebung durch Dritte</h2>
+    <ul>
+        <li><strong>Keine Analytics:</strong> Wir verwenden kein Google Analytics, Firebase Analytics oder vergleichbare Dienste.</li>
+        <li><strong>Keine Werbung:</strong> Die App enthält keine Werbung und keine Werbe-SDKs.</li>
+        <li><strong>Keine Tracking-IDs:</strong> Wir erheben keine Geräte-IDs, Werbe-IDs oder Nutzerprofile.</li>
+        <li><strong>Keine Netzwerkverbindungen:</strong> Die App benötigt keine Internetverbindung (außer für den GPS-Abruf via Netzwerkortung).</li>
+    </ul>
+
+    <h2>8. Deine Rechte (DSGVO Art. 15–21)</h2>
+    <p>Da alle Daten lokal auf deinem Gerät gespeichert werden, hast du jederzeit volle Kontrolle:</p>
+    <ul>
+        <li><strong>Auskunft & Zugriff:</strong> Alle Daten sind in der App unter „Bibliothek" einsehbar und exportierbar.</li>
+        <li><strong>Löschung:</strong> Einzelne Aufnahmen können in der Bibliothek gelöscht werden. Bei Deinstallation der App werden alle Daten automatisch entfernt.</li>
+        <li><strong>Einschränkung:</strong> Du kannst einzelne Berechtigungen (GPS, Sensoren) jederzeit in den Android-Einstellungen entziehen.</li>
+    </ul>
+    <p>Für Fragen zum Datenschutz: <a href="mailto:kurvenfokus@gmail.com">kurvenfokus@gmail.com</a></p>
+
+    <h2>9. Änderungen dieser Datenschutzerklärung</h2>
+    <p>Bei wesentlichen Änderungen wird die aktualisierte Version hier veröffentlicht. Die App selbst verarbeitet keine personenbezogenen Daten, die eine gesonderte Einwilligung erfordern.</p>
+
+    <div class="contact">
+        <h3>Kontakt</h3>
+        <p>
+            Marco Fuhrmann<br>
+            E-Mail: <a href="mailto:kurvenfokus@gmail.com">kurvenfokus@gmail.com</a><br>
+            Web: <a href="https://mvxlabs.github.io/legal-hub/motionrecord/">mvxlabs.github.io/legal-hub/motionrecord</a>
+        </p>
+    </div>
+</body>
+</html>
