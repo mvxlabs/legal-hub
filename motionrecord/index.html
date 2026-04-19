@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotionRecord - Hochfrequenz-Sensordaten für Motorräder</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0a1a1a 0%, #0d2626 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #00E5FF, #34c759);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 60px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #00E5FF, #34c759);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tagline {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .description {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: #aaa;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: left;
+        }
+        .description p { margin-bottom: 12px; }
+        .description strong { color: #e0e0e0; }
+        .highlight-box {
+            background: rgba(0, 229, 255, 0.06);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin: 30px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        .highlight-box p {
+            color: #bbb;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .highlight-box strong { color: #00E5FF; }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+            text-align: left;
+        }
+        .feature {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.25s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 229, 255, 0.35);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .feature h3 {
+            color: #00E5FF;
+            margin-bottom: 8px;
+        }
+        .feature p {
+            color: #aaa;
+            font-size: 14px;
+        }
+        .sensor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 30px 0;
+        }
+        .sensor-item {
+            background: rgba(52, 199, 89, 0.06);
+            border: 1px solid rgba(52, 199, 89, 0.15);
+            border-radius: 10px;
+            padding: 14px;
+            text-align: center;
+        }
+        .sensor-item .sensor-icon { font-size: 24px; margin-bottom: 6px; }
+        .sensor-item .sensor-name { font-size: 12px; color: #34c759; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .sensor-item .sensor-hz { font-size: 11px; color: #666; margin-top: 2px; }
+        .store-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
+        }
+        .store-btn:hover { transform: scale(1.05); }
+        .store-btn-android {
+            background: linear-gradient(135deg, #34c759, #22a24a);
+            color: #fff;
+        }
+        .store-btn-android:hover { box-shadow: 0 6px 24px rgba(52, 199, 89, 0.35); }
+        .store-btn-ios {
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            color: #fff;
+        }
+        .store-btn-ios:hover { box-shadow: 0 6px 24px rgba(0,122,255,0.35); }
+        .beta-badge {
+            display: inline-block;
+            background: #34c759;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .ecosystem-card {
+            display: block;
+            max-width: 560px;
+            margin: 30px auto;
+            background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(52, 199, 89, 0.04));
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 16px;
+            padding: 22px 28px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+        .ecosystem-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(0, 229, 255, 0.15);
+        }
+        .links {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .links a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+        .links a:hover { color: #00E5FF; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">📡</div>
+
+        <span class="beta-badge">BETA</span>
+
+        <h1>MotionRecord</h1>
+        <p class="tagline">Hochfrequenz-Sensordaten für Motorräder</p>
+
+        <!-- Store Buttons -->
+        <div class="store-buttons">
+            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" class="store-btn store-btn-android">
+                <span style="font-size:24px">▶️</span>
+                <span style="text-align:left; line-height:1.3">
+                    <span style="font-size:11px; opacity:0.85">Offener Test auf Google Play</span><br>
+                    <span style="font-size:17px; font-weight:700">Android herunterladen</span>
+                </span>
+            </a>
+            <a href="https://testflight.apple.com/join/3yMgTTpn" class="store-btn store-btn-ios">
+                <span style="font-size:24px">🍎</span>
+                <span style="text-align:left; line-height:1.3">
+                    <span style="font-size:11px; opacity:0.85">Beta via TestFlight</span><br>
+                    <span style="font-size:17px; font-weight:700">iOS herunterladen</span>
+                </span>
+            </a>
+        </div>
+
+        <!-- Beschreibung -->
+        <div class="description">
+            <p>MotionRecord verwandelt dein Smartphone in ein Telemetrie-System. <strong>6 Sensoren, 100 Messungen pro Sekunde</strong> — Beschleunigung, Gyroskop, Barometer, GPS, Magnetometer und Rotation. Alles, was dein Handy messen kann, wird aufgezeichnet.</p>
+            <p>Kein Bluetooth-Sensor nötig. Kein OBD-Dongle. Kein Abo. Einfach <strong>Record drücken und losfahren</strong>. Die App läuft im Hintergrund, zeichnet still auf, und nach der Tour exportierst du die Daten — als JSON, GPX, CSV oder KML.</p>
+            <p>Zusammen mit <strong>Kurvenfokus</strong> entsteht ein Analyse-Ökosystem: MotionRecord liefert die Rohdaten, Kurvenfokus macht die Kurven-Analyse. Aber du kannst die Daten auch in Python, Excel oder jedem anderen Tool auswerten.</p>
+        </div>
+
+        <!-- 6 Sensoren -->
+        <div class="sensor-grid">
+            <div class="sensor-item">
+                <div class="sensor-icon">📐</div>
+                <div class="sensor-name">Accelerometer</div>
+                <div class="sensor-hz">bis 100 Hz</div>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-icon">🔄</div>
+                <div class="sensor-name">Gyroskop</div>
+                <div class="sensor-hz">bis 100 Hz</div>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-icon">🌡️</div>
+                <div class="sensor-name">Barometer</div>
+                <div class="sensor-hz">bis 10 Hz</div>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-icon">📍</div>
+                <div class="sensor-name">GPS</div>
+                <div class="sensor-hz">~1 Hz</div>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-icon">🧭</div>
+                <div class="sensor-name">Magnetometer</div>
+                <div class="sensor-hz">bis 100 Hz</div>
+            </div>
+            <div class="sensor-item">
+                <div class="sensor-icon">📱</div>
+                <div class="sensor-name">Rotation</div>
+                <div class="sensor-hz">bis 100 Hz</div>
+            </div>
+        </div>
+
+        <!-- Datenschutz-Highlight -->
+        <div class="highlight-box">
+            <p><strong>100% Offline.</strong> Alle Sensordaten bleiben auf deinem Gerät. Kein Server, kein Account, keine Analytics. Deine Daten gehören dir — wir wissen nicht mal, dass du die App benutzt.</p>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="feature">
+                <h3>📡 6 Sensoren</h3>
+                <p>Accelerometer, Gyroskop, Barometer, GPS, Magnetometer und Rotation Vector — gleichzeitig und hochfrequent.</p>
+            </div>
+            <div class="feature">
+                <h3>⏱️ 100 Hz Abtastrate</h3>
+                <p>Bis zu 360.000 Datenpunkte pro Stunde. Butterworth-gefiltert, auto-kalibriert, GPS+IMU fusioniert.</p>
+            </div>
+            <div class="feature">
+                <h3>🏍️ 3 Profile</h3>
+                <p>Motorrad (100 Hz), Auto (50 Hz) und Gehen — jeweils optimiert für den Einsatzzweck.</p>
+            </div>
+            <div class="feature">
+                <h3>📊 Live-Dashboard</h3>
+                <p>Echtzeit-Schräglage mit 7-Segment-Anzeige, Peak-Hold und 5 Farbzonen von 0° bis 55°.</p>
+            </div>
+            <div class="feature">
+                <h3>📦 Export</h3>
+                <p>JSON, GPX, CSV, KML — deine Daten in Standard-Formaten. Offen für Python, Excel, MATLAB oder Kurvenfokus.</p>
+            </div>
+            <a href="changelog.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(255,215,0,0.3);">
+                <h3 style="color: #ffd700;">📜 Changelog</h3>
+                <p>Versionshistorie aller Updates — was ist neu?</p>
+                <span style="display: inline-block; margin-top: 10px; background: #ffd700; color: #000; font-weight: 700; font-size: 12px; padding: 3px 12px; border-radius: 20px;">v0.0.1 → aktuell</span>
+            </a>
+        </div>
+
+        <!-- Kurvenfokus Ökosystem -->
+        <a href="https://mvxlabs.github.io/legal-hub/kurvenfokus/" class="ecosystem-card">
+            <span style="display: inline-block; background: #00E5FF; color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px;">Ökosystem</span>
+            <p style="font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 4px;">MotionRecord + Kurvenfokus</p>
+            <p style="font-size: 14px; color: #aaa; margin-bottom: 0;">MotionRecord zeichnet auf. Kurvenfokus analysiert jede Kurve — Schräglage, Score, Heatmap. Zusammen ein Telemetrie-System, das sonst hunderte Euro kostet.</p>
+        </a>
+
+        <!-- Store Buttons unten -->
+        <div class="store-buttons" style="margin-top: 40px;">
+            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" class="store-btn store-btn-android">
+                <span style="font-size:24px">▶️</span>
+                <span style="text-align:left; line-height:1.3">
+                    <span style="font-size:11px; opacity:0.85">Kostenlos im Play Store</span><br>
+                    <span style="font-size:17px; font-weight:700">Jetzt testen</span>
+                </span>
+            </a>
+        </div>
+
+        <div class="links">
+            <a href="privacy-policy.html">Datenschutz</a>
+            <a href="terms-of-service.html">Nutzungsbedingungen</a>
+            <a href="widerruf.html">Widerrufsbelehrung</a>
+            <a href="impressum.html">Impressum</a>
+            <a href="mailto:kurvenfokus@gmail.com">Kontakt</a>
+        </div>
+
+        <p style="color: #444; font-size: 12px; margin-top: 40px;">
+            © 2026 MVX Labs. MotionRecord ist ein Produkt von Kurvenfokus.
+        </p>
+    </div>
+</body>
+</html>
