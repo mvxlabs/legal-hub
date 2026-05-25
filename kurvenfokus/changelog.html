@@ -128,11 +128,8 @@
     padding-left: 72px;
     margin-bottom: 48px;
   }
-  .version-entry:last-child {
-    margin-bottom: 0;
-  }
+  .version-entry:last-child { margin-bottom: 0; }
 
-  /* Version Dot */
   .version-dot {
     position: absolute;
     left: 16px;
@@ -148,15 +145,12 @@
     background: var(--cyan);
     box-shadow: 0 0 16px rgba(0,212,255,0.4);
   }
-  .version-dot.android {
-    border-color: var(--android);
-  }
+  .version-dot.android { border-color: var(--android); }
   .version-dot.android.current {
     background: var(--android);
     box-shadow: 0 0 16px rgba(34,197,94,0.4);
   }
 
-  /* Version Header */
   .version-header {
     display: flex;
     align-items: baseline;
@@ -223,9 +217,7 @@
     border-radius: 10px;
     transition: border-color 0.2s;
   }
-  .feature-list li:hover {
-    border-color: rgba(255,255,255,0.12);
-  }
+  .feature-list li:hover { border-color: rgba(255,255,255,0.12); }
   .feature-icon {
     font-size: 16px;
     flex-shrink: 0;
@@ -293,18 +285,14 @@
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
   }
-  .stat-item {
-    text-align: center;
-  }
+  .stat-item { text-align: center; }
   .stat-val {
     font-size: 28px;
     font-weight: 700;
     font-family: 'SF Mono', 'Menlo', monospace;
     color: var(--cyan);
   }
-  .stat-val.android-color {
-    color: var(--android);
-  }
+  .stat-val.android-color { color: var(--android); }
   .stat-label {
     font-size: 11px;
     color: var(--text3);
@@ -350,32 +338,171 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val">v0.0.19</div>
+        <div class="stat-val">v0.0.23</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">96</div>
+        <div class="stat-val">~155</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">13</div>
+        <div class="stat-val">17</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">130</div>
+        <div class="stat-val">286</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>
 
     <div class="timeline">
 
-      <!-- v0.0.19 -->
+      <!-- v0.0.23 -->
       <div class="version-entry">
         <div class="version-dot current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.23</span>
+          <span class="version-title">Saison-Statistiken, Roadbook &amp; MotionRecord</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">Mai 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+6 Features, +2 Fixes</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Saison-Statistiken</span>
+            <span class="highlight-tag">Tour-Story Roadbook</span>
+            <span class="highlight-tag">MotionRecord Integration</span>
+            <span class="highlight-tag">Reparatur-Funktion</span>
+            <span class="highlight-tag">Performance 500+ Touren</span>
+            <span class="highlight-tag">Höhenmeter-Pipeline</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Saison-Statistiken:</strong> Gefahrene km, Touren, Kurven und Trends pro Saison im Dashboard — dein Fortschritt auf einen Blick.</span></li>
+          <li><span class="feature-icon">📖</span><span class="feature-text"><strong>Tour-Story Roadbook:</strong> Tour-Story mit Höhenprofil und teilbaren Sektionen für Instagram/WhatsApp — teile deine Fahrt als visuelles Roadbook.</span></li>
+          <li><span class="feature-icon">📡</span><span class="feature-text"><strong>MotionRecord Integration:</strong> Direkt-Import von MotionRecord Backup-ZIPs und Lean-Pipeline — volle Telemetrie aus eigener Sensor-App.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Reparatur-Funktion:</strong> "Tourdaten reparieren" im Burger-Menü — fehlerhafte oder unvollständige Touren automatisch korrigieren.</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Performance bei 500+ Touren:</strong> Backup Streaming, Hotspot-Limit 5.000, Dashboard vorberechnet — flüssig auch bei großen Sammlungen.</span></li>
+          <li><span class="feature-icon">🏔️</span><span class="feature-text"><strong>Höhenmeter-Pipeline:</strong> 3-Stufen-Verarbeitung: Interpolation, Median+Gauss-Filter, 4m-Totband — präzise Höhenmeter ohne GPS-Rauschen.</span></li>
+        </ul>
+        <ul class="feature-list" style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Scroll-Flackern behoben:</strong> Kein visuelles Flackern mehr beim Scrollen durch lange Tour-Listen.</span></li>
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Kurvenanzahl-Diskrepanz behoben:</strong> Konsistente Kurvenanzahl zwischen Detail-Ansicht und Tour-Liste.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.22 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.22</span>
+          <span class="version-title">Dashboard-Modi, Heatmap &amp; Kurvenerkennung</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">09. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+12 Features, +4 Fixes</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">3 Dashboard-Modi</span>
+            <span class="highlight-tag">Kurven-Heatmap</span>
+            <span class="highlight-tag">GPS-Kurvenerkennung++</span>
+            <span class="highlight-tag">Tour-Story</span>
+            <span class="highlight-tag">Challenges</span>
+            <span class="highlight-tag">Diagnose-Tools</span>
+            <span class="highlight-tag">Guided Import</span>
+            <span class="highlight-tag">Schräglage ±60°</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">🗂️</span><span class="feature-text"><strong>3 Dashboard-Modi:</strong> Klassisch (Tourliste), Kompakt (Heatmap + Liste) und Immersiv (große Karte + Top-Kurven). Umschaltbar via Segmented Control, Auswahl wird gespeichert.</span></li>
+          <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Kurven-Heatmap (Alle Touren):</strong> MKMapView mit Ghost-Tracks aller Touren, Cluster-Badges bei überlappenden Routen, Filter nach Region/Zeitraum/Score.</span></li>
+          <li><span class="feature-icon">🎯</span><span class="feature-text"><strong>Verbesserte Kurvenerkennung für GPX:</strong> Neues GPS-Profil (17°) kompensiert geringere Koordinaten-Präzision externer Apps automatisch. ~10% mehr erkannte Kurven bei Calimoto/Komoot/GPX-Imports.</span></li>
+          <li><span class="feature-icon">📖</span><span class="feature-text"><strong>Tour-Story:</strong> Teilbare Tour-Geschichten mit Wetter, Orten und Highlights. Automatisch generierter Bericht deiner Fahrt.</span></li>
+          <li><span class="feature-icon">🏆</span><span class="feature-text"><strong>Challenges &amp; Bestenliste:</strong> Persönliche Rekorde, Saison-Statistiken und Motorrad Wrapped (Jahresrückblick ab 3 Touren).</span></li>
+          <li><span class="feature-icon">🔬</span><span class="feature-text"><strong>Diagnose-Tools:</strong> GPS-Qualitätsanalyse, Rescan-Vergleich (vorher/nachher), 10 einstellbare Parameter für Kurvenerkennung, Custom-Profile speicherbar.</span></li>
+          <li><span class="feature-icon">🧭</span><span class="feature-text"><strong>Guided First Import:</strong> Persona-Auswahl (Calimoto, Motobit, GPX) mit geführtem Import-Prozess und Dashboard-Modus-Auswahl für neue User.</span></li>
+          <li><span class="feature-icon">📐</span><span class="feature-text"><strong>Schräglage ±60° vereinheitlicht:</strong> Einheitliches Limit auf allen Import-Quellen. GPS-errechnete Werte werden rot markiert mit * zur Unterscheidung.</span></li>
+        </ul>
+        <ul class="feature-list" style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>0 km Bug behoben:</strong> Touren mit 0 km Distanz werden korrekt berechnet.</span></li>
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Import-Button Fix:</strong> Button reagiert jetzt zuverlässig auf allen Geräten.</span></li>
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Performance bei großen DBs:</strong> Optimierungen für 300+ Touren ohne Verlangsamung.</span></li>
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Tour-Löschung stabilisiert:</strong> Kein Crash mehr beim Löschen mit CollectionView-Rebuild.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.21 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.21</span>
+          <span class="version-title">Telemetrie-Split &amp; Performance</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">06. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Performance-Revolution <span class="highlight-count">+5 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Telemetrie-Split</span>
+            <span class="highlight-tag">Lazy Loading</span>
+            <span class="highlight-tag">Memory-Fix</span>
+            <span class="highlight-tag">Datenbank-Migration</span>
+            <span class="highlight-tag">Streaming Import</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Telemetrie-Split:</strong> Touren in Einzeldateien statt einer großen Datei. Schnellerer Start, kein Absturz bei 300+ Touren, Import blitzschnell.</span></li>
+          <li><span class="feature-icon">💾</span><span class="feature-text"><strong>Drastisch weniger RAM:</strong> Vorher alle Touren im RAM (300 Touren = 230+ MB). Jetzt nur aktive Tour geladen (~3 MB). Import-Spitze von 1.200 MB auf unter 10 MB.</span></li>
+          <li><span class="feature-icon">🔍</span><span class="feature-text"><strong>Lazy Loading:</strong> Telemetrie-Daten (GPS, Speed, Lean) werden erst bei Tour-Öffnung geladen. Tour-Liste zeigt nur Metadaten — sofort da.</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Automatische Migration:</strong> Einmalige Konvertierung beim ersten Start nach Update. Alte Datei bleibt als Backup erhalten.</span></li>
+          <li><span class="feature-icon">📡</span><span class="feature-text"><strong>Streaming Import:</strong> Große Dateien werden stückweise verarbeitet statt komplett in den Speicher geladen.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.20 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.20</span>
+          <span class="version-title">Mega-Feature-Sprint — Highlights, Heatmap &amp; Onboarding</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">06. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+15 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Tour-Highlights</span>
+            <span class="highlight-tag">Kreisverkehr-Erkennung</span>
+            <span class="highlight-tag">Progressions-Tracking</span>
+            <span class="highlight-tag">Abschnitt-Bewertung</span>
+            <span class="highlight-tag">Bestenliste</span>
+            <span class="highlight-tag">Kurven-Heatmap</span>
+            <span class="highlight-tag">Onboarding</span>
+            <span class="highlight-tag">Light/Dark Theme</span>
+            <span class="highlight-tag">Feature-Übersicht</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">⭐</span><span class="feature-text"><strong>Tour-Highlights:</strong> Automatische Erkennung besonderer Momente — Kreisverkehre, starke Bremsungen, Apex-Punkte. Marker auf Karte + Story-Card-Integration.</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Kreisverkehr-Erkennung:</strong> Neuer Highlight-Typ erkennt Kreisverkehre anhand geschlossener Bearing-Schleifen (>270°).</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Progressions-Tracking:</strong> Dieselbe Route über Zeit vergleichen — wie hat sich dein Fahrstil entwickelt?</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Abschnitt-Bewertung:</strong> SegmentAnalyzer bewertet Streckenabschnitte individuell mit farbigem SegmentBar.</span></li>
+          <li><span class="feature-icon">🏆</span><span class="feature-text"><strong>Bestenliste:</strong> GPX-Kurven-Waypoints exportieren + persönliches Statistik-Dashboard mit Rekorden.</span></li>
+          <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Kurven-Heatmap:</strong> Alle Kurven aller Touren auf einer interaktiven Weltkarte — Cluster bei Überlappung.</span></li>
+          <li><span class="feature-icon">👋</span><span class="feature-text"><strong>Onboarding-Flow:</strong> 3 Willkommens-Screens für neue User mit App-Einführung und Import-Anleitung.</span></li>
+          <li><span class="feature-icon">🌗</span><span class="feature-text"><strong>System-Appearance:</strong> Light/Dark Theme Support — folgt den iOS-Systemeinstellungen.</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Feature-Übersicht:</strong> Neuer Screen im Burger-Menü zeigt alle verfügbaren Features mit Status.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Story-Card mit Highlights:</strong> Highlight-Overlay auf exportierten Story-Cards — zeigt beste Kurven und Bremsungen.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.19 -->
+      <div class="version-entry">
+        <div class="version-dot"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.19</span>
           <span class="version-title">Story-Card Export, Motobit-Import &amp; erweiterte Filter</span>
-          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">16. Mär 2026</span>
         </div>
         <div class="highlight-card featured">
@@ -392,22 +519,22 @@
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Story-Card Export:</strong> 6 verschiedene Instagram-Story-Styles (1080×1920) mit Kurvenfokus Brand Design — Crosshair-Logo, Cyan-Stats-Grid, Kurvenverteilungsbalken. Direkt in Fotos speichern.</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Lean Map Story-Card:</strong> Strecke farbcodiert nach Schräglage — nur bei Touren mit echten Sensordaten sichtbar.</span></li>
-          <li><span class="feature-icon">&#128229;</span><span class="feature-text"><strong>Motobit DSGVO-Import:</strong> Direktimport von Motobit-Exportdaten (JSON). Automatische Format-Erkennung, GPS-basierte Lean-Berechnung.</span></li>
-          <li><span class="feature-icon">&#128269;</span><span class="feature-text"><strong>Datentyp-Filter:</strong> Neue Filter-Dimension — Voll-Telemetrie (Lean + Acc) vs GPS-only. Chip-Zeile unter Quellen-Filter.</span></li>
-          <li><span class="feature-icon">&#127991;</span><span class="feature-text"><strong>Format-Badge:</strong> JSON/GPX Badge in jeder Tour-Zeile (Cyan = JSON, Grau = GPX) mit Monospace-Schrift.</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Semantische Quellen-Icons:</strong> Buchstaben-Kreise ersetzt durch aussagekräftige Symbole — RideLink (Antenna), Calimoto (Map), Motobit (Speedometer), Komoot (Mountain).</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Tour-Liste Card-Redesign:</strong> Hero Stats Grid (4 Spalten), Status-Badges (PLANUNG, EXCL, LEAN~, MATCH), Secondary Stats im Footer.</span></li>
-          <li><span class="feature-icon">&#128154;</span><span class="feature-text"><strong>Calimoto-Plus Support:</strong> Eigene Teal-Farbe + „C+" Display-Name als separate Import-Quelle.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Story-Card Export:</strong> 6 verschiedene Instagram-Story-Styles (1080×1920) mit Kurvenfokus Brand Design — Crosshair-Logo, Cyan-Stats-Grid, Kurvenverteilungsbalken. Direkt in Fotos speichern.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Lean Map Story-Card:</strong> Strecke farbcodiert nach Schräglage — nur bei Touren mit echten Sensordaten sichtbar.</span></li>
+          <li><span class="feature-icon">📥</span><span class="feature-text"><strong>Motobit DSGVO-Import:</strong> Direktimport von Motobit-Exportdaten (JSON). Automatische Format-Erkennung, GPS-basierte Lean-Berechnung.</span></li>
+          <li><span class="feature-icon">🔍</span><span class="feature-text"><strong>Datentyp-Filter:</strong> Neue Filter-Dimension — Voll-Telemetrie (Lean + Acc) vs GPS-only. Chip-Zeile unter Quellen-Filter.</span></li>
+          <li><span class="feature-icon">🏷️</span><span class="feature-text"><strong>Format-Badge:</strong> JSON/GPX Badge in jeder Tour-Zeile (Cyan = JSON, Grau = GPX) mit Monospace-Schrift.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Semantische Quellen-Icons:</strong> Buchstaben-Kreise ersetzt durch aussagekräftige Symbole — RideLink (Antenna), Calimoto (Map), Motobit (Speedometer), Komoot (Mountain).</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Tour-Liste Card-Redesign:</strong> Hero Stats Grid (4 Spalten), Status-Badges (PLANUNG, EXCL, LEAN~, MATCH), Secondary Stats im Footer.</span></li>
+          <li><span class="feature-icon">💚</span><span class="feature-text"><strong>Calimoto-Plus Support:</strong> Eigene Teal-Farbe + „C+" Display-Name als separate Import-Quelle.</span></li>
         </ul>
         <ul class="feature-list" style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.06); padding-top:12px;">
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Vmax Spike-Detection Fix:</strong> 250 km/h Minimum-Floor — Geschwindigkeiten unter 250 km/h werden nie als GPS-Spike gefiltert. Formel: min(max(P95×1.5, 250), 280 km/h).</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Gap-Segmentation:</strong> Telemetrie wird bei >30s Pausen aufgesplittet — keine Phantom-Kurven mehr an Tankstopps.</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Speed-Filter:</strong> Kurven mit &lt;2 km/h Durchschnitt werden gefiltert — eliminiert falsche Kurven beim Schieben/Rangieren.</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Rescan-Absturz behoben:</strong> Bei 272+ Touren stürzte die App beim Moduswechsel ab — Batch-Processing mit autoreleasepool.</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Schrift-Umbruch behoben:</strong> Stats in Tour-Karten brachen auf zwei Zeilen um.</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Safe Collection Subscript:</strong> Bounds-geprüfter Array-Zugriff verhindert Index-Crashes bei Batch-Verarbeitung.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Vmax Spike-Detection Fix:</strong> 250 km/h Minimum-Floor — Geschwindigkeiten unter 250 km/h werden nie als GPS-Spike gefiltert.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Gap-Segmentation:</strong> Telemetrie wird bei >30s Pausen aufgesplittet — keine Phantom-Kurven mehr an Tankstopps.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Speed-Filter:</strong> Kurven mit &lt;2 km/h Durchschnitt werden gefiltert — eliminiert falsche Kurven beim Schieben/Rangieren.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Rescan-Absturz behoben:</strong> Bei 272+ Touren stürzte die App beim Moduswechsel ab — Batch-Processing mit autoreleasepool.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Schrift-Umbruch behoben:</strong> Stats in Tour-Karten brachen auf zwei Zeilen um.</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Safe Collection Subscript:</strong> Bounds-geprüfter Array-Zugriff verhindert Index-Crashes bei Batch-Verarbeitung.</span></li>
         </ul>
       </div>
 
@@ -431,11 +558,11 @@
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
-          <li><span class="feature-icon">&#9889;</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt automatisch das passende Erkennungsprofil</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Profil-Badge:</strong> Farbiger Chip in der StatsCard zeigt das aktive Profil (Grün=Calimoto, Blau=Motobit)</span></li>
-          <li><span class="feature-icon">&#128248;</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
-          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü mit Info-Dialog</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt automatisch das passende Erkennungsprofil</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Profil-Badge:</strong> Farbiger Chip in der StatsCard zeigt das aktive Profil (Grün=Calimoto, Blau=Motobit)</span></li>
+          <li><span class="feature-icon">📸</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü mit Info-Dialog</span></li>
         </ul>
       </div>
 
@@ -540,29 +667,22 @@
             <span class="highlight-tag">Batch-Import</span>
             <span class="highlight-tag">Gesamtstatistik</span>
             <span class="highlight-tag">Quellen-Filter</span>
-            <span class="highlight-tag">Quellen-Icons</span>
             <span class="highlight-tag">Backup/Restore</span>
             <span class="highlight-tag">Auto-Merge</span>
             <span class="highlight-tag">Jahres-Gruppierung</span>
-            <span class="highlight-tag">Selektions-Statistik</span>
             <span class="highlight-tag">Geplante Touren</span>
-            <span class="highlight-tag">Planungs-Toggle</span>
             <span class="highlight-tag">Toleranter Import</span>
-            <span class="highlight-tag">Fehler-Export</span>
-            <span class="highlight-tag">Alle Touren löschen</span>
-            <span class="highlight-tag">Skalierbare Tour-Liste</span>
-            <span class="highlight-tag">Multi-Select</span>
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128230;</span><span class="feature-text"><strong>Batch-Import:</strong> Mehrere GPX/JSON-Dateien gleichzeitig importieren mit Fortschrittsanzeige und Fehlerbericht</span></li>
-          <li><span class="feature-icon">&#128203;</span><span class="feature-text"><strong>Gesamtstatistik:</strong> Aggregierte Werte über alle Touren — Distanz, Kurven, Höhenmeter, Links/Rechts-Balance</span></li>
-          <li><span class="feature-icon">&#128278;</span><span class="feature-text"><strong>Quellen-Filter:</strong> Touren nach Herkunft filtern (RideLink, Calimoto, Motobit, Komoot) mit automatischer GPX-Creator-Erkennung</span></li>
-          <li><span class="feature-icon">&#128190;</span><span class="feature-text"><strong>Backup &amp; Restore:</strong> Alle Touren als JSON sichern und wiederherstellen — über Burger-Menü und Share Sheet</span></li>
-          <li><span class="feature-icon">&#128279;</span><span class="feature-text"><strong>Auto-Merge:</strong> Gesplittete Touren automatisch zusammenführen basierend auf zeitlicher und örtlicher Nähe</span></li>
-          <li><span class="feature-icon">&#128197;</span><span class="feature-text"><strong>Jahres-Gruppierung:</strong> Tour-Liste nach Jahren sortiert (2024, 2025, 2026...) mit Touren-Anzahl pro Jahr</span></li>
-          <li><span class="feature-icon">&#128506;</span><span class="feature-text"><strong>Geplante Touren:</strong> GPX-Routenplanungen (rte/rtept) als geplante Tour importieren mit Planungs-Toggle</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Toleranter Import:</strong> Fehlerhafte Dateien werden nicht mehr abgelehnt — brauchbare Daten werden gerettet</span></li>
+          <li><span class="feature-icon">📦</span><span class="feature-text"><strong>Batch-Import:</strong> Mehrere GPX/JSON-Dateien gleichzeitig importieren mit Fortschrittsanzeige und Fehlerbericht</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Gesamtstatistik:</strong> Aggregierte Werte über alle Touren — Distanz, Kurven, Höhenmeter, Links/Rechts-Balance</span></li>
+          <li><span class="feature-icon">🔖</span><span class="feature-text"><strong>Quellen-Filter:</strong> Touren nach Herkunft filtern (RideLink, Calimoto, Motobit, Komoot) mit automatischer GPX-Creator-Erkennung</span></li>
+          <li><span class="feature-icon">💾</span><span class="feature-text"><strong>Backup &amp; Restore:</strong> Alle Touren als JSON sichern und wiederherstellen — über Burger-Menü und Share Sheet</span></li>
+          <li><span class="feature-icon">🔗</span><span class="feature-text"><strong>Auto-Merge:</strong> Gesplittete Touren automatisch zusammenführen basierend auf zeitlicher und örtlicher Nähe</span></li>
+          <li><span class="feature-icon">📅</span><span class="feature-text"><strong>Jahres-Gruppierung:</strong> Tour-Liste nach Jahren sortiert (2024, 2025, 2026...) mit Touren-Anzahl pro Jahr</span></li>
+          <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Geplante Touren:</strong> GPX-Routenplanungen (rte/rtept) als geplante Tour importieren mit Planungs-Toggle</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Toleranter Import:</strong> Fehlerhafte Dateien werden nicht mehr abgelehnt — brauchbare Daten werden gerettet</span></li>
         </ul>
       </div>
 
@@ -576,10 +696,10 @@
           <span class="version-date">23. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#9889;</span><span class="feature-text"><strong>Lazy Track-Segmente:</strong> Speed/Lean-Segmente werden erst bei Aktivierung berechnet — schnellerer App-Start</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Lean-Heatmap:</strong> Schräglage als Farbverlauf auf der Karte darstellen (portiert von Android)</span></li>
-          <li><span class="feature-icon">&#128161;</span><span class="feature-text"><strong>Tipps-Dialoge:</strong> Versteckte Features erklären (Long-Press, Swipe, Farbmodi)</span></li>
-          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>Track-Color-Reset:</strong> Farbmodus wird bei Tour-Wechsel auf Standard zurückgesetzt</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Lazy Track-Segmente:</strong> Speed/Lean-Segmente werden erst bei Aktivierung berechnet — schnellerer App-Start</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Lean-Heatmap:</strong> Schräglage als Farbverlauf auf der Karte darstellen (portiert von Android)</span></li>
+          <li><span class="feature-icon">💡</span><span class="feature-text"><strong>Tipps-Dialoge:</strong> Versteckte Features erklären (Long-Press, Swipe, Farbmodi)</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Track-Color-Reset:</strong> Farbmodus wird bei Tour-Wechsel auf Standard zurückgesetzt</span></li>
         </ul>
       </div>
 
@@ -593,12 +713,12 @@
           <span class="version-date">23. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128270;</span><span class="feature-text"><strong>P95-GPS-Validierung:</strong> 4 Anomalie-Typen erkennen — GPS-Sprünge, Null Island, Höhen-Spikes, Speed-Anomalien</span></li>
-          <li><span class="feature-icon">&#128678;</span><span class="feature-text"><strong>Bereinigt importieren:</strong> Wahl zwischen bereinigtem Import (Anomalien entfernen) und komplettem Import</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Import-Bericht:</strong> Detaillierter Report nach Import — nachträglich im Burger-Menü abrufbar</span></li>
-          <li><span class="feature-icon">&#128200;</span><span class="feature-text"><strong>Smart Speed-Detection:</strong> Erkannte Höchstgeschwindigkeit im Precheck anzeigen</span></li>
-          <li><span class="feature-icon">&#128070;</span><span class="feature-text"><strong>Chart-Tap:</strong> Auf Speed/Lean-Chart tippen springt direkt zum Zeitpunkt — Karte synchronisiert</span></li>
-          <li><span class="feature-icon">&#127760;</span><span class="feature-text"><strong>Map-Tap:</strong> Auf den Track tippen springt zum nächsten Telemetrie-Punkt</span></li>
+          <li><span class="feature-icon">🔍</span><span class="feature-text"><strong>P95-GPS-Validierung:</strong> 4 Anomalie-Typen erkennen — GPS-Sprünge, Null Island, Höhen-Spikes, Speed-Anomalien</span></li>
+          <li><span class="feature-icon">🚨</span><span class="feature-text"><strong>Bereinigt importieren:</strong> Wahl zwischen bereinigtem Import (Anomalien entfernen) und komplettem Import</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Import-Bericht:</strong> Detaillierter Report nach Import — nachträglich im Burger-Menü abrufbar</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Smart Speed-Detection:</strong> Erkannte Höchstgeschwindigkeit im Precheck anzeigen</span></li>
+          <li><span class="feature-icon">👆</span><span class="feature-text"><strong>Chart-Tap:</strong> Auf Speed/Lean-Chart tippen springt direkt zum Zeitpunkt — Karte synchronisiert</span></li>
+          <li><span class="feature-icon">🌐</span><span class="feature-text"><strong>Map-Tap:</strong> Auf den Track tippen springt zum nächsten Telemetrie-Punkt</span></li>
         </ul>
       </div>
 
@@ -612,10 +732,10 @@
           <span class="version-date">23. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127752;</span><span class="feature-text"><strong>Speed-Farbcodierung:</strong> Track auf der Karte farblich nach Geschwindigkeit (Blau → Rot, 20 Buckets)</span></li>
-          <li><span class="feature-icon">&#127942;</span><span class="feature-text"><strong>Top-3 Speed-Peaks:</strong> Schnellste Stellen als Pill-Badges mit Rang und km/h auf der Karte</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>P95-Normalisierung:</strong> Farbskala basiert auf dem 95. Perzentil statt dem Absolutwert</span></li>
-          <li><span class="feature-icon">&#9888;</span><span class="feature-text"><strong>Beta-Disclaimer:</strong> Sicherheitshinweis beim ersten App-Start mit Persistenz</span></li>
+          <li><span class="feature-icon">🌈</span><span class="feature-text"><strong>Speed-Farbcodierung:</strong> Track auf der Karte farblich nach Geschwindigkeit (Blau → Rot, 20 Buckets)</span></li>
+          <li><span class="feature-icon">🏆</span><span class="feature-text"><strong>Top-3 Speed-Peaks:</strong> Schnellste Stellen als Pill-Badges mit Rang und km/h auf der Karte</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>P95-Normalisierung:</strong> Farbskala basiert auf dem 95. Perzentil statt dem Absolutwert</span></li>
+          <li><span class="feature-icon">⚠️</span><span class="feature-text"><strong>Beta-Disclaimer:</strong> Sicherheitshinweis beim ersten App-Start mit Persistenz</span></li>
         </ul>
       </div>
 
@@ -629,11 +749,11 @@
           <span class="version-date">12. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127881;</span><span class="feature-text"><strong>TestFlight Live:</strong> Erste öffentliche Beta über Apple TestFlight verfügbar</span></li>
-          <li><span class="feature-icon">&#128176;</span><span class="feature-text"><strong>Freemium-Modell:</strong> StoreKit 2 Integration — Free-Tier (3 Touren) + Pro-Abo</span></li>
-          <li><span class="feature-icon">&#128274;</span><span class="feature-text"><strong>Privacy Manifest:</strong> Apple-konforme Datenschutz-Deklaration</span></li>
-          <li><span class="feature-icon">&#128221;</span><span class="feature-text"><strong>Legal Pages:</strong> Datenschutz, Nutzungsbedingungen, Support im Burger-Menü verlinkt</span></li>
-          <li><span class="feature-icon">&#128736;</span><span class="feature-text"><strong>Code-Quality:</strong> 5 Force-Unwraps behoben, Int→CGFloat project-wide, 0 Warnings</span></li>
+          <li><span class="feature-icon">🎉</span><span class="feature-text"><strong>TestFlight Live:</strong> Erste öffentliche Beta über Apple TestFlight verfügbar</span></li>
+          <li><span class="feature-icon">💰</span><span class="feature-text"><strong>Freemium-Modell:</strong> StoreKit 2 Integration — Free-Tier (3 Touren) + Pro-Abo</span></li>
+          <li><span class="feature-icon">🔒</span><span class="feature-text"><strong>Privacy Manifest:</strong> Apple-konforme Datenschutz-Deklaration</span></li>
+          <li><span class="feature-icon">📝</span><span class="feature-text"><strong>Legal Pages:</strong> Datenschutz, Nutzungsbedingungen, Support im Burger-Menü verlinkt</span></li>
+          <li><span class="feature-icon">🛠️</span><span class="feature-text"><strong>Code-Quality:</strong> 5 Force-Unwraps behoben, Int→CGFloat project-wide, 0 Warnings</span></li>
         </ul>
       </div>
 
@@ -647,14 +767,14 @@
           <span class="version-date">05. – 11. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127758;</span><span class="feature-text"><strong>Dashboard:</strong> 6-Panel-Layout mit Karte, Charts, Stats, Kurven-Chips, Timeline</span></li>
-          <li><span class="feature-icon">&#128196;</span><span class="feature-text"><strong>Import-Pipeline:</strong> RideLink JSON, GPX (Calimoto, Motobit, Komoot), CSV</span></li>
-          <li><span class="feature-icon">&#10554;</span><span class="feature-text"><strong>Kurven-Erkennung:</strong> Automatische Links/Rechts-Erkennung mit 6° Lean-Threshold</span></li>
-          <li><span class="feature-icon">&#128200;</span><span class="feature-text"><strong>Telemetrie-Charts:</strong> Speed, Lean, G-Force, Altitude im Zeitverlauf</span></li>
-          <li><span class="feature-icon">&#9654;</span><span class="feature-text"><strong>Wiedergabe:</strong> Play/Pause/Skip, 8 Speed-Stufen (0.25x–20x), Pausen-Erkennung</span></li>
-          <li><span class="feature-icon">&#128272;</span><span class="feature-text"><strong>Sicherheit:</strong> AES-256-GCM Verschlüsselung, GPS-Qualitäts-Badge (A/B/C/D)</span></li>
-          <li><span class="feature-icon">&#128241;</span><span class="feature-text"><strong>iPad-Support:</strong> 3 adaptive Layouts (Standard, Map Focus, Split View)</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Dark Theme:</strong> MotoGP-inspiriertes Design mit Cyan/Magenta/Gold-Akzenten</span></li>
+          <li><span class="feature-icon">🌎</span><span class="feature-text"><strong>Dashboard:</strong> 6-Panel-Layout mit Karte, Charts, Stats, Kurven-Chips, Timeline</span></li>
+          <li><span class="feature-icon">📄</span><span class="feature-text"><strong>Import-Pipeline:</strong> RideLink JSON, GPX (Calimoto, Motobit, Komoot), CSV</span></li>
+          <li><span class="feature-icon">↪</span><span class="feature-text"><strong>Kurven-Erkennung:</strong> Automatische Links/Rechts-Erkennung mit 6° Lean-Threshold</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Telemetrie-Charts:</strong> Speed, Lean, G-Force, Altitude im Zeitverlauf</span></li>
+          <li><span class="feature-icon">▶</span><span class="feature-text"><strong>Wiedergabe:</strong> Play/Pause/Skip, 8 Speed-Stufen (0.25x–20x), Pausen-Erkennung</span></li>
+          <li><span class="feature-icon">🔐</span><span class="feature-text"><strong>Sicherheit:</strong> iOS Data Protection (AES-256 Hardware-Verschlüsselung), GPS-Qualitäts-Badge (A/B/C/D)</span></li>
+          <li><span class="feature-icon">📱</span><span class="feature-text"><strong>iPad-Support:</strong> 3 adaptive Layouts (Standard, Map Focus, Split View)</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Dark Theme:</strong> MotoGP-inspiriertes Design mit Cyan/Magenta/Gold-Akzenten</span></li>
         </ul>
       </div>
 
@@ -668,32 +788,123 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val android-color">v0.0.13</div>
+        <div class="stat-val android-color">v0.0.16</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">65</div>
+        <div class="stat-val android-color">104</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">13</div>
+        <div class="stat-val android-color">16</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">130</div>
+        <div class="stat-val android-color">286</div>
         <div class="stat-label">Sessions</div>
       </div>
     </div>
 
     <div class="timeline">
 
-      <!-- v0.0.13 -->
+      <!-- v0.0.16 -->
       <div class="version-entry">
         <div class="version-dot android current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.16</span>
+          <span class="version-title">Schräglage-Update &amp; Routen-Gruppierung</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">09. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+4 Features, +2 Fixes</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Lean ±60°</span>
+            <span class="highlight-tag">Region-Gruppierung</span>
+            <span class="highlight-tag">Route-Gruppierung</span>
+            <span class="highlight-tag">GPS-Accuracy-Filter</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">📐</span><span class="feature-text"><strong>Schräglage ±60° vereinheitlicht:</strong> Einheitliches Limit auf allen Import-Quellen. GPS-errechnete Werte markiert — klar unterscheidbar von echten Sensordaten.</span></li>
+          <li><span class="feature-icon">🌍</span><span class="feature-text"><strong>Region-Gruppierung:</strong> Tour-Liste nach Ländern und Regionen gruppierbar — Drill-Down auf Bundesland-Ebene.</span></li>
+          <li><span class="feature-icon">🔁</span><span class="feature-text"><strong>Route-Gruppierung:</strong> Ähnliche Strecken automatisch erkennen und gruppieren — Fingerprint-Matching.</span></li>
+          <li><span class="feature-icon">📡</span><span class="feature-text"><strong>GPS-Accuracy-Filter:</strong> Punkte mit Genauigkeit >50m werden automatisch gefiltert — bessere Datenqualität.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.15 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.15</span>
+          <span class="version-title">Highlights, Heatmap &amp; Onboarding</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">06. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Mega-Feature-Sprint <span class="highlight-count">+14 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Tour-Highlights</span>
+            <span class="highlight-tag">Kreisverkehr</span>
+            <span class="highlight-tag">Progressions-Tracking</span>
+            <span class="highlight-tag">Kurven-Heatmap</span>
+            <span class="highlight-tag">Bestenliste</span>
+            <span class="highlight-tag">Onboarding</span>
+            <span class="highlight-tag">Feature-Übersicht</span>
+            <span class="highlight-tag">Map-Performance</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">⭐</span><span class="feature-text"><strong>Tour-Highlights:</strong> Automatische Erkennung — Kreisverkehre, starke Bremsungen, Apex-Punkte. Marker auf Karte + Story-Card.</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Kreisverkehr-Erkennung:</strong> Geschlossene Bearing-Schleifen (>270°) werden als Kreisverkehr markiert.</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Progressions-Tracking:</strong> Dieselbe Route über Zeit vergleichen — Fahrstil-Entwicklung sichtbar.</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Abschnitt-Bewertung:</strong> SegmentAnalyzer mit farbigem SegmentBar für einzelne Streckenabschnitte.</span></li>
+          <li><span class="feature-icon">🏆</span><span class="feature-text"><strong>Bestenliste:</strong> Persönliches Statistik-Dashboard mit Rekorden und GPX-Kurven-Export.</span></li>
+          <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Kurven-Heatmap:</strong> Alle Kurven aller Touren auf einer Weltkarte — Cluster bei überlappenden Routen.</span></li>
+          <li><span class="feature-icon">👋</span><span class="feature-text"><strong>Onboarding-Flow:</strong> 3 Willkommens-Screens für neue User mit App-Einführung.</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Feature-Übersicht:</strong> Neuer Screen im Burger-Menü zeigt alle Features mit Status.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Story-Card mit Highlights:</strong> Highlight-Overlay auf exportierten Story-Cards.</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Map-Performance:</strong> Douglas-Peucker PathSimplifier + Polyline-Segment-Cache für flüssigeres Rendering.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.14 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.14</span>
+          <span class="version-title">Story-Card Export &amp; Feature-Parität</span>
+          <span class="version-badge badge-archived">Archiviert</span>
+          <span class="version-date">06. Apr 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Feature-Parität mit iOS <span class="highlight-count">+6 Features</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">Story-Card Export</span>
+            <span class="highlight-tag">GPS+IMU Fusion</span>
+            <span class="highlight-tag">MotionRecord-Import</span>
+            <span class="highlight-tag">Streaming Import</span>
+            <span class="highlight-tag">Snapshot-Tests</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Story-Card Export:</strong> Instagram-Story-Styles (1080×1920) mit Kurvenfokus Brand Design — Crosshair-Logo, Stats-Grid, Kurvenbalken.</span></li>
+          <li><span class="feature-icon">📡</span><span class="feature-text"><strong>GPS+IMU Fusion:</strong> Kombinierte Lean-Berechnung aus GPS-Daten und Beschleunigungssensor für genauere Schräglagen.</span></li>
+          <li><span class="feature-icon">📥</span><span class="feature-text"><strong>MotionRecord-Import:</strong> Direktimport von MotionRecord-Aufzeichnungen mit voller Telemetrie-Unterstützung.</span></li>
+          <li><span class="feature-icon">📡</span><span class="feature-text"><strong>Streaming Import:</strong> Große Dateien werden stückweise verarbeitet — kein RAM-Overflow mehr.</span></li>
+          <li><span class="feature-icon">🧪</span><span class="feature-text"><strong>5 Snapshot-Tests:</strong> Automatisierte Import-Verifikation für MotionRecord-Format.</span></li>
+          <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Changelog-Persistenz-Fix:</strong> Dialog-State wird korrekt gespeichert — kein wiederholtes Anzeigen mehr.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.13 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.13</span>
           <span class="version-title">Monats-Gruppierung, Pausen &amp; Detection Profiles</span>
-          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">15. Mär 2026</span>
         </div>
         <div class="highlight-card featured-android">
@@ -702,28 +913,22 @@
             <span class="highlight-tag">Monats-Gruppierung</span>
             <span class="highlight-tag">Monats-Statistik</span>
             <span class="highlight-tag">Pausen-Anzeige</span>
-            <span class="highlight-tag">Changelog-Dialog</span>
             <span class="highlight-tag">Detection Profiles</span>
             <span class="highlight-tag">Auto-Profil</span>
-            <span class="highlight-tag">Profil-Badge</span>
             <span class="highlight-tag">DetectionMode-Picker</span>
             <span class="highlight-tag">Vmax 280 km/h</span>
             <span class="highlight-tag">Umlaut-Fix</span>
-            <span class="highlight-tag">maxLines Fix</span>
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128197;</span><span class="feature-text"><strong>Monats-Gruppierung:</strong> Touren nach Monat gruppieren (März 2026, Februar 2026 etc.) — neuer Gruppierungsmodus neben Jahr</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Monats-Statistik:</strong> Jede Monats-Sektion zeigt kompakte KPIs — Distanz, Kurven und Fahrzeit auf einen Blick</span></li>
-          <li><span class="feature-icon">&#9208;</span><span class="feature-text"><strong>Pausen-Anzeige:</strong> Automatische Erkennung von Pausen (Telemetrie-Lücken >30s) im QuickStatsStrip — Gold-Badge mit Anzahl</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Changelog-Dialog:</strong> Wird bei jedem Start angezeigt mit „Nicht mehr anzeigen" Checkbox</span></li>
-          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
-          <li><span class="feature-icon">&#9889;</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt das passende Erkennungsprofil</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Profil-Badge:</strong> Farbiger Chip in StatsCard zeigt aktives Profil (Grün=Calimoto, Blau=Motobit)</span></li>
-          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Vmax Speed-Cap 280 km/h:</strong> Reale Geschwindigkeiten über 200 km/h wurden fälschlich gefiltert — 4 Stellen in GpxImporter korrigiert</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>17 Umlaut-Fehler korrigiert:</strong> ASCII-Ersetzungen durch echte UTF-8 Umlaute ersetzt (ü, ö, ä, ß in 5 Dateien)</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Text-Umbruch verhindert:</strong> maxLines=1 in allen Stats-Texten der Tour-Liste</span></li>
+          <li><span class="feature-icon">📅</span><span class="feature-text"><strong>Monats-Gruppierung:</strong> Touren nach Monat gruppieren (März 2026, Februar 2026 etc.) — neuer Gruppierungsmodus neben Jahr</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Monats-Statistik:</strong> Jede Monats-Sektion zeigt kompakte KPIs — Distanz, Kurven und Fahrzeit auf einen Blick</span></li>
+          <li><span class="feature-icon">⏸️</span><span class="feature-text"><strong>Pausen-Anzeige:</strong> Automatische Erkennung von Pausen (Telemetrie-Lücken >30s) im QuickStatsStrip — Gold-Badge mit Anzahl</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Detection Profiles:</strong> Quellspezifische Kalibrierung — Standard (20°), Calimoto (18°), Motobit (22°) mit eigenen Parametern</span></li>
+          <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Automatische Profil-Wahl:</strong> GPX-Import erkennt die Quelle und wählt das passende Erkennungsprofil</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>DetectionMode-Picker:</strong> Detailliert/Standard Umschalter im Burger-Menü</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Vmax Speed-Cap 280 km/h:</strong> Reale Geschwindigkeiten über 200 km/h wurden fälschlich gefiltert — korrigiert</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>17 Umlaut-Fehler korrigiert:</strong> ASCII-Ersetzungen durch echte UTF-8 Umlaute ersetzt (ü, ö, ä, ß)</span></li>
         </ul>
       </div>
 
@@ -737,10 +942,10 @@
           <span class="version-date">08. Mär 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128248;</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
-          <li><span class="feature-icon">&#127991;</span><span class="feature-text"><strong>TestTag-Verbesserungen:</strong> Konsistente TestTags mit indexierter Ride-Navigation für UI-Automation</span></li>
-          <li><span class="feature-icon">&#127752;</span><span class="feature-text"><strong>Score-Farbmodus:</strong> Kurven-Performance als Heatmap auf der Karte (Grün=gut, Rot=schlecht)</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>CurveScorer:</strong> Physikbasierte Kurven-Bewertung im Straßen-Modus</span></li>
+          <li><span class="feature-icon">📸</span><span class="feature-text"><strong>QA Screenshot Automation:</strong> 18 automatisierte Screenshot-Tests für alle Screens</span></li>
+          <li><span class="feature-icon">🏷️</span><span class="feature-text"><strong>TestTag-Verbesserungen:</strong> Konsistente TestTags mit indexierter Ride-Navigation für UI-Automation</span></li>
+          <li><span class="feature-icon">🌈</span><span class="feature-text"><strong>Score-Farbmodus:</strong> Kurven-Performance als Heatmap auf der Karte (Grün=gut, Rot=schlecht)</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>CurveScorer:</strong> Physikbasierte Kurven-Bewertung im Straßen-Modus</span></li>
         </ul>
       </div>
 
@@ -752,15 +957,6 @@
           <span class="version-title">GeoCurveDetector &amp; Tour-Ausschluss</span>
           <span class="version-badge badge-archived">Archiviert</span>
           <span class="version-date">01. Mär 2026</span>
-        </div>
-        <div class="highlight-card featured-android">
-          <div class="highlight-title">Neue Features <span class="highlight-count">+4 Features</span></div>
-          <div class="highlight-features">
-            <span class="highlight-tag">GeoCurveDetector</span>
-            <span class="highlight-tag">Tour-Ausschluss</span>
-            <span class="highlight-tag">Max-Lean-Anzeige</span>
-            <span class="highlight-tag">Algo-Tuning</span>
-          </div>
         </div>
         <ul class="feature-list">
           <li><span class="feature-icon">📐</span><span class="feature-text"><strong>GeoCurveDetector:</strong> Geometrische Kurven-Erkennung via Bearing-Änderung — erkennt Kurven auch ohne Lean-Daten</span></li>
@@ -819,10 +1015,10 @@
           </div>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>GPS-basierte Lean-Berechnung:</strong> Schräglagen aus GPS-Daten für GPX-Touren — Physik-Formel: tan(θ) = v·ω/g</span></li>
-          <li><span class="feature-icon">&#128260;</span><span class="feature-text"><strong>Auto-Update:</strong> Alte Touren werden beim Öffnen automatisch mit neuen Algorithmen neu ausgewertet</span></li>
-          <li><span class="feature-icon">&#128161;</span><span class="feature-text"><strong>Tipps &amp; Tricks:</strong> Glühbirnen-Button erklärt versteckte Features (Long-Press, Swipe, Farbmodi)</span></li>
-          <li><span class="feature-icon">&#128278;</span><span class="feature-text"><strong>Kurven-Filter Sync:</strong> Schräglagen-Filter wirkt jetzt auch auf Kurven-Liste und Verteilung</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>GPS-basierte Lean-Berechnung:</strong> Schräglagen aus GPS-Daten für GPX-Touren — Physik-Formel: tan(θ) = v·ω/g</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Auto-Update:</strong> Alte Touren werden beim Öffnen automatisch mit neuen Algorithmen neu ausgewertet</span></li>
+          <li><span class="feature-icon">💡</span><span class="feature-text"><strong>Tipps &amp; Tricks:</strong> Glühbirnen-Button erklärt versteckte Features (Long-Press, Swipe, Farbmodi)</span></li>
+          <li><span class="feature-icon">🔖</span><span class="feature-text"><strong>Kurven-Filter Sync:</strong> Schräglagen-Filter wirkt jetzt auch auf Kurven-Liste und Verteilung</span></li>
         </ul>
       </div>
 
@@ -836,11 +1032,11 @@
           <span class="version-date">23. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128270;</span><span class="feature-text"><strong>GPS-Validator:</strong> Erkennung von GPS-Sprüngen, Null Island, Höhen-Spikes, Speed-Anomalien</span></li>
-          <li><span class="feature-icon">&#128678;</span><span class="feature-text"><strong>Bereinigt importieren:</strong> Wahl zwischen bereinigtem und komplettem Import</span></li>
-          <li><span class="feature-icon">&#127942;</span><span class="feature-text"><strong>Top-3 Speed-Peaks:</strong> Schnellste Stellen als Badges auf Karte, Chart und StatsCard</span></li>
-          <li><span class="feature-icon">&#9888;</span><span class="feature-text"><strong>Beta-Disclaimer:</strong> Sicherheitshinweis beim App-Start</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Import-Bericht:</strong> Nachträglich abrufbar per Info-Button</span></li>
+          <li><span class="feature-icon">🔍</span><span class="feature-text"><strong>GPS-Validator:</strong> Erkennung von GPS-Sprüngen, Null Island, Höhen-Spikes, Speed-Anomalien</span></li>
+          <li><span class="feature-icon">🚨</span><span class="feature-text"><strong>Bereinigt importieren:</strong> Wahl zwischen bereinigtem und komplettem Import</span></li>
+          <li><span class="feature-icon">🏆</span><span class="feature-text"><strong>Top-3 Speed-Peaks:</strong> Schnellste Stellen als Badges auf Karte, Chart und StatsCard</span></li>
+          <li><span class="feature-icon">⚠️</span><span class="feature-text"><strong>Beta-Disclaimer:</strong> Sicherheitshinweis beim App-Start</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Import-Bericht:</strong> Nachträglich abrufbar per Info-Button</span></li>
         </ul>
       </div>
 
@@ -854,10 +1050,10 @@
           <span class="version-date">20. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128274;</span><span class="feature-text"><strong>AES-256-GCM:</strong> Alle Ride-Daten verschlüsselt gespeichert — Android Keystore Integration</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Bugfix Dateiname:</strong> ContentResolver DISPLAY_NAME statt Raw-Pfad</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Bugfix Datum:</strong> Sekunden → Millisekunden (kein 1970-Datum mehr)</span></li>
-          <li><span class="feature-icon">&#128295;</span><span class="feature-text"><strong>Bugfix Dauer:</strong> Fallback-Berechnung aus Distanz bei 0-Minuten-Touren</span></li>
+          <li><span class="feature-icon">🔒</span><span class="feature-text"><strong>AES-256-GCM:</strong> Alle Ride-Daten verschlüsselt gespeichert — Android Keystore Integration</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Bugfix Dateiname:</strong> ContentResolver DISPLAY_NAME statt Raw-Pfad</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Bugfix Datum:</strong> Sekunden → Millisekunden (kein 1970-Datum mehr)</span></li>
+          <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Bugfix Dauer:</strong> Fallback-Berechnung aus Distanz bei 0-Minuten-Touren</span></li>
         </ul>
       </div>
 
@@ -871,9 +1067,9 @@
           <span class="version-date">19. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127752;</span><span class="feature-text"><strong>Speed-Farbcodierung:</strong> Track auf Karte farblich nach Geschwindigkeit (Blau → Gelb → Rot)</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Lean-Farbcodierung:</strong> Track nach Schräglagen eingefärbt (Grün=aufrecht, Cyan/Magenta=geneigt)</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Farblegenden:</strong> Legenden unter der Karte für Speed- und Lean-Farbskala</span></li>
+          <li><span class="feature-icon">🌈</span><span class="feature-text"><strong>Speed-Farbcodierung:</strong> Track auf Karte farblich nach Geschwindigkeit (Blau → Gelb → Rot)</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Lean-Farbcodierung:</strong> Track nach Schräglagen eingefärbt (Grün=aufrecht, Cyan/Magenta=geneigt)</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Farblegenden:</strong> Legenden unter der Karte für Speed- und Lean-Farbskala</span></li>
         </ul>
       </div>
 
@@ -887,8 +1083,8 @@
           <span class="version-date">17. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127963;</span><span class="feature-text"><strong>Demo-Tour:</strong> "Renon (Ritten)" — automatischer Import beim ersten Start</span></li>
-          <li><span class="feature-icon">&#128736;</span><span class="feature-text"><strong>Clean Build:</strong> 7 Deprecation-Warnings behoben, 0 Warnings</span></li>
+          <li><span class="feature-icon">🏠</span><span class="feature-text"><strong>Demo-Tour:</strong> "Renon (Ritten)" — automatischer Import beim ersten Start</span></li>
+          <li><span class="feature-icon">🛠️</span><span class="feature-text"><strong>Clean Build:</strong> 7 Deprecation-Warnings behoben, 0 Warnings</span></li>
         </ul>
       </div>
 
@@ -902,12 +1098,12 @@
           <span class="version-date">14. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#128208;</span><span class="feature-text"><strong>Kurven-Filter:</strong> 5 Stufen (OFF/ALL/>15°/>25°/>35°) für Schräglagen-Filterung</span></li>
-          <li><span class="feature-icon">&#128202;</span><span class="feature-text"><strong>Kurvenverteilung:</strong> Links/Rechts-Balance als Analyse-Panel</span></li>
-          <li><span class="feature-icon">&#127760;</span><span class="feature-text"><strong>Kartenstile:</strong> Topo, Dark, Standard, Voyager (OpenStreetMap)</span></li>
-          <li><span class="feature-icon">&#9749;</span><span class="feature-text"><strong>Pausen-Erkennung:</strong> Stopps ab 30 Sekunden automatisch erkannt</span></li>
-          <li><span class="feature-icon">&#128221;</span><span class="feature-text"><strong>Tour umbenennen:</strong> Per Long-Press auf den Tour-Namen</span></li>
-          <li><span class="feature-icon">&#128176;</span><span class="feature-text"><strong>Paywall-UI:</strong> Abo-System und Feature-Gating Grundstruktur</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Kurven-Filter:</strong> 5 Stufen (OFF/ALL/>15°/>25°/>35°) für Schräglagen-Filterung</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Kurvenverteilung:</strong> Links/Rechts-Balance als Analyse-Panel</span></li>
+          <li><span class="feature-icon">🌐</span><span class="feature-text"><strong>Kartenstile:</strong> Topo, Dark, Standard, Voyager (OpenStreetMap)</span></li>
+          <li><span class="feature-icon">☕</span><span class="feature-text"><strong>Pausen-Erkennung:</strong> Stopps ab 30 Sekunden automatisch erkannt</span></li>
+          <li><span class="feature-icon">📝</span><span class="feature-text"><strong>Tour umbenennen:</strong> Per Long-Press auf den Tour-Namen</span></li>
+          <li><span class="feature-icon">💰</span><span class="feature-text"><strong>Paywall-UI:</strong> Abo-System und Feature-Gating Grundstruktur</span></li>
         </ul>
       </div>
 
@@ -921,12 +1117,12 @@
           <span class="version-date">06. Feb 2026</span>
         </div>
         <ul class="feature-list">
-          <li><span class="feature-icon">&#127758;</span><span class="feature-text"><strong>Karte:</strong> Interaktive OpenStreetMap-Karte (osmdroid) mit GPS-Track</span></li>
-          <li><span class="feature-icon">&#128196;</span><span class="feature-text"><strong>Import:</strong> GPX + RideLink JSON mit automatischer Format-Erkennung</span></li>
-          <li><span class="feature-icon">&#128200;</span><span class="feature-text"><strong>Charts:</strong> Speed, Lean und Höhen-Diagramme im Zeitverlauf</span></li>
-          <li><span class="feature-icon">&#10554;</span><span class="feature-text"><strong>Kurven-Erkennung:</strong> Heading- und Lean-basierte automatische Erkennung</span></li>
-          <li><span class="feature-icon">&#9654;</span><span class="feature-text"><strong>Timeline-Scrubber:</strong> Synchronisation von Karte und Charts</span></li>
-          <li><span class="feature-icon">&#127912;</span><span class="feature-text"><strong>Dark Theme:</strong> Material 3 mit Jetpack Compose</span></li>
+          <li><span class="feature-icon">🌎</span><span class="feature-text"><strong>Karte:</strong> Interaktive OpenStreetMap-Karte (osmdroid) mit GPS-Track</span></li>
+          <li><span class="feature-icon">📄</span><span class="feature-text"><strong>Import:</strong> GPX + RideLink JSON mit automatischer Format-Erkennung</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Charts:</strong> Speed, Lean und Höhen-Diagramme im Zeitverlauf</span></li>
+          <li><span class="feature-icon">↪</span><span class="feature-text"><strong>Kurven-Erkennung:</strong> Heading- und Lean-basierte automatische Erkennung</span></li>
+          <li><span class="feature-icon">▶</span><span class="feature-text"><strong>Timeline-Scrubber:</strong> Synchronisation von Karte und Charts</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Dark Theme:</strong> Material 3 mit Jetpack Compose</span></li>
         </ul>
       </div>
 

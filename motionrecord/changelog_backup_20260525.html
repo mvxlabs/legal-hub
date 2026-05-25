@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotionRecord — Changelog</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --elevated: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --cyan: #00d4ff;
+    --green: #30d158;
+    --orange: #ff8c00;
+    --red: #ff3b30;
+    --purple: #af52de;
+    --indigo: #5856d6;
+    --text: #ffffff;
+    --text2: rgba(255,255,255,0.6);
+    --text3: rgba(255,255,255,0.4);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Hero ─── */
+  .hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    background: linear-gradient(180deg, rgba(48,209,88,0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(48,209,88,0.3);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text2);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── Container ─── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ─── Stats ─── */
+  .stats-bar {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 32px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item { text-align: center; }
+  .stat-val {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    color: var(--green);
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  /* ─── Timeline ─── */
+  .timeline {
+    position: relative;
+    padding: 40px 0 60px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .version-entry {
+    position: relative;
+    padding-left: 72px;
+    margin-bottom: 48px;
+  }
+  .version-dot {
+    position: absolute;
+    left: 16px;
+    top: 4px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--green);
+    z-index: 2;
+  }
+  .version-dot.current {
+    background: var(--green);
+    box-shadow: 0 0 16px rgba(48,209,88,0.4);
+  }
+  .version-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .version-number {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'SF Mono', 'Menlo', monospace;
+  }
+  .version-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text2);
+  }
+  .version-date {
+    font-size: 13px;
+    color: var(--text3);
+    font-family: 'SF Mono', 'Menlo', monospace;
+  }
+  .version-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+  .badge-live {
+    background: rgba(48,209,88,0.15);
+    color: var(--green);
+    border: 1px solid rgba(48,209,88,0.3);
+  }
+  .badge-dev {
+    background: rgba(0,212,255,0.15);
+    color: var(--cyan);
+    border: 1px solid rgba(0,212,255,0.3);
+  }
+
+  /* ─── Highlight Card ─── */
+  .highlight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .highlight-card.featured {
+    border-color: rgba(48,209,88,0.2);
+    background: linear-gradient(135deg, rgba(48,209,88,0.04), transparent);
+  }
+  .highlight-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .highlight-count {
+    font-size: 11px;
+    color: var(--text3);
+    font-family: 'SF Mono', 'Menlo', monospace;
+    background: var(--elevated);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .highlight-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .highlight-tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: var(--elevated);
+    color: var(--text2);
+    border: 1px solid var(--border);
+  }
+
+  /* ─── Feature List ─── */
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text2);
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .feature-list li:hover { border-color: rgba(255,255,255,0.12); }
+  .feature-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .feature-text strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* ─── Screenshot Gallery ─── */
+  .screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .screenshot-slot {
+    aspect-ratio: 9/19.5;
+    background: var(--elevated);
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text3);
+    font-size: 11px;
+    text-align: center;
+    padding: 12px;
+    overflow: hidden;
+  }
+  .screenshot-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+  .screenshot-slot .placeholder-icon {
+    font-size: 28px;
+    opacity: 0.4;
+  }
+  .screenshot-landscape {
+    aspect-ratio: 19.5/9;
+  }
+
+  /* ─── Section Divider ─── */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin: 24px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ─── Footer ─── */
+  .footer {
+    text-align: center;
+    padding: 60px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text3);
+    font-size: 13px;
+  }
+  .footer a { color: var(--green); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; }
+    .hero p { font-size: 15px; }
+    .version-number { font-size: 20px; }
+    .version-title { font-size: 15px; }
+    .timeline::before { left: 18px; }
+    .version-entry { padding-left: 52px; }
+    .version-dot { left: 6px; width: 22px; height: 22px; }
+    .stats-bar { gap: 12px; }
+    .stat-val { font-size: 22px; }
+    .screenshot-gallery { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<header class="hero">
+  <div class="hero-badge">Changelog</div>
+  <h1><span>MotionRecord</span> Feature-History</h1>
+  <p>Sensor-Recording-App für Bewegungsanalyse — alle Versionen, Features und Verbesserungen chronologisch dokumentiert.</p>
+</header>
+
+<!-- ═══════════════════════ CONTENT ═══════════════════════ -->
+<div class="container">
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-val">v1.0</div>
+      <div class="stat-label">Version</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">15</div>
+      <div class="stat-label">Build</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">30+</div>
+      <div class="stat-label">Features</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">100 Hz</div>
+      <div class="stat-label">IMU Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">6</div>
+      <div class="stat-label">Export-Formate</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- ═══════ v1.0 Build 15 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot current"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (15)</span>
+        <span class="version-title">Walking-Dashboard, G-Scope, Library-Rewrite & Landscape</span>
+        <span class="version-badge badge-live">Aktuell</span>
+        <span class="version-date">29. Mär 2026</span>
+      </div>
+
+      <div class="highlight-card featured">
+        <div class="highlight-title">Major Update <span class="highlight-count">+16 Features</span></div>
+        <div class="highlight-features">
+          <span class="highlight-tag">Walking-View</span>
+          <span class="highlight-tag">G-Scope Radar</span>
+          <span class="highlight-tag">4 Walking-Layouts</span>
+          <span class="highlight-tag">Auto-Zero-Kalibrierung</span>
+          <span class="highlight-tag">Landscape-Modus</span>
+          <span class="highlight-tag">Zonen-Farbe</span>
+          <span class="highlight-tag">ZIP-Export</span>
+          <span class="highlight-tag">Library Multi-Select</span>
+          <span class="highlight-tag">Monats-Gruppierung</span>
+          <span class="highlight-tag">Orts-Gruppierung</span>
+          <span class="highlight-tag">Neu-Kalibrieren</span>
+          <span class="highlight-tag">Kompakter Record-Button</span>
+          <span class="highlight-tag">Export-Progress</span>
+          <span class="highlight-tag">Lean-Gauge zentriert</span>
+          <span class="highlight-tag">Achsen-Erkennung</span>
+          <span class="highlight-tag">Infoscreen 30 Cards</span>
+        </div>
+      </div>
+
+      <!-- Screenshots -->
+      <div class="section-label">Screenshots</div>
+      <div class="screenshot-gallery">
+        <div class="screenshot-slot">
+          <!-- Screenshot: Walking Recording View mit G-Scope -->
+          <div class="placeholder-icon">📱</div>
+          Walking-View<br>G-Scope + GPS
+        </div>
+        <div class="screenshot-slot">
+          <!-- Screenshot: G-Scope Vollbild -->
+          <div class="placeholder-icon">🎯</div>
+          G-Scope<br>Vollbild
+        </div>
+        <div class="screenshot-slot">
+          <!-- Screenshot: Motorrad Lean Gauge Fullscreen -->
+          <div class="placeholder-icon">🏍️</div>
+          Lean-Gauge<br>Zonen-Farbe
+        </div>
+        <div class="screenshot-slot">
+          <!-- Screenshot: Library mit Monats-Gruppierung -->
+          <div class="placeholder-icon">📚</div>
+          Library<br>Gruppierung
+        </div>
+      </div>
+      <div class="screenshot-gallery">
+        <div class="screenshot-slot screenshot-landscape">
+          <!-- Screenshot: Landscape Lean Gauge -->
+          <div class="placeholder-icon">📐</div>
+          Landscape — Lean-Gauge zentriert
+        </div>
+        <div class="screenshot-slot screenshot-landscape">
+          <!-- Screenshot: Landscape Walking G-Scope -->
+          <div class="placeholder-icon">🏃</div>
+          Landscape — Walking G-Scope
+        </div>
+      </div>
+
+      <!-- Walking-Dashboard -->
+      <div class="section-label">🏃 Walking-Dashboard (Neu)</div>
+      <ul class="feature-list">
+        <li><span class="feature-icon">🎯</span><span class="feature-text"><strong>G-Scope Radar:</strong> Echtzeit-G-Kräfte als Radar-Scope — lateral (Links/Rechts), longitudinal (Beschleunigen/Bremsen). Vertikaler Impact als pulsierender Farbring. Peak-G Marker.</span></li>
+        <li><span class="feature-icon">⏱️</span><span class="feature-text"><strong>Trail-Delay:</strong> Einstellbare Persistenz (1s / 3s / 5s / 10s) — steuert wie lange G-Kraft-Spuren auf dem Scope sichtbar bleiben.</span></li>
+        <li><span class="feature-icon">📊</span><span class="feature-text"><strong>GPS-Qualitätsverlauf:</strong> Farbcodierte Balken alle 5 Sekunden zeigen GPS-Empfangshistorie. Grün (excellent) → Gelb (gut) → Orange (schlecht) → Rot (kein Signal).</span></li>
+        <li><span class="feature-icon">📍</span><span class="feature-text"><strong>Live GPS-Qualität:</strong> Kompakte Statuszeile mit Punkte-Anzahl, GPS-Hz, Genauigkeit (±Xm) und IMU-Hz. Farbiger Indikator.</span></li>
+        <li><span class="feature-icon">🗂️</span><span class="feature-text"><strong>4 Walking-Layouts:</strong> Übersicht (alles scrollbar), G-Scope Vollbild, Karte Vollbild, Split (Karte + G-Scope). Umschaltbar via Picker, persistent gespeichert.</span></li>
+      </ul>
+
+      <!-- Kalibrierung -->
+      <div class="section-label">🎯 Kalibrierung</div>
+      <ul class="feature-list">
+        <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Auto-Zero-Kalibrierung:</strong> Erste ~1 Sekunde nach Aufnahmestart definiert die Null-Lage. Kein separater Kalibrierungsscreen mehr nötig. Funktioniert in jeder Geräteposition.</span></li>
+        <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Neu-Kalibrieren (Live):</strong> ◎ Button in der Toolbar während der Aufnahme. Sammelt ~1s neue Null-Referenz ohne die Aufnahme zu unterbrechen.</span></li>
+        <li><span class="feature-icon">📐</span><span class="feature-text"><strong>Achsen-Erkennung:</strong> Erkennt automatisch ob Portrait oder Landscape und wählt die richtige Achse (Roll vs. Pitch) für die Schräglagen-Anzeige.</span></li>
+      </ul>
+
+      <!-- Motorrad-Dashboard -->
+      <div class="section-label">🏍️ Motorrad-Dashboard</div>
+      <ul class="feature-list">
+        <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Zonen-Farbe:</strong> Bildschirm-Hintergrund wechselt die Farbe passend zur aktuellen Schräglage — Grün → Gelb → Orange → Rot → Dunkelrot. Ein/Aus via 🎨 Button in der Toolbar.</span></li>
+        <li><span class="feature-icon">📏</span><span class="feature-text"><strong>Lean-Gauge zentriert:</strong> Schräglagen-Gauge ist jetzt vertikal mittig positioniert — sowohl im Portrait als auch im Landscape-Modus.</span></li>
+        <li><span class="feature-icon">📱</span><span class="feature-text"><strong>Landscape-Modus:</strong> iPhone um 90° drehbar. Gauge skaliert und zentriert sich automatisch für den Querformat-Betrieb am Lenker.</span></li>
+      </ul>
+
+      <!-- Library & Export -->
+      <div class="section-label">📚 Library & Export</div>
+      <ul class="feature-list">
+        <li><span class="feature-icon">📦</span><span class="feature-text"><strong>ZIP-Export:</strong> Hardware-beschleunigte Kompression (NSFileCoordinator). 85–90% kleiner als JSON. 1h Aufnahme: 150 MB → ~20 MB. Ideal für AirDrop, iCloud, E-Mail.</span></li>
+        <li><span class="feature-icon">✅</span><span class="feature-text"><strong>Multi-Select:</strong> „Auswählen" → Checkboxen → Teilen (ZIP) oder Löschen. Bestätigungs-Dialog mit Anzahl + freizugebende MB.</span></li>
+        <li><span class="feature-icon">📅</span><span class="feature-text"><strong>Monats-Gruppierung:</strong> Aufnahmen nach Monat gruppiert mit Track-Anzahl und Gesamtgröße pro Sektion. „Alle" Button pro Gruppe.</span></li>
+        <li><span class="feature-icon">📍</span><span class="feature-text"><strong>Orts-Gruppierung:</strong> Aufnahmen nach Startort gruppiert via Reverse Geocoding (CLGeocoder). Zeigt Stadtnamen automatisch.</span></li>
+        <li><span class="feature-icon">🗂️</span><span class="feature-text"><strong>Export-Formatauswahl:</strong> Bei Multi-Export: Dialog mit „ZIP komprimiert" vs. „JSON unkomprimiert" und geschätzter Dateigröße.</span></li>
+        <li><span class="feature-icon">⏳</span><span class="feature-text"><strong>Export-Progress:</strong> Halbtransparentes Overlay mit Spinner und Label während der Kompression. Touch deaktiviert bis fertig.</span></li>
+        <li><span class="feature-icon">🗑️</span><span class="feature-text"><strong>Direkte Lösch-/Teilen-Buttons:</strong> Sichtbar in jeder Zeile + Swipe-Actions + Context-Menu. Alles oben in der Toolbar statt Bottom-Bar.</span></li>
+      </ul>
+
+      <!-- UI & UX -->
+      <div class="section-label">✨ UI & UX</div>
+      <ul class="feature-list">
+        <li><span class="feature-icon">🔴</span><span class="feature-text"><strong>Kompakter Record-Button:</strong> Roter Aufnahme-Kreis direkt neben dem Profil-Picker. Kein großer Button mehr nötig — sofort erreichbar.</span></li>
+        <li><span class="feature-icon">⏹️</span><span class="feature-text"><strong>Kompakter Stop-Button:</strong> Roter Kreis mit weißem Quadrat neben dem Timer im Walking-Header. Mehr Platz für Widgets.</span></li>
+        <li><span class="feature-icon">ℹ️</span><span class="feature-text"><strong>Erweiterter Infoscreen:</strong> 30 Feature-Cards in 8 Sektionen — Profile, Aufnahme, Dashboards, Sensoren, Signal-Verarbeitung, Library, Export, Sicherheit.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 14 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (14)</span>
+        <span class="version-title">Dashboard-Rewrite, 5-Zonen-Lean & Quickstart</span>
+        <span class="version-date">28. Mär 2026</span>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-title">Dashboard-Rewrite <span class="highlight-count">+12 Features</span></div>
+        <div class="highlight-features">
+          <span class="highlight-tag">Lean-Gauge</span>
+          <span class="highlight-tag">7-Segment Display</span>
+          <span class="highlight-tag">5 Zonen-Farben</span>
+          <span class="highlight-tag">9 Widgets</span>
+          <span class="highlight-tag">6 Layouts</span>
+          <span class="highlight-tag">Live Curve Detection</span>
+          <span class="highlight-tag">Waveform</span>
+          <span class="highlight-tag">Quickstart</span>
+          <span class="highlight-tag">Glass-UI</span>
+          <span class="highlight-tag">Peak-Hold</span>
+          <span class="highlight-tag">Speed Pills</span>
+          <span class="highlight-tag">Vollbild-Modus</span>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Lean-Gauge Widget:</strong> Halbkreis-Gauge mit 7-Segment-Anzeige (0–55°), Peak-Hold, farbigen Zonen und konfigurierbarer Neon-Farbe.</span></li>
+        <li><span class="feature-icon">🌈</span><span class="feature-text"><strong>5 Schräglagen-Zonen:</strong> Grün (0–10°), Gelb (10–20°), Orange (20–30°), Rot (30–40°), Dunkelrot (40–55°) — Farben individuell einstellbar.</span></li>
+        <li><span class="feature-icon">📐</span><span class="feature-text"><strong>9 Dashboard-Widgets:</strong> Lean Gauge, Waveform, Ticker, Curve Counter, Speed, Stats, Altitude, Compass, Mini-Map.</span></li>
+        <li><span class="feature-icon">🗂️</span><span class="feature-text"><strong>6 Layouts:</strong> Lean (Vollbild), Quad (2×2), Tri (1+2), Split H, Split V, Single. Konfigurierbar via Dashboard-Sheet.</span></li>
+        <li><span class="feature-icon">🛣️</span><span class="feature-text"><strong>Live Curve Detection:</strong> Echtzeit-Kurvenzähler (Links/Rechts) basierend auf GPS-Bearing-Änderungen.</span></li>
+        <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Lean Waveform:</strong> Scrollender Verlauf der Schräglagen-Peaks mit konfigurierbarem Sampling-Intervall.</span></li>
+        <li><span class="feature-icon">⚡</span><span class="feature-text"><strong>Quickstart:</strong> 5-Sekunden-Countdown → Kalibrierung → Aufnahme. Überspringbar, deaktivierbar.</span></li>
+        <li><span class="feature-icon">🫧</span><span class="feature-text"><strong>Glass-UI:</strong> Ultra-Thin/Regular Material-Hintergründe für Widgets. Adaptiv für Dark/Light Mode.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 1–13 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (1–13)</span>
+        <span class="version-title">Foundation — Sensor-Engine, Chunk-Storage & Export-Pipeline</span>
+        <span class="version-date">Jan – Mär 2026</span>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-title">Core-Engine <span class="highlight-count">Basis-Features</span></div>
+        <div class="highlight-features">
+          <span class="highlight-tag">6-Achsen IMU</span>
+          <span class="highlight-tag">GPS Tracking</span>
+          <span class="highlight-tag">Barometer</span>
+          <span class="highlight-tag">LiDAR Scanner</span>
+          <span class="highlight-tag">Chunk-Storage</span>
+          <span class="highlight-tag">Crash-Recovery</span>
+          <span class="highlight-tag">6 Export-Formate</span>
+          <span class="highlight-tag">Butterworth-Filter</span>
+          <span class="highlight-tag">Jerk-Berechnung</span>
+          <span class="highlight-tag">Profile Engine</span>
+          <span class="highlight-tag">Adaptive Hz</span>
+          <span class="highlight-tag">Racing-Analyse</span>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">📡</span><span class="feature-text"><strong>6-Achsen IMU (100 Hz):</strong> Accelerometer + Gyroscope via Core Motion. Gravity-bereinigt, kalibrierbar. Fusion mit DeviceMotion für Roll/Pitch/Yaw/Quaternion.</span></li>
+        <li><span class="feature-icon">🛰️</span><span class="feature-text"><strong>GPS Tracking:</strong> CLLocationManager mit Background-Support. Lat, Lon, Altitude, Speed, Course, Accuracy. ~1 Hz kontinuierlich.</span></li>
+        <li><span class="feature-icon">🏔️</span><span class="feature-text"><strong>Barometer:</strong> CMAltimeter für relative Höhenänderung und Luftdruck — GPS-unabhängig.</span></li>
+        <li><span class="feature-icon">📐</span><span class="feature-text"><strong>LiDAR Scanner:</strong> ARKit Scene Reconstruction auf Pro-Geräten. Export als OBJ-Mesh mit Vertices und Faces.</span></li>
+        <li><span class="feature-icon">💾</span><span class="feature-text"><strong>Chunk-Storage:</strong> Alle 3.000 Samples (30s) auf Disk geschrieben. RAM-schonend auch bei Stunden-Aufnahmen. Auto-Flush bei Chunk-Grenze.</span></li>
+        <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Crash-Recovery:</strong> ActiveRecordingMarker + ChunkWriter. Bei App-Crash werden alle bisher geschriebenen Chunks automatisch wiederhergestellt.</span></li>
+        <li><span class="feature-icon">📤</span><span class="feature-text"><strong>6 Export-Formate:</strong> GPX (Komoot, Strava), Kurvenfokus (GPS+IMU, GPS-only, Full 100Hz), CSV (Excel, Python), JSON (Rohdaten).</span></li>
+        <li><span class="feature-icon">🔬</span><span class="feature-text"><strong>Signal-Pipeline:</strong> Butterworth (4. Ordnung), Low-Pass, High-Pass, Moving Average, Frequenzband-Trennung, Jerk-Berechnung — alles pro Profil konfigurierbar.</span></li>
+        <li><span class="feature-icon">🔋</span><span class="feature-text"><strong>Adaptive Hz:</strong> ProfileEngine überwacht Temperatur und Akku. Degradiert automatisch: 100 → 50 → 25 → 10 Hz bei Überhitzung.</span></li>
+        <li><span class="feature-icon">🏁</span><span class="feature-text"><strong>Racing-Analyse:</strong> Lap-Detection (Start/Finish Gate), Sektor-Analyse, Multi-Session-Vergleich.</span></li>
+        <li><span class="feature-icon">⌚</span><span class="feature-text"><strong>Multi-Device Sync:</strong> BLE Time-Sync zwischen iPhone und Apple Watch für synchronisierte Mehrgerate-Aufnahmen.</span></li>
+        <li><span class="feature-icon">🏠</span><span class="feature-text"><strong>Hintergrund-Aufnahme:</strong> GPS Background Mode hält die App aktiv. Aufnahme läuft weiter bei gesperrtem Bildschirm.</span></li>
+      </ul>
+    </div>
+
+  </div><!-- /timeline -->
+</div><!-- /container -->
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="footer">
+  <p><strong>MotionRecord</strong> — Sensor-Recording für Bewegungsanalyse</p>
+  <p style="margin-top: 8px;">© 2026 <a href="https://mvxlabs.de">MVX Labs</a> · Marco Fuhrmann · München</p>
+  <p style="margin-top: 4px; font-size: 11px;">Erstellt mit Claude Code · Session 172</p>
+</footer>
+
+</body>
+</html>

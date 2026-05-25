@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kurvenfokus Android v0.0.13 – Funktionsübersicht</title>
+<title>Kurvenfokus Android v0.0.14 – Funktionsübersicht</title>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -621,18 +621,17 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-badges">
-    <span class="hero-badge">Version 0.0.13</span>
+    <span class="hero-badge">Version 0.0.14</span>
     <span class="hero-badge android">Android</span>
   </div>
   <h1><span>Kurvenfokus</span> Funktionsübersicht</h1>
   <p>Motorrad-Telemetrie visualisieren und analysieren — auf Android-Smartphones.</p>
 
-  <div class="test-banner">
-    <div class="banner-icon">&#9888;</div>
-    <h3>Android Test-App — noch nicht öffentlich verfügbar</h3>
-    <p>Die Android-Version von Kurvenfokus befindet sich aktuell in der geschlossenen Testphase und ist noch nicht im Google Play Store verfügbar.<br>
-    Du möchtest früher Zugang? Schreib mir gerne eine Nachricht per E-Mail — ich kann dich in den Tester-Verteiler aufnehmen.</p>
-    <p style="margin-top:12px;"><a href="mailto:kurvenfokus@gmail.com">kurvenfokus@gmail.com</a></p>
+  <div class="test-banner" style="border-color: rgba(0,255,136,0.3); background: linear-gradient(135deg, rgba(0,255,136,0.08), rgba(0,212,255,0.06));">
+    <div class="banner-icon">&#9654;</div>
+    <h3 style="color: var(--green);">Offener Test auf Google Play</h3>
+    <p>Kurvenfokus Android ist als offener Test im Google Play Store verfügbar. Du kannst die App direkt herunterladen und testen.</p>
+    <p style="margin-top:12px;"><a href="https://play.google.com/store/apps/details?id=de.kurvenfokus">Im Play Store öffnen</a> · <a href="mailto:kurvenfokus@gmail.com">Feedback senden</a></p>
   </div>
 </header>
 
@@ -650,6 +649,72 @@
 <div id="tab-screens" class="tab-content active">
   <div class="container">
 
+    <!-- v0.0.14 Screenshots -->
+    <div class="section">
+      <div class="section-label">Neu in v0.0.14</div>
+      <div class="section-title">Neue Features — Screenshots</div>
+      <div class="section-desc">G-Force Analyse, Kurven-Heatmap, verbessertes Dashboard, 6 Story-Card Stile und vollständige Feature-Übersicht.</div>
+
+      <div class="screenshot-gallery">
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/02_dashboard_top.png" alt="Dashboard v0.0.14">
+          </div>
+          <div class="screenshot-label">Dashboard</div>
+          <div class="screenshot-sublabel">Tour-Score, L/R Lean, Kurvenverteilung</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/03_dashboard_charts.png" alt="Kurven-Ranking">
+          </div>
+          <div class="screenshot-label">Kurven-Ranking</div>
+          <div class="screenshot-sublabel">Sortierbar nach Nr., Lean, Speed, Dauer</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/04_dashboard_gforce_area.png" alt="G-Force Analyse">
+          </div>
+          <div class="screenshot-label">G-Force Analyse</div>
+          <div class="screenshot-sublabel">Längs-G, Quer-G, G-G Diagramm</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/10_heatmap.png" alt="Kurven-Heatmap">
+          </div>
+          <div class="screenshot-label">Kurven-Heatmap</div>
+          <div class="screenshot-sublabel">1263 Kurven, farbcodiert nach Schräglage</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/15_storycard.png" alt="Story-Card Picker">
+          </div>
+          <div class="screenshot-label">Story-Card Picker</div>
+          <div class="screenshot-sublabel">6 Stile, Max Detail 2160×3840</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/16_storycard_styles.png" alt="Story-Card Stile">
+          </div>
+          <div class="screenshot-label">Story-Card Stile</div>
+          <div class="screenshot-sublabel">Classic, Hero Map, Dashboard, Editorial u.a.</div>
+        </div>
+
+        <div class="screenshot-item">
+          <div class="screenshot-frame">
+            <img src="screenshots/android-v0.0.14/07_burger_menu.png" alt="Burger-Menü">
+          </div>
+          <div class="screenshot-label">Burger-Menü</div>
+          <div class="screenshot-sublabel">Detailliert/Standard, Kurvenanalyse Beta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bisherige Screenshots -->
     <div class="section">
       <div class="section-label">Android App</div>
       <div class="section-title">Jetpack Compose UI</div>
@@ -722,12 +787,27 @@
 
       <div class="version-timeline">
 
-        <!-- v0.0.13 (aktuell) -->
+        <!-- v0.0.14 (aktuell) -->
         <div class="version-block">
           <div class="version-dot"></div>
           <div class="version-header">
-            <span class="version-tag">v0.0.13</span>
-            <span class="version-date">März 2026 — aktuell</span>
+            <span class="version-tag">v0.0.14</span>
+            <span class="version-date">April 2026 — aktuell</span>
+          </div>
+          <div class="version-desc">
+            Mega-Update: G-Force Analyse (Längs-G, Quer-G, G-G Diagramm), Kurven-Heatmap (Weltkarte),
+            Gamification (13 Challenges, Bestenliste, Motorrad Wrapped), 6 Story-Card Stile,
+            GPX/CSV/Sticker-Export, Tour-Score, Kurven-Ranking sortierbar, L/R Schräglage getrennt,
+            MotionRecord-Import, ZIP-Batch-Import. 25+ neue Features, 15+ Verbesserungen.
+          </div>
+        </div>
+
+        <!-- v0.0.13 -->
+        <div class="version-block">
+          <div class="version-dot old"></div>
+          <div class="version-header">
+            <span class="version-tag old">v0.0.13</span>
+            <span class="version-date">März 2026</span>
           </div>
           <div class="version-desc">
             GeoCurveDetector (Bearing-basierte Kurvenerkennung), Tour-Ausschluss aus Gesamtstatistik,
@@ -952,10 +1032,208 @@
 <div id="tab-features" class="tab-content">
   <div class="container">
 
-    <!-- Neu in v0.0.8–v0.0.13 -->
+    <!-- ═══ Neu in v0.0.14 ═══ -->
+    <div class="section">
+      <div class="section-label">Neu in v0.0.14</div>
+      <div class="section-title">Neue Features <span class="badge badge-new">v0.0.14</span></div>
+      <div class="section-desc">25+ neue Features — G-Force Analyse, Kurven-Heatmap, Gamification, Story-Card Stile, Export-Formate und Dashboard-Verbesserungen.</div>
+
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="icon icon-red">&#9889;</div>
+          <h3>Längs-G Chart <span class="badge badge-new">NEU</span></h3>
+          <p>Gas- und Bremskraft über die gesamte Fahrt visualisiert.</p>
+          <ul class="detail-list">
+            <li>Peak-Marker für Max Gas / Max Bremse</li>
+            <li>Farbige Flächen: Grün=Gas, Rot=Bremse</li>
+            <li>Beta-Badge (Rot bei GPS, Grün bei IMU)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#8644;</div>
+          <h3>Quer-G Chart <span class="badge badge-new">NEU</span></h3>
+          <p>Seitliche G-Kräfte in Links- und Rechtskurven.</p>
+          <ul class="detail-list">
+            <li>Cyan = Links, Magenta = Rechts</li>
+            <li>Synchron mit Timeline-Scrubber</li>
+            <li>L/R-Maximalwerte angezeigt</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#9678;</div>
+          <h3>G-G Diagramm <span class="badge badge-new">NEU</span></h3>
+          <p>Kamm'scher Kreis — Scatter-Plot aller G-Kräfte mit Reibkreis-Nutzung.</p>
+          <ul class="detail-list">
+            <li>Reibkreis-Nutzung in Prozent</li>
+            <li>Max kombinierte G-Kraft</li>
+            <li>Balance L/R in Prozent</li>
+            <li>Tap auf Punkt → Timeline springt dorthin</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#127758;</div>
+          <h3>Kurven-Heatmap <span class="badge badge-new">NEU</span></h3>
+          <p>Alle Kurven aus allen Touren auf einer Weltkarte überlagert.</p>
+          <ul class="detail-list">
+            <li>Farbcodiert nach Schräglage (&lt;15°, 15-30°, 30-40°, &gt;40°)</li>
+            <li>Grid-Bucketing für Performance</li>
+            <li>Erreichbar über Burger-Menü</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#127942;</div>
+          <h3>Challenges / Badges <span class="badge badge-new">NEU</span></h3>
+          <p>13 lokale Challenges mit Fortschrittsbalken und Badge-Sammlung.</p>
+          <ul class="detail-list">
+            <li>„100 km Club", „30° Lean", „Bergfahrer"</li>
+            <li>„Kurvenkönig", „Marathonfahrer" u.v.m.</li>
+            <li>Fortschrittsbalken pro Challenge</li>
+            <li>Ein-/ausschaltbar über ✕-Button</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#127941;</div>
+          <h3>Persönliche Bestenliste <span class="badge badge-new">NEU</span></h3>
+          <p>Top 5 Rekorde mit Tour-Name und Datum.</p>
+          <ul class="detail-list">
+            <li>Top Speed, Max Schräglage</li>
+            <li>Längste Tour, meiste Kurven</li>
+            <li>Höchster Anstieg</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#127878;</div>
+          <h3>Motorrad Wrapped <span class="badge badge-new">NEU</span></h3>
+          <p>Saison-Rückblick im Spotify-Wrapped-Stil.</p>
+          <ul class="detail-list">
+            <li>Touren, km, Stunden, Kurven, Höhenmeter</li>
+            <li>Aktivster Monat, L/R-Balance</li>
+            <li>Saison-Highlights</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#128230;</div>
+          <h3>GPX-Export <span class="badge badge-new">NEU</span></h3>
+          <p>Tour als GPX-Datei teilen — für Komoot, Calimoto &amp; Co.</p>
+          <ul class="detail-list">
+            <li>Kurven als Waypoints enthalten</li>
+            <li>Share Intent zum Weiterleiten</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128196;</div>
+          <h3>CSV-Export <span class="badge badge-new">NEU</span></h3>
+          <p>Telemetrie-Daten exportieren für eigene Analyse.</p>
+          <ul class="detail-list">
+            <li>Timestamp, Speed, Lean, Acc, Altitude</li>
+            <li>Kompatibel mit Excel, Google Sheets</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-orange">&#128247;</div>
+          <h3>Stats-Sticker <span class="badge badge-new">NEU</span></h3>
+          <p>Transparentes PNG-Overlay mit Tour-Stats zum Aufkleben auf eigene Fotos.</p>
+          <ul class="detail-list">
+            <li>Distanz, Kurven, Lean, Dauer</li>
+            <li>Transparenter Hintergrund</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#127912;</div>
+          <h3>6 Story-Card Stile <span class="badge badge-new">NEU</span></h3>
+          <p>Instagram Story-Cards in verschiedenen Designs generieren.</p>
+          <ul class="detail-list">
+            <li>Classic, Hero Map, Dashboard</li>
+            <li>Editorial, Speed Heatmap, Lean Heatmap</li>
+            <li>Max Detail: 2160×3840</li>
+            <li>„Alle 6 Styles exportieren" Button</li>
+            <li>Karten-Hintergrund (CartoDB Dark Matter)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128200;</div>
+          <h3>Tour-Score <span class="badge badge-new">NEU</span></h3>
+          <p>Physikbasierter Kurven-Score (0–100) pro Tour und pro Abschnitt.</p>
+          <ul class="detail-list">
+            <li>Score β Chip im QuickStats</li>
+            <li>Tour-Highlights mit Score</li>
+            <li>Abschnitt-Bewertung (SegmentBar)</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128736;</div>
+          <h3>Kurven-Ranking sortierbar <span class="badge badge-new">NEU</span></h3>
+          <p>Kurven-Chips im Dashboard nach verschiedenen Kriterien sortierbar.</p>
+          <ul class="detail-list">
+            <li>Sortierung: Nr., Lean↓, Speed↓, Dauer↓</li>
+            <li>Korrekte Einheiten je Modus</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">&#8596;</div>
+          <h3>Lean L/R getrennt <span class="badge badge-new">NEU</span></h3>
+          <p>Schräglage-Stats zeigen Links und Rechts separat an.</p>
+          <ul class="detail-list">
+            <li>Anzeige: „32°L / 28°R"</li>
+            <li>Stärkere Seite farblich hervorgehoben</li>
+            <li>L/R Labels am Lean-Chart</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-green">&#128230;</div>
+          <h3>MotionRecord-Import <span class="badge badge-new">NEU</span></h3>
+          <p>MotionRecord-Aufnahmen direkt als ZIP importieren.</p>
+          <ul class="detail-list">
+            <li>Automatische Erkennung (metadata.json + gps_*)</li>
+            <li>Eigenes Detection-Profil</li>
+            <li>ZIP-Batch-Import (mehrere gleichzeitig)</li>
+            <li>MotionRecord als Quellfilter</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-orange">&#11088;</div>
+          <h3>Favoriten-Strecke <span class="badge badge-new">NEU</span></h3>
+          <p>Touren als Favorit markieren für schnellen Zugriff.</p>
+          <ul class="detail-list">
+            <li>isFavorite-Feld in Ride + Index</li>
+            <li>Favoriten-Filter in der Liste</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-cyan">&#128202;</div>
+          <h3>Strecken-Trends <span class="badge badge-new">NEU</span></h3>
+          <p>Fortschritts-Tracking bei gleichen Strecken über Zeit.</p>
+          <ul class="detail-list">
+            <li>Route-Matching erkennt gleiche Strecken</li>
+            <li>Sparklines: Ø Speed, Max Lean über Zeit</li>
+            <li>Prozent-Delta zum Vorgänger</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bisherige Features v0.0.8–v0.0.13 -->
     <div class="section">
       <div class="section-label">Neu in v0.0.8–v0.0.13</div>
-      <div class="section-title">Neue Features <span class="badge badge-new">NEU</span></div>
+      <div class="section-title">Bisherige Features</div>
       <div class="section-desc">Alle neuen Funktionen seit v0.0.7 — von GPS-Lean-Berechnung über Calimoto-Import bis zum GeoCurveDetector.</div>
 
       <div class="feature-grid">
@@ -1407,6 +1685,18 @@
             <li>&gt;35 Grad — Extreme Kurven</li>
           </ul>
         </div>
+
+        <div class="feature-card">
+          <div class="icon icon-gold">&#128293;</div>
+          <h3>Kurven-Heatmap <span class="badge badge-new">NEU</span></h3>
+          <p>Alle Kurven aus allen Touren auf einer Weltkarte überlagert.</p>
+          <ul class="detail-list">
+            <li>Farbcodiert nach Schräglage</li>
+            <li>Gelb: &lt;15°, Orange: 15-30°, Rot: 30-40°, Dunkelrot: &gt;40°</li>
+            <li>Grid-Bucketing für Performance</li>
+            <li>Erreichbar über Burger-Menü → „Kurven-Heatmap"</li>
+          </ul>
+        </div>
       </div>
 
       <!-- Legende -->
@@ -1522,6 +1812,30 @@
             <li>Zeitstempel-Synthese bei fehlenden Timestamps</li>
           </ul>
         </div>
+
+        <div class="feature-card">
+          <div class="icon icon-orange">ZIP</div>
+          <h3>MotionRecord ZIP <span class="badge badge-new">NEU</span></h3>
+          <p>MotionRecord-Aufnahmen direkt als ZIP-Paket importieren.</p>
+          <ul class="detail-list">
+            <li>Automatische Erkennung (metadata.json + gps_*)</li>
+            <li>GPS + IMU Fusion (wenn verfügbar)</li>
+            <li>Eigenes Detection-Profil für MotionRecord</li>
+            <li>ZIP-Batch-Import: mehrere auf einmal</li>
+            <li>MotionRecord als Quellfilter in der Liste</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <div class="icon icon-magenta">CSV</div>
+          <h3>Motobit DSGVO JSON <span class="badge badge-new">NEU</span></h3>
+          <p>Motobit-Datenauskunft (DSGVO Art.15) direkt importieren.</p>
+          <ul class="detail-list">
+            <li>Sentinel-Filterung (-666, -777)</li>
+            <li>GPS-Lean-Berechnung aus Daten</li>
+            <li>Accuracy-Filter für Qualität</li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -1565,7 +1879,7 @@
 
     <div class="section">
       <div class="section-label">Übersicht</div>
-      <div class="section-title">Feature-Matrix v0.0.13</div>
+      <div class="section-title">Feature-Matrix v0.0.14</div>
       <div class="section-desc">Vollständige Übersicht aller implementierten, teilweise fertigen und geplanten Features.</div>
 
       <table class="feature-matrix">
@@ -1744,8 +2058,8 @@
           </tr>
           <tr>
             <td>Export / Share</td>
-            <td class="status-planned">Geplant</td>
-            <td>ProFeature definiert</td>
+            <td class="status-ok">Implementiert</td>
+            <td>GPX, CSV, Stats-Sticker, Story-Cards, Screenshot</td>
           </tr>
           <tr>
             <td>Vergleichs-Modus</td>
@@ -1756,6 +2070,97 @@
             <td>Overlay-Modus</td>
             <td class="status-planned">Geplant</td>
             <td>ProFeature definiert</td>
+          </tr>
+          <!-- ═══ v0.0.14 Neue Features ═══ -->
+          <tr>
+            <td>Längs-G Chart</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Gas/Bremse mit Peak-Markern, Beta-Badge</td>
+          </tr>
+          <tr>
+            <td>Quer-G Chart</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Kurvenkräfte L/R, Cyan/Magenta</td>
+          </tr>
+          <tr>
+            <td>G-G Diagramm</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Kamm'scher Kreis, Reibkreis-%, Tap-to-Jump</td>
+          </tr>
+          <tr>
+            <td>Kurven-Heatmap</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Alle Kurven auf Weltkarte, farbcodiert</td>
+          </tr>
+          <tr>
+            <td>Challenges / Badges</td>
+            <td class="status-ok">Implementiert</td>
+            <td>13 lokale Challenges mit Fortschritt</td>
+          </tr>
+          <tr>
+            <td>Persönliche Bestenliste</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Top 5 Rekorde pro Kategorie</td>
+          </tr>
+          <tr>
+            <td>Motorrad Wrapped</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Saison-Rückblick (Jahresstatistik)</td>
+          </tr>
+          <tr>
+            <td>Story-Cards (6 Stile)</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Classic, Hero Map, Dashboard, Editorial, Speed/Lean Heatmap</td>
+          </tr>
+          <tr>
+            <td>GPX-Export</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Tour als GPX mit Kurven-Waypoints</td>
+          </tr>
+          <tr>
+            <td>CSV-Export</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Telemetrie-Daten für eigene Analyse</td>
+          </tr>
+          <tr>
+            <td>Stats-Sticker</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Transparentes PNG-Overlay</td>
+          </tr>
+          <tr>
+            <td>Tour-Score</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Physikbasiert 0–100, Abschnitt-Bewertung</td>
+          </tr>
+          <tr>
+            <td>Kurven-Ranking sortierbar</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Nr., Lean↓, Speed↓, Dauer↓</td>
+          </tr>
+          <tr>
+            <td>Lean L/R getrennt</td>
+            <td class="status-ok">Implementiert</td>
+            <td>„32°L / 28°R" mit Farbhervorhebung</td>
+          </tr>
+          <tr>
+            <td>MotionRecord-Import</td>
+            <td class="status-ok">Implementiert</td>
+            <td>ZIP-Import, eigenes Detection-Profil</td>
+          </tr>
+          <tr>
+            <td>ZIP-Batch-Import</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Mehrere ZIP-Dateien gleichzeitig</td>
+          </tr>
+          <tr>
+            <td>Favoriten-Strecke</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Touren als Favorit markieren</td>
+          </tr>
+          <tr>
+            <td>Strecken-Trends</td>
+            <td class="status-ok">Implementiert</td>
+            <td>Route-Matching, Sparklines, Delta-%</td>
           </tr>
         </tbody>
       </table>

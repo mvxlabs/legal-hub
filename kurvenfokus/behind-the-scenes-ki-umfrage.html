@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurvenfokus — Behind the Scenes: Vorher / Nachher / Legal</title>
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --surface: #1a1a1a;
+            --surface2: #242424;
+            --border: #333;
+            --text: #e8e8e8;
+            --text-muted: #888;
+            --neon-cyan: #00ffff;
+            --neon-green: #00ff88;
+            --warning: #ffaa00;
+            --error: #ff4444;
+            --accent: #00d4ff;
+            --legal: #c084fc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            padding: 48px 24px 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .header h1 span { color: var(--neon-cyan); }
+        .header p { color: var(--text-muted); font-size: 15px; max-width: 640px; margin: 0 auto; }
+
+        .badge-row { display: flex; justify-content: center; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+        .ampel {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 13px;
+        }
+        .ampel-gelb { background: rgba(255,170,0,0.2); color: var(--warning); border: 1px solid rgba(255,170,0,0.3); }
+        .ampel-legal { background: rgba(192,132,252,0.2); color: var(--legal); border: 1px solid rgba(192,132,252,0.3); }
+
+        .toggle-bar {
+            display: flex; justify-content: center; gap: 0; padding: 24px;
+            position: sticky; top: 0; background: var(--bg); z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+        .toggle-btn {
+            padding: 10px 24px; border: 1px solid var(--border); background: var(--surface);
+            color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .toggle-btn:first-child { border-radius: 8px 0 0 8px; }
+        .toggle-btn:last-child { border-radius: 0 8px 8px 0; }
+        .toggle-btn + .toggle-btn { border-left: none; }
+        .toggle-btn.active { background: var(--neon-cyan); color: #000; border-color: var(--neon-cyan); }
+        .toggle-btn.active-legal { background: var(--legal); color: #000; border-color: var(--legal); }
+        .toggle-btn:hover:not(.active):not(.active-legal) { background: var(--surface2); color: var(--text); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+        .view { display: none; }
+        .view.active { display: block; }
+        .side-by-side { display: none; gap: 24px; }
+        .side-by-side.active { display: grid; grid-template-columns: 1fr 1fr; }
+        .triple { display: none; gap: 16px; }
+        .triple.active { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+        @media (max-width: 1100px) {
+            .triple.active { grid-template-columns: 1fr; }
+            .side-by-side.active { grid-template-columns: 1fr; }
+        }
+
+        .side-col { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+        .side-col-header {
+            padding: 14px 20px; font-weight: 700; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border);
+        }
+        .side-col-header.intern { background: var(--error); color: #fff; }
+        .side-col-header.ops { background: var(--neon-green); color: #000; }
+        .side-col-header.legal { background: var(--legal); color: #000; }
+        .side-col-body { padding: 20px; font-size: 14px; }
+
+        .section {
+            background: var(--surface); border-radius: 12px;
+            border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden;
+        }
+        .section-header {
+            padding: 16px 20px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-header h2 { font-size: 17px; font-weight: 700; }
+        .section-body { padding: 20px; }
+
+        .diff-removed {
+            background: rgba(255,68,68,0.12); border-left: 3px solid var(--error);
+            padding: 12px 16px; border-radius: 6px; margin: 10px 0; font-size: 14px;
+        }
+        .diff-ops {
+            background: rgba(0,255,136,0.08); border-left: 3px solid var(--neon-green);
+            padding: 12px 16px; border-radius: 6px; margin: 10px 0; font-size: 14px;
+        }
+        .diff-legal {
+            background: rgba(192,132,252,0.1); border-left: 3px solid var(--legal);
+            padding: 12px 16px; border-radius: 6px; margin: 10px 0; font-size: 14px;
+        }
+        .diff-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .diff-label.removed { color: var(--error); }
+        .diff-label.ops { color: var(--neon-green); }
+        .diff-label.legal { color: var(--legal); }
+
+        .tag {
+            display: inline-block; padding: 3px 10px; border-radius: 50px;
+            font-size: 11px; font-weight: 600;
+        }
+        .tag-red { background: rgba(255,68,68,0.2); color: var(--error); }
+        .tag-yellow { background: rgba(255,170,0,0.2); color: var(--warning); }
+        .tag-green { background: rgba(0,255,136,0.15); color: var(--neon-green); }
+        .tag-legal { background: rgba(192,132,252,0.2); color: var(--legal); }
+
+        .reason {
+            background: var(--surface2); border-radius: 8px; padding: 14px 18px;
+            margin: 12px 0; font-size: 13px; color: var(--text-muted); border: 1px solid var(--border);
+        }
+        .reason strong { color: var(--warning); }
+        .reason .legal-ref { color: var(--legal); font-weight: 600; }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+        blockquote {
+            border-left: 3px solid var(--accent); padding: 10px 16px; margin: 12px 0;
+            color: var(--text-muted); font-style: italic;
+            background: rgba(0,212,255,0.05); border-radius: 0 6px 6px 0;
+        }
+
+        .persona-tag {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.5px; margin-bottom: 6px;
+            background: rgba(192,132,252,0.2); color: var(--legal);
+        }
+
+        .stars { color: var(--warning); letter-spacing: 1px; }
+
+        pre {
+            background: var(--surface2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 16px; font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 13px; overflow-x: auto; margin: 12px 0; line-height: 1.5;
+        }
+
+        p { margin: 8px 0; font-size: 15px; }
+        h3 { margin: 16px 0 8px; font-size: 16px; }
+        ul, ol { margin: 8px 0 8px 20px; font-size: 14px; }
+        li { margin: 4px 0; }
+
+        .change-counter { display: flex; justify-content: center; gap: 32px; padding: 20px; margin-bottom: 24px; }
+        .counter-item { text-align: center; }
+        .counter-num { font-size: 32px; font-weight: 700; }
+        .counter-num.red { color: var(--error); }
+        .counter-num.green { color: var(--neon-green); }
+        .counter-num.purple { color: var(--legal); }
+        .counter-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .disclaimer-top {
+            background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.3);
+            border-radius: 10px; padding: 16px 20px; margin: 0 0 24px; font-size: 14px;
+        }
+        .disclaimer-top strong { color: var(--legal); }
+
+        .footer {
+            text-align: center; padding: 40px 24px; color: var(--text-muted);
+            font-size: 13px; border-top: 1px solid var(--border);
+        }
+
+        .internal-banner {
+            background: var(--error); color: #fff; text-align: center;
+            padding: 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="internal-banner">INTERN — NICHT ZUR VERÖFFENTLICHUNG — LEGAL-HUB REVIEW</div>
+
+<div class="header">
+    <h1>Behind the Scenes: <span>3-Stufen Review</span></h1>
+    <p>Original → Ops-Gatekeeper → Legal Advisor. Alle Änderungen nachvollziehbar.</p>
+    <div class="badge-row">
+        <span class="ampel ampel-gelb">OPS: GELB — 7 Änderungen</span>
+        <span class="ampel ampel-legal">LEGAL: +5 Nachbesserungen</span>
+    </div>
+</div>
+
+<div class="toggle-bar">
+    <button class="toggle-btn active" onclick="showView('changes', this)">Alle Änderungen</button>
+    <button class="toggle-btn" onclick="showView('triple', this)">3-Spalten Vergleich</button>
+    <button class="toggle-btn" onclick="showView('final', this)">Finaler Text (Legal)</button>
+</div>
+
+<div class="container">
+
+    <!-- ═══════════════ VIEW 1: ALL CHANGES ═══════════════ -->
+    <div id="view-changes" class="view active">
+
+        <div class="change-counter">
+            <div class="counter-item">
+                <div class="counter-num red">7</div>
+                <div class="counter-label">Intern → Ops</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-num purple">5</div>
+                <div class="counter-label">Legal Fixes</div>
+            </div>
+            <div class="counter-item">
+                <div class="counter-num green">1</div>
+                <div class="counter-label">Unverändert</div>
+            </div>
+        </div>
+
+        <!-- L1: Titel/Begrifflichkeit -->
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL</span>
+                <h2>Legal Fix 1: Begrifflichkeit "KI-Umfrage"</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">INTERN + OPS (beide verwenden)</div>
+                    "KI-gestützte <strong>Umfragen</strong> mit virtuellen Personas"
+                </div>
+                <div class="diff-legal">
+                    <div class="diff-label legal">LEGAL FIX</div>
+                    "KI-gestützte <strong>Perspektiven-Analyse</strong> mit virtuellen Personas"
+                </div>
+                <div class="reason">
+                    <span class="legal-ref">UWG §5 Irreführung:</span> "Umfrage" impliziert echte Befragte. Der Begriff ist im Marketing-Kontext stark mit realen Teilnehmern assoziiert. "Perspektiven-Analyse" ist ehrlicher und vermeidet Verwechslungsgefahr.
+                </div>
+            </div>
+        </div>
+
+        <!-- L2: Disclaimer Position -->
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL</span>
+                <h2>Legal Fix 2: Disclaimer an den Anfang</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">OPS-VERSION: Disclaimer am Ende</div>
+                    Transparenz-Hinweis steht ganz unten nach dem gesamten Artikel — viele Leser sehen ihn nie.
+                </div>
+                <div class="diff-legal">
+                    <div class="diff-label legal">LEGAL FIX: Disclaimer direkt unter Titel</div>
+                    <div class="disclaimer-top">
+                        <strong>Transparenz-Hinweis:</strong> Die folgenden "Personas" sind keine echten Personen. Es handelt sich um KI-gestützte Simulationen typischer Nutzergruppen — ein internes Entwicklungswerkzeug. Alle Zitate sind fiktiv. Dieses Verfahren ergänzt, aber ersetzt nicht, das Feedback echter Nutzer.
+                    </div>
+                </div>
+                <div class="reason">
+                    <span class="legal-ref">EU-Richtlinie 2019/2161 (Omnibus):</span> Kennzeichnung muss "klar, verständlich und rechtzeitig" erfolgen. Ein Disclaimer am Ende eines langen Artikels erfüllt das "rechtzeitig"-Kriterium nicht. Leser müssen VOR dem Lesen der Zitate wissen, dass diese fiktiv sind.
+                </div>
+            </div>
+        </div>
+
+        <!-- L3: Persona-Labels -->
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL</span>
+                <h2>Legal Fix 3: Zitate als KI-Persona kennzeichnen</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">OPS-VERSION: Zitate ohne Kennzeichnung</div>
+                    <blockquote>"Am Kesselberg hab ich locker 15-20 Aufzeichnungen über die Saison."</blockquote>
+                </div>
+                <div class="diff-legal">
+                    <div class="diff-label legal">LEGAL FIX: Persona-Tag vor jedem Zitat</div>
+                    <div class="persona-tag">KI-Persona: Rider</div>
+                    <blockquote>"Am Kesselberg hab ich locker 15-20 Aufzeichnungen über die Saison."</blockquote>
+                </div>
+                <div class="reason">
+                    <span class="legal-ref">Wettbewerbsrecht:</span> Zitate in Anführungszeichen wirken im Online-Kontext wie echte Aussagen. Ohne Label könnten sie als Testimonials/Erfahrungsberichte missverstanden werden. Das kleine Tag vor jedem Zitat schafft Klarheit ohne den Lesefluss zu stören.
+                </div>
+            </div>
+        </div>
+
+        <!-- L4: Sterne-Bewertungen -->
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL</span>
+                <h2>Legal Fix 4: Sterne-Bewertungen kennzeichnen</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">OPS-VERSION</div>
+                    <table>
+                        <tr><td>Erkennung</td><td><span class="stars">★★★★★</span></td></tr>
+                        <tr><td>UI / Design</td><td><span class="stars">★★★★☆</span></td></tr>
+                    </table>
+                </div>
+                <div class="diff-legal">
+                    <div class="diff-label legal">LEGAL FIX: Label "Simulierte Bewertung" + Überschrift</div>
+                    <p style="font-size: 13px; color: var(--legal); font-weight: 600; margin-bottom: 4px;">Simulierte Bewertung der KI-Persona:</p>
+                    <table>
+                        <tr><td>Erkennung</td><td><span class="stars">★★★★★</span></td></tr>
+                        <tr><td>UI / Design</td><td><span class="stars">★★★★☆</span></td></tr>
+                    </table>
+                </div>
+                <div class="reason">
+                    <span class="legal-ref">EU Omnibus-Richtlinie (Fake Reviews):</span> Sterne-Bewertungen sind seit 2022 besonders sensibel reguliert. Gefälschte oder simulierte Bewertungen müssen unmissverständlich als solche erkennbar sein. Das Label über der Tabelle reicht hier aus.
+                </div>
+            </div>
+        </div>
+
+        <!-- L5: Vergleichende Werbung -->
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL</span>
+                <h2>Legal Fix 5: Vergleichende Aussage</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">OPS-VERSION</div>
+                    "Schneller als echte Umfragen — Ergebnisse in Minuten statt Wochen"
+                </div>
+                <div class="diff-legal">
+                    <div class="diff-label legal">LEGAL FIX</div>
+                    "Schnelle Iterationen — erste Erkenntnisse bereits in der gleichen Entwicklungssitzung"
+                </div>
+                <div class="reason">
+                    <span class="legal-ref">UWG §6 Vergleichende Werbung:</span> "Schneller als echte Umfragen" ist ein direkter Vergleich mit einer anderen Methode. Auch wenn es stimmt, kann es als Herabsetzung konventioneller Marktforschung interpretiert werden. Besser: den eigenen Vorteil beschreiben ohne die Alternative abzuwerten.
+                </div>
+            </div>
+        </div>
+
+        <!-- Ops Changes 1-7 (kompakt) -->
+        <h3 style="margin-top: 40px; padding-bottom: 12px; border-bottom: 1px solid var(--border); color: var(--neon-green);">Ops-Gatekeeper Änderungen (bereits eingearbeitet)</h3>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-yellow">OPS 1</span>
+                <h2>Algorithmus-Details entfernt</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">INTERN</div>
+                    "3-Stufen-Pipeline mit Bounding-Box-Filter, Path-Hash und Hausdorff-Distanz"
+                </div>
+                <div class="diff-ops">
+                    <div class="diff-label ops">OPS FIX</div>
+                    "Ein mehrstufiger Algorithmus, der GPS-Tracks intelligent vergleicht"
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-red">OPS 2</span>
+                <h2>Bug-Tabelle → Positives Framing</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">INTERN</div>
+                    Tabelle mit "Race Condition", "App würde nicht kompilieren", 3× Schwere "Hoch"
+                </div>
+                <div class="diff-ops">
+                    <div class="diff-label ops">OPS FIX</div>
+                    "5 potenzielle Probleme identifiziert — von Logikfehlern über Performance-Engpässe bis zu Edge-Cases. Alle behoben vor der Beta."
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-yellow">OPS 3-4</span>
+                <h2>Schwellwerte + GPS-Drift generalisiert</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">INTERN</div>
+                    "80% Match-Schwelle" / "GPS-Drift bis 15m"
+                </div>
+                <div class="diff-ops">
+                    <div class="diff-label ops">OPS FIX</div>
+                    Keine konkreten Werte, stattdessen Nutzen-Perspektive
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-yellow">OPS 5</span>
+                <h2>Roadmap-Phasen → Weicher Ausblick</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-removed">
+                    <div class="diff-label removed">INTERN</div>
+                    "Phase A / Phase B / Phase C" mit konkreten Feature-Listen
+                </div>
+                <div class="diff-ops">
+                    <div class="diff-label ops">OPS FIX</div>
+                    "Klare Richtungen" ohne Phasen-Labels oder implizite Zusagen
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-green">OPS 6</span>
+                <h2>"92% Übereinstimmung" — bleibt</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-ops">
+                    <div class="diff-label ops">KEINE ÄNDERUNG</div>
+                    Beispiel-Wert in fiktivem Zitat. Keine Leistungsgarantie.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-yellow">OPS 7</span>
+                <h2>Disclaimer erweitert</h2>
+            </div>
+            <div class="section-body">
+                <div class="diff-ops">
+                    <div class="diff-label ops">OPS FIX</div>
+                    Ausführlicherer Transparenz-Hinweis (von Legal weiter verschärft → Fix 2)
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════ VIEW 2: TRIPLE COMPARISON ═══════════════ -->
+    <div id="view-triple" class="triple">
+
+        <div class="side-col">
+            <div class="side-col-header intern">1. INTERN — Original</div>
+            <div class="side-col-body">
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Wie es aus der Entwicklung kam</p>
+
+                <h3>Titel</h3>
+                <p>"KI-gestützte <strong>Umfragen</strong>"</p>
+
+                <h3 style="margin-top: 16px;">Disclaimer</h3>
+                <p style="color: var(--error); font-size: 12px;">Ganz unten, kurz</p>
+
+                <h3 style="margin-top: 16px;">Technologie</h3>
+                <p>"3-Stufen-Pipeline mit Bounding-Box-Filter, Path-Hash und Hausdorff-Distanz"</p>
+
+                <h3 style="margin-top: 16px;">Alpha Tester</h3>
+                <p>"5 Bugs", Tabelle mit "Race Condition", "Hoch/Hoch/Hoch"</p>
+
+                <h3 style="margin-top: 16px;">Zitate</h3>
+                <p>Ohne Kennzeichnung, in Anführungszeichen</p>
+
+                <h3 style="margin-top: 16px;">Sterne</h3>
+                <p><span class="stars">★★★★★</span> ohne Label</p>
+
+                <h3 style="margin-top: 16px;">Rider GPS</h3>
+                <p>"GPS-Drift bis 15m", "80% Schwelle"</p>
+
+                <h3 style="margin-top: 16px;">Roadmap</h3>
+                <p>Phase A / B / C mit Feature-Listen</p>
+
+                <h3 style="margin-top: 16px;">Vergleich</h3>
+                <p>"Schneller als echte Umfragen — in Minuten statt Wochen"</p>
+            </div>
+        </div>
+
+        <div class="side-col">
+            <div class="side-col-header ops">2. OPS — Redigiert</div>
+            <div class="side-col-body">
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Ops-Gatekeeper: 7 Änderungen</p>
+
+                <h3>Titel</h3>
+                <p>"KI-gestützte <strong>Umfragen</strong>" <span style="color: var(--warning); font-size: 11px;">← unverändert</span></p>
+
+                <h3 style="margin-top: 16px;">Disclaimer</h3>
+                <p style="color: var(--warning); font-size: 12px;">Ganz unten, erweitert</p>
+
+                <h3 style="margin-top: 16px;">Technologie</h3>
+                <p style="color: var(--neon-green);">"Mehrstufiger Algorithmus, der GPS-Tracks intelligent vergleicht"</p>
+
+                <h3 style="margin-top: 16px;">Alpha Tester</h3>
+                <p style="color: var(--neon-green);">"5 potenzielle Probleme", kein Tabellen-Detail</p>
+
+                <h3 style="margin-top: 16px;">Zitate</h3>
+                <p>Ohne Kennzeichnung <span style="color: var(--warning); font-size: 11px;">← unverändert</span></p>
+
+                <h3 style="margin-top: 16px;">Sterne</h3>
+                <p><span class="stars">★★★★★</span> ohne Label <span style="color: var(--warning); font-size: 11px;">← unverändert</span></p>
+
+                <h3 style="margin-top: 16px;">Rider GPS</h3>
+                <p style="color: var(--neon-green);">"GPS-Signale können abweichen" (keine Zahlen)</p>
+
+                <h3 style="margin-top: 16px;">Roadmap</h3>
+                <p style="color: var(--neon-green);">"Klare Richtungen" ohne Phasen</p>
+
+                <h3 style="margin-top: 16px;">Vergleich</h3>
+                <p>"Schneller als echte Umfragen" <span style="color: var(--warning); font-size: 11px;">← unverändert</span></p>
+            </div>
+        </div>
+
+        <div class="side-col">
+            <div class="side-col-header legal">3. LEGAL — Final</div>
+            <div class="side-col-body">
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Legal Advisor: +5 Nachbesserungen</p>
+
+                <h3>Titel</h3>
+                <p style="color: var(--legal);">"KI-gestützte <strong>Perspektiven-Analyse</strong>"</p>
+
+                <h3 style="margin-top: 16px;">Disclaimer</h3>
+                <p style="color: var(--legal); font-size: 12px; font-weight: 600;">OBEN, direkt unter Titel, ausführlich</p>
+
+                <h3 style="margin-top: 16px;">Technologie</h3>
+                <p style="color: var(--neon-green);">= wie Ops (OK)</p>
+
+                <h3 style="margin-top: 16px;">Alpha Tester</h3>
+                <p style="color: var(--neon-green);">= wie Ops (OK)</p>
+
+                <h3 style="margin-top: 16px;">Zitate</h3>
+                <p style="color: var(--legal);"><span class="persona-tag" style="font-size: 9px;">KI-Persona</span> Tag vor jedem Zitat</p>
+
+                <h3 style="margin-top: 16px;">Sterne</h3>
+                <p style="color: var(--legal);">"Simulierte Bewertung" Label über Tabelle</p>
+
+                <h3 style="margin-top: 16px;">Rider GPS</h3>
+                <p style="color: var(--neon-green);">= wie Ops (OK)</p>
+
+                <h3 style="margin-top: 16px;">Roadmap</h3>
+                <p style="color: var(--neon-green);">= wie Ops (OK)</p>
+
+                <h3 style="margin-top: 16px;">Vergleich</h3>
+                <p style="color: var(--legal);">"Schnelle Iterationen — erste Erkenntnisse bereits in der gleichen Sitzung"</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══════════════ VIEW 3: FINAL TEXT (LEGAL) ═══════════════ -->
+    <div id="view-final" class="view">
+
+        <div class="section">
+            <div class="section-header">
+                <span class="tag tag-legal">LEGAL-GEPRÜFT</span>
+                <h2 style="color: var(--legal);">Freigabefähiger Text — Alle Fixes eingearbeitet</h2>
+            </div>
+            <div class="section-body" style="font-size: 15px; line-height: 1.8;">
+
+                <h2 style="font-size: 24px; margin-bottom: 4px;">Behind the Scenes: KI-gestützte Feature-Entwicklung bei Kurvenfokus</h2>
+                <p style="color: var(--text-muted); font-style: italic;">Wie wir mit virtuellen Personas unsere App-Features bewerten — bevor echte User sie testen.</p>
+
+                <!-- LEGAL FIX 2: Disclaimer OBEN -->
+                <div class="disclaimer-top" style="margin-top: 16px;">
+                    <strong>Transparenz-Hinweis:</strong> Die folgenden "Personas" sind keine echten Personen. Es handelt sich um KI-gestützte Simulationen typischer Nutzergruppen — ein internes Entwicklungswerkzeug. Alle Zitate sind fiktiv. Dieses Verfahren ergänzt, aber ersetzt nicht, das Feedback echter Nutzer.
+                </div>
+
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                <h3>Das Konzept</h3>
+                <!-- LEGAL FIX 1: "Umfragen" → "Perspektiven-Analyse" -->
+                <p>Bei Kurvenfokus nutzen wir eine KI-gestützte <strong>Perspektiven-Analyse</strong> mit virtuellen Personas, um neue Features aus verschiedenen Blickwinkeln zu bewerten — noch bevor die erste Beta rausgeht.</p>
+
+                <table>
+                    <tr><th>Persona</th><th>Rolle</th><th>Perspektive</th></tr>
+                    <tr><td><strong>Alpha Tester</strong></td><td>Technischer QA-Ingenieur</td><td>Bugs, Edge-Cases, Code-Qualität</td></tr>
+                    <tr><td><strong>Beta Tester</strong></td><td>Hobby-Fahrer</td><td>UX, Verständlichkeit, Alltag</td></tr>
+                    <tr><td><strong>Rider</strong></td><td>Erfahrener Motorradfahrer</td><td>Praxis-Relevanz, echte Bedürfnisse</td></tr>
+                </table>
+
+                <h3 style="margin-top: 24px;">Das Feature: Route-Matching</h3>
+                <p><strong>Was es tut:</strong> Nach dem Import einer Tour erkennt die App automatisch, ob du diese Strecke schon einmal gefahren bist — gleiche Route, ähnliche Route, oder sogar Gegenrichtung.</p>
+                <!-- OPS FIX 1: Algorithmus generalisiert -->
+                <p><strong>Technologie dahinter:</strong> Ein mehrstufiger Algorithmus, der GPS-Tracks intelligent vergleicht — von grober Gebietsüberlappung bis zur präzisen Streckenähnlichkeit.</p>
+
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                <h3>Alpha Tester — Der Techniker</h3>
+                <!-- OPS FIX 2: Kein Bug-Detail -->
+                <p>Der Alpha Tester hat den Code systematisch durchgeprüft und <strong>5 potenzielle Probleme identifiziert</strong> — von Logikfehlern über Performance-Engpässe bis zu Edge-Cases bei großen Datenmengen. Alle wurden behoben, bevor das Feature in die Beta ging.</p>
+                <p>Das ist der Punkt: Nicht <em>ob</em> es Probleme gibt, sondern <em>wann</em> man sie findet. Vor dem Release ist der richtige Zeitpunkt.</p>
+
+                <h3 style="margin-top: 24px;">Beta Tester — Der Hobby-Fahrer</h3>
+                <p>Die Beta-Tester-Persona bewertet aus reiner User-Sicht — kein Technik-Wissen, nur: <em>"Macht das Sinn für mich?"</em></p>
+
+                <!-- LEGAL FIX 3: Persona-Tags -->
+                <div class="persona-tag">KI-Persona: Beta Tester</div>
+                <blockquote>"Sheet poppt automatisch auf → 'Gleiche Strecke erkannt!' — sofort sichtbar: 92% Übereinstimmung mit meiner Tour vom letzten Monat."</blockquote>
+
+                <div class="persona-tag">KI-Persona: Beta Tester</div>
+                <blockquote>"Ich drücke 'Später'. Sheet schließt sich. Matches sind WEG. Für immer? 'Später' suggeriert 'ich kann das später nochmal sehen' — wenn nicht, lieber 'Schließen' schreiben."</blockquote>
+
+                <div class="persona-tag">KI-Persona: Beta Tester</div>
+                <blockquote>"Route-Matching ist ein cooles Feature, aber der echte Mehrwert kommt erst wenn ich über Zeit meinen Fortschritt sehen kann."</blockquote>
+
+                <!-- LEGAL FIX 4: Sterne mit Label -->
+                <p style="font-size: 13px; color: var(--legal); font-weight: 600; margin-top: 16px;">Simulierte Bewertung der KI-Persona:</p>
+                <table>
+                    <tr><th>Aspekt</th><th>Bewertung</th></tr>
+                    <tr><td>Erkennung</td><td><span class="stars">★★★★★</span></td></tr>
+                    <tr><td>UI / Design</td><td><span class="stars">★★★★☆</span></td></tr>
+                    <tr><td>"Später"-Button UX</td><td><span class="stars">★★☆☆☆</span></td></tr>
+                    <tr><td>Gegenrichtung</td><td><span class="stars">★★★★★</span></td></tr>
+                </table>
+
+                <h3 style="margin-top: 24px;">Rider — Der erfahrene Motorradfahrer</h3>
+                <p>Die Rider-Persona bringt die Praxis-Perspektive: echte Strecken, echte Daten, echte Bedürfnisse.</p>
+
+                <div class="persona-tag">KI-Persona: Rider</div>
+                <blockquote>"Am Kesselberg hab ich locker 15-20 Aufzeichnungen über die Saison. Genau DA will ich sehen ob ich besser werde!"</blockquote>
+
+                <div class="persona-tag">KI-Persona: Rider</div>
+                <blockquote>"Der Kesselberg: Ich fahr ihn IMMER hin UND zurück. Das sind 2 komplett verschiedene Erfahrungen. Nicht nur 'Gegenrichtung erkannt' sondern GETRENNT auswerten!"</blockquote>
+
+<pre>┌─────────────────────────────────────┐
+│  Kesselberg (hoch) — 15. Fahrt     │
+│                                     │
+│  Heute    vs   Saison-Ø   vs Best  │
+│  12:45      13:02        11:58     │
+│  38° max    35° avg      43° max   │
+│  62 km/h    58 km/h      71 km/h   │
+│                                     │
+│  Trend: ↗ Du wirst konstanter!     │
+└─────────────────────────────────────┘</pre>
+
+                <!-- OPS FIX 4: GPS generalisiert -->
+                <p>GPS-Signale können in Waldstücken und Tunneln leicht abweichen — ein Faktor, den der Algorithmus berücksichtigen muss. Genau solche Praxis-Einblicke machen die Rider-Persona zur wertvollsten Stimme im Prozess.</p>
+
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                <h3>Was wir daraus gelernt haben</h3>
+
+                <table>
+                    <tr><th>Persona</th><th>Kern-Erkenntnis</th></tr>
+                    <tr><td><strong>Alpha Tester</strong></td><td>5 technische Probleme identifiziert und behoben — vor dem Release</td></tr>
+                    <tr><td><strong>Beta Tester</strong></td><td>UX-Problem: Matches verschwinden nach "Später" — Feature fühlt sich unfertig an</td></tr>
+                    <tr><td><strong>Rider</strong></td><td>Der echte Mehrwert ist nicht "Strecke erkannt" sondern "Fortschritt über Zeit"</td></tr>
+                </table>
+
+                <!-- OPS FIX 5: Roadmap weich -->
+                <p style="margin-top: 16px;">Aus diesen Erkenntnissen haben sich <strong>klare Richtungen</strong> ergeben: Die UX beim Wiederfinden von Matches verbessern, Gegenrichtungen intelligent behandeln, und langfristig den Strecken-Fortschritt über die gesamte Saison sichtbar machen.</p>
+                <p>Welche dieser Ideen wann umgesetzt werden, hängt auch vom Feedback unserer echten Beta-Tester ab.</p>
+
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                <h3>Warum dieser Ansatz funktioniert</h3>
+                <ol>
+                    <!-- LEGAL FIX 5: Kein Vergleich -->
+                    <li><strong>Schnelle Iterationen</strong> — erste Erkenntnisse bereits in der gleichen Entwicklungssitzung</li>
+                    <li><strong>Verschiedene Perspektiven gleichzeitig</strong> — Technik, UX und Praxis parallel</li>
+                    <li><strong>Ungeschöntes Feedback</strong> — KI-Personas benennen was nicht passt</li>
+                    <li><strong>Iterativ</strong> — nach jedem Fix sofort neu bewerten</li>
+                    <li><strong>Ressourcenschonend</strong> — kein Recruiting, keine Logistik</li>
+                </ol>
+                <p style="margin-top: 12px;">Natürlich ersetzt das keine echten User-Tests — aber es filtert die offensichtlichen Probleme, bevor echte Tester ihre Zeit investieren.</p>
+
+                <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+
+                <p style="text-align: center; font-style: italic; color: var(--text-muted);">Kurvenfokus — Motorrad-Telemetrie neu gedacht. Von Fahrern, für Fahrer.</p>
+
+                <p style="font-size: 13px; color: var(--text-muted); text-align: center; margin-top: 12px;">Stand: März 2026 | Feature: Route-Matching (Android)</p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>Kurvenfokus — Legal-Hub Internes Review-Dokument</p>
+    <p style="margin-top: 4px;">3-Stufen-Review: Intern → Ops-Gatekeeper → Legal Advisor | 15. März 2026</p>
+    <p style="margin-top: 8px; color: var(--error); font-weight: 600;">NICHT VERÖFFENTLICHEN — Entscheidung durch Marco ausstehend</p>
+</div>
+
+<script>
+    function showView(view, btn) {
+        document.querySelectorAll('.toggle-btn').forEach(b => {
+            b.classList.remove('active');
+            b.classList.remove('active-legal');
+        });
+        if (view === 'final') {
+            btn.classList.add('active-legal');
+        } else {
+            btn.classList.add('active');
+        }
+
+        document.getElementById('view-changes').classList.remove('active');
+        document.getElementById('view-triple').classList.remove('active');
+        document.getElementById('view-final').classList.remove('active');
+
+        document.getElementById('view-' + (view === 'triple' ? 'triple' : view === 'final' ? 'final' : 'changes')).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
