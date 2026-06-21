@@ -168,9 +168,13 @@
             display: flex;
             gap: 16px;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             margin: 30px 0;
         }
+        .store-buttons a { display: inline-flex; transition: transform 0.2s, opacity 0.2s; }
+        .store-buttons a:hover { transform: translateY(-2px); opacity: 0.92; }
+        .store-badge { height: 56px; width: auto; display: block; }
         .store-btn {
             display: inline-flex;
             align-items: center;
@@ -229,19 +233,11 @@
 
         <!-- Store Buttons OBEN -->
         <div class="store-buttons">
-            <a href="https://testflight.apple.com/join/d5cR2Xu3" class="store-btn store-btn-ios">
-                <span class="store-btn-icon">🍎</span>
-                <span class="store-btn-text">
-                    <span class="store-btn-label">Beta via TestFlight</span><br>
-                    <span class="store-btn-name">iOS herunterladen</span>
-                </span>
+            <a href="https://testflight.apple.com/join/d5cR2Xu3" aria-label="Kurvenfokus für iOS über TestFlight laden">
+                <img src="img/appstore-badge.svg" alt="Laden im App Store" class="store-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=de.kurvenfokus" class="store-btn store-btn-android">
-                <span class="store-btn-icon">▶️</span>
-                <span class="store-btn-text">
-                    <span class="store-btn-label">Offener Test auf Google Play</span><br>
-                    <span class="store-btn-name">Android herunterladen</span>
-                </span>
+            <a href="https://play.google.com/store/apps/details?id=de.kurvenfokus" aria-label="Kurvenfokus bei Google Play laden">
+                <img src="img/gplay-badge.png" alt="Jetzt bei Google Play" class="store-badge">
             </a>
         </div>
 
@@ -298,19 +294,11 @@
 
         <!-- Store Buttons UNTEN -->
         <div class="store-buttons" style="margin-top: 40px;">
-            <a href="https://testflight.apple.com/join/d5cR2Xu3" class="store-btn store-btn-ios">
-                <span class="store-btn-icon">🍎</span>
-                <span class="store-btn-text">
-                    <span class="store-btn-label">Beta via TestFlight</span><br>
-                    <span class="store-btn-name">iOS herunterladen</span>
-                </span>
+            <a href="https://testflight.apple.com/join/d5cR2Xu3" aria-label="Kurvenfokus für iOS über TestFlight laden">
+                <img src="img/appstore-badge.svg" alt="Laden im App Store" class="store-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=de.kurvenfokus" class="store-btn store-btn-android">
-                <span class="store-btn-icon">▶️</span>
-                <span class="store-btn-text">
-                    <span class="store-btn-label">Offener Test auf Google Play</span><br>
-                    <span class="store-btn-name">Android herunterladen</span>
-                </span>
+            <a href="https://play.google.com/store/apps/details?id=de.kurvenfokus" aria-label="Kurvenfokus bei Google Play laden">
+                <img src="img/gplay-badge.png" alt="Jetzt bei Google Play" class="store-badge">
             </a>
         </div>
 
