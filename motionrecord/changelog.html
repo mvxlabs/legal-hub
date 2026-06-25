@@ -171,6 +171,11 @@
     color: var(--cyan);
     border: 1px solid rgba(0,212,255,0.3);
   }
+  .badge-android {
+    background: rgba(88,86,214,0.15);
+    color: var(--indigo);
+    border: 1px solid rgba(88,86,214,0.3);
+  }
 
   /* ─── Highlight Card ─── */
   .highlight-card {
@@ -356,6 +361,37 @@
   </div>
 
   <div class="timeline">
+
+    <!-- ═══════ Android v0.0.10 Build 12 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot current"></div>
+      <div class="version-header">
+        <span class="version-number">Android v0.0.10 (12)</span>
+        <span class="version-title">Mehr GPS-Leistung &amp; ehrliche Datenqualität</span>
+        <span class="version-badge badge-android">Android</span>
+        <span class="version-badge badge-live">Neu</span>
+        <span class="version-date">25. Juni 2026</span>
+      </div>
+
+      <div class="highlight-card featured">
+        <div class="highlight-title">Hardware-Scan &amp; Daten-Transparenz <span class="highlight-count">+4 Features, +1 UX, +1 Fix</span></div>
+        <div class="highlight-features">
+          <span class="highlight-tag">Hardware-Tracking-Scan</span>
+          <span class="highlight-tag">Datenqualitäts-Ampel</span>
+          <span class="highlight-tag">Hardware-Stempel im Export</span>
+          <span class="highlight-tag">Valide GPX</span>
+        </div>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">🛰️</span><span class="feature-text"><strong>Hardware-Tracking-Scan:</strong> Misst die real erreichbare GPS-Rate deines Geräts (1/2/5 Hz) und empfiehlt den passenden Aufnahmemodus — komplett modellunabhängig, direkt in den Diagnostics.</span></li>
+        <li><span class="feature-icon">📡</span><span class="feature-text"><strong>Höhere GPS-Rate:</strong> Die App fordert jetzt die schnellstmögliche Rate deines Geräts an statt fix 1 Hz — automatisch gedeckelt durch die im Scan gemessene Hardware-Grenze.</span></li>
+        <li><span class="feature-icon">🚦</span><span class="feature-text"><strong>Datenqualitäts-Ampel:</strong> Dieselbe Bewertung (Grün/Gelb/Rot) live während der Aufnahme, in der Tour-Zusammenfassung und im Export — eine einzige, konsistente Logik.</span></li>
+        <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Hardware-Stempel im Export:</strong> Jede GPX- und Kurvenfokus-Datei trägt Gerät, real genutzte GPS-/Sensor-Qualität, GNSS-Signal und die Datenqualitäts-Stufe — die Aufnahme dokumentiert sich selbst.</span></li>
+        <li><span class="feature-icon">🧹</span><span class="feature-text"><strong>Aufgeräumter Export:</strong> Reduziert auf das Wesentliche — GPX &amp; Kurvenfokus, in Viewer und Bibliothek.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Valide GPX-Dateien:</strong> Korrekte Dezimalpunkte (statt Komma) — der Import in Komoot, Calimoto &amp; Co. klappt jetzt zuverlässig.</span></li>
+      </ul>
+    </div>
 
     <!-- ═══════ v1.0 Build 24 ═══════ -->
     <div class="version-entry">
