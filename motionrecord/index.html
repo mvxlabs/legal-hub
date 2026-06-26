@@ -117,32 +117,13 @@
             display: flex;
             gap: 16px;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             margin: 30px 0;
         }
-        .store-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 28px;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid transparent;
-        }
-        .store-btn:hover { transform: scale(1.05); }
-        .store-btn-android {
-            background: linear-gradient(135deg, #34c759, #22a24a);
-            color: #fff;
-        }
-        .store-btn-android:hover { box-shadow: 0 6px 24px rgba(52, 199, 89, 0.35); }
-        .store-btn-ios {
-            background: linear-gradient(135deg, #007AFF, #5856D6);
-            color: #fff;
-        }
-        .store-btn-ios:hover { box-shadow: 0 6px 24px rgba(0,122,255,0.35); }
+        .store-buttons a { display: inline-flex; transition: transform 0.2s, opacity 0.2s; }
+        .store-buttons a:hover { transform: translateY(-2px); opacity: 0.92; }
+        .store-badge { height: 56px; width: auto; display: block; }
         .beta-badge {
             display: inline-block;
             background: #34c759;
@@ -195,19 +176,11 @@
 
         <!-- Store Buttons -->
         <div class="store-buttons">
-            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" class="store-btn store-btn-android">
-                <span style="font-size:24px">▶️</span>
-                <span style="text-align:left; line-height:1.3">
-                    <span style="font-size:11px; opacity:0.85">Offener Test auf Google Play</span><br>
-                    <span style="font-size:17px; font-weight:700">Android herunterladen</span>
-                </span>
+            <a href="https://testflight.apple.com/join/3yMgTTpn" aria-label="MotionRecord für iOS über TestFlight laden">
+                <img src="img/appstore-badge.svg" alt="Laden im App Store" class="store-badge">
             </a>
-            <a href="https://testflight.apple.com/join/3yMgTTpn" class="store-btn store-btn-ios">
-                <span style="font-size:24px">🍎</span>
-                <span style="text-align:left; line-height:1.3">
-                    <span style="font-size:11px; opacity:0.85">Beta via TestFlight</span><br>
-                    <span style="font-size:17px; font-weight:700">iOS herunterladen</span>
-                </span>
+            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" aria-label="MotionRecord bei Google Play laden">
+                <img src="img/gplay-badge.png" alt="Jetzt bei Google Play" class="store-badge">
             </a>
         </div>
 
@@ -295,19 +268,11 @@
 
         <!-- Store Buttons unten -->
         <div class="store-buttons" style="margin-top: 40px;">
-            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" class="store-btn store-btn-android">
-                <span style="font-size:24px">▶️</span>
-                <span style="text-align:left; line-height:1.3">
-                    <span style="font-size:11px; opacity:0.85">Kostenlos im Play Store</span><br>
-                    <span style="font-size:17px; font-weight:700">Android herunterladen</span>
-                </span>
+            <a href="https://testflight.apple.com/join/3yMgTTpn" aria-label="MotionRecord für iOS über TestFlight laden">
+                <img src="img/appstore-badge.svg" alt="Laden im App Store" class="store-badge">
             </a>
-            <a href="https://testflight.apple.com/join/3yMgTTpn" class="store-btn store-btn-ios">
-                <span style="font-size:24px">🍎</span>
-                <span style="text-align:left; line-height:1.3">
-                    <span style="font-size:11px; opacity:0.85">Beta via TestFlight</span><br>
-                    <span style="font-size:17px; font-weight:700">iOS herunterladen</span>
-                </span>
+            <a href="https://play.google.com/store/apps/details?id=de.motionrecord" aria-label="MotionRecord bei Google Play laden">
+                <img src="img/gplay-badge.png" alt="Jetzt bei Google Play" class="store-badge">
             </a>
         </div>
 
