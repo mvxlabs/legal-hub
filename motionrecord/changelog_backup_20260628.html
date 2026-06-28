@@ -176,35 +176,6 @@
     color: var(--indigo);
     border: 1px solid rgba(88,86,214,0.3);
   }
-  .badge-ios {
-    background: rgba(0,212,255,0.15);
-    color: var(--cyan);
-    border: 1px solid rgba(0,212,255,0.3);
-  }
-
-  /* ─── Platform Section ─── */
-  .platform-section {
-    position: relative;
-    margin: 44px 0 28px;
-    z-index: 2;
-  }
-  .platform-section:first-of-type { margin-top: 0; }
-  .platform-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--elevated);
-    border: 1px solid var(--border);
-    padding: 10px 22px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-  .platform-label .pf-icon { font-size: 18px; }
-  .platform-section.android .platform-label { color: var(--indigo); border-color: rgba(88,86,214,0.35); }
-  .platform-section.ios .platform-label { color: var(--cyan); border-color: rgba(0,212,255,0.35); }
 
   /* ─── Highlight Card ─── */
   .highlight-card {
@@ -368,12 +339,12 @@
 
   <div class="stats-bar">
     <div class="stat-item">
-      <div class="stat-val">v0.0.11</div>
-      <div class="stat-label">Android · Build 13</div>
+      <div class="stat-val">v1.0</div>
+      <div class="stat-label">Version</div>
     </div>
     <div class="stat-item">
-      <div class="stat-val">v1.0</div>
-      <div class="stat-label">iOS · Build 24</div>
+      <div class="stat-val">24</div>
+      <div class="stat-label">Build</div>
     </div>
     <div class="stat-item">
       <div class="stat-val">50+</div>
@@ -391,41 +362,14 @@
 
   <div class="timeline">
 
-    <div class="platform-section android"><span class="platform-label"><span class="pf-icon">🤖</span> Android</span></div>
-
-    <!-- ═══════ Android v0.0.11 Build 13 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot current"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.11 (13)</span>
-        <span class="version-title">GPS-Tracking-Fix — wieder durchgängig zuverlässig</span>
-        <span class="version-badge badge-live">Neu</span>
-        <span class="version-date">27. Juni 2026</span>
-      </div>
-
-      <div class="highlight-card featured">
-        <div class="highlight-title">GPS-Aufnahme repariert <span class="highlight-count">+2 Features, +1 kritischer Fix</span></div>
-        <div class="highlight-features">
-          <span class="highlight-tag">Konstant 1 Hz GPS</span>
-          <span class="highlight-tag">GPS-Status vor dem Start</span>
-          <span class="highlight-tag">Warnung am Lockscreen</span>
-        </div>
-      </div>
-
-      <ul class="feature-list">
-        <li><span class="feature-icon">🛰️</span><span class="feature-text"><strong>GPS-Tracking-Regression behoben:</strong> In v0.0.10 konnte ein bei schlechtem Empfang durchgeführter Hardware-Scan die Aufnahme dauerhaft auf eine viel zu niedrige GPS-Rate (bis ~0,17 Hz — nur alle ~6 Sekunden ein Punkt) drosseln; Kurven wurden dadurch unbrauchbar. Die Aufnahme läuft jetzt wieder fest mit zuverlässigen 1 Hz.</span></li>
-        <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Automatische Reparatur beim Update:</strong> Ein einmaliger Reset bereinigt den fehlerhaft gespeicherten Scan-Wert beim ersten Start von v0.0.11 — ganz ohne Zutun. Der Hardware-Scan bleibt als reine Diagnose erhalten, steuert die Aufnahme aber nicht mehr.</span></li>
-        <li><span class="feature-icon">🚦</span><span class="feature-text"><strong>GPS-Status &amp; Tipps vor dem Start:</strong> Der Aufnahme-Screen zeigt jetzt eine antippbare GPS-Status-Karte. Bei schwachem Empfang erscheinen konkrete Tipps (freier Himmelsblick, Standortgenauigkeit auf „Hoch", Akku-Optimierung aus) inkl. herstellerspezifischem Direktlink. Antippen öffnet die Satelliten-Detailansicht.</span></li>
-        <li><span class="feature-icon">🔔</span><span class="feature-text"><strong>GPS-Warnung am Lockscreen:</strong> Die Aufnahme-Benachrichtigung zeigt jetzt die GPS-Punkte und warnt bei schwachem Empfang — ein Tracking-Ausfall fällt so sofort auf, statt erst nach der Fahrt im Export.</span></li>
-      </ul>
-    </div>
-
     <!-- ═══════ Android v0.0.10 Build 12 ═══════ -->
     <div class="version-entry">
       <div class="version-dot current"></div>
       <div class="version-header">
-        <span class="version-number">v0.0.10 (12)</span>
+        <span class="version-number">Android v0.0.10 (12)</span>
         <span class="version-title">Mehr GPS-Leistung &amp; ehrliche Datenqualität</span>
+        <span class="version-badge badge-android">Android</span>
+        <span class="version-badge badge-live">Neu</span>
         <span class="version-date">25. Juni 2026</span>
       </div>
 
@@ -448,145 +392,6 @@
         <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Valide GPX-Dateien:</strong> Korrekte Dezimalpunkte (statt Komma) — der Import in Komoot, Calimoto &amp; Co. klappt jetzt zuverlässig.</span></li>
       </ul>
     </div>
-
-    <!-- ═══════ Android v0.0.9 Build 11 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.9 (11)</span>
-        <span class="version-title">Fokus-Dashboard — Live-Telemetrie beim Fahren</span>
-        <span class="version-date">22. Mai 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🎯</span><span class="feature-text"><strong>Fokus-Dashboard überarbeitet:</strong> Live-Telemetrie mit 2×2 Stats-Grid (IMU-Samples, GPS-Punkte, Kurven L/R-Split, Frequenz).</span></li>
-        <li><span class="feature-icon">📐</span><span class="feature-text"><strong>Lean Gauge:</strong> Schräglage-Anzeige mit Peak L/R und Live-Speed während der Aufnahme.</span></li>
-        <li><span class="feature-icon">⏱️</span><span class="feature-text"><strong>REC-Timer-Card:</strong> Pulsierender Indikator mit Auto-Pause-Erkennung; kompakte GPS-Qualität (Status-Dot + Accuracy + Speed in einer Zeile).</span></li>
-        <li><span class="feature-icon">💾</span><span class="feature-text"><strong>Storage-Warnung:</strong> Kontextuelle Anzeige nur bei knappem Speicher.</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.8 Build 10 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.8 (10)</span>
-        <span class="version-title">Kurvenfokus-Direktimport &amp; Backup</span>
-        <span class="version-date">22. Mai 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🔗</span><span class="feature-text"><strong>„In Kurvenfokus öffnen":</strong> Tour-Daten direkt nach der Aufnahme mit einem Tap importieren.</span></li>
-        <li><span class="feature-icon">💾</span><span class="feature-text"><strong>Lokal speichern &amp; Import:</strong> Aufnahmen nach Downloads/MotionRecord sichern und gesicherte Aufnahmen wieder einspielen (Library → Import).</span></li>
-        <li><span class="feature-icon">🛟</span><span class="feature-text"><strong>Crash-Recovery:</strong> Laufende Chunk-Sicherung (2000 Samples/Chunk) — kein Datenverlust bei App-Absturz.</span></li>
-        <li><span class="feature-icon">✅</span><span class="feature-text"><strong>84 Round-Trip-Tests:</strong> Export → Import → identische Daten verifiziert.</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.7 Build 10 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.7 (10)</span>
-        <span class="version-title">UX-Update — Record-Button &amp; Schräglage-Fix</span>
-        <span class="version-date">30. April 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🎯</span><span class="feature-text"><strong>Record-Button zentriert</strong> (120 dp, Puls-Animation) — besser erreichbar auf abgerundeten Displays; Settings-Leiste dezent an den unteren Rand verschoben.</span></li>
-        <li><span class="feature-icon">📐</span><span class="feature-text"><strong>Schräglage-Fix:</strong> Auto-Kalibrierung beim Aufnahmestart — sofort Werte ohne manuelle Kalibrierung.</span></li>
-        <li><span class="feature-icon">📱</span><span class="feature-text"><strong>Samsung-Budget-Fix:</strong> Gravity-Schwellwert korrigiert — Lean funktioniert auch auf Geräten ohne Gyro (z. B. Galaxy A13).</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.6 Build 8 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.6 (8)</span>
-        <span class="version-title">Mega-Update — 10 neue Features + 79 Tests</span>
-        <span class="version-date">15. April 2026</span>
-      </div>
-
-      <div class="highlight-card featured">
-        <div class="highlight-title">Großes Funktions-Update <span class="highlight-count">+10 Features, +79 Tests</span></div>
-        <div class="highlight-features">
-          <span class="highlight-tag">GPS+Gyro Fusion</span>
-          <span class="highlight-tag">Karten-Viewer</span>
-          <span class="highlight-tag">High-Contrast</span>
-          <span class="highlight-tag">Auto-Pause</span>
-        </div>
-      </div>
-
-      <ul class="feature-list">
-        <li><span class="feature-icon">🌀</span><span class="feature-text"><strong>GPS+Gyro Fusion:</strong> Complementary Filter für präzisere Schräglage (100 Hz statt 1 Hz).</span></li>
-        <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Tour-Summary:</strong> 3×2 Stats-Grid nach jeder Fahrt (Distanz, Dauer, Höhenmeter, Max Lean, Kurven, Max G) + Teilen-Button.</span></li>
-        <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>Karten-Viewer:</strong> Dark Map mit Lean/Speed/Höhe-Umschalter und Zonen-Legende.</span></li>
-        <li><span class="feature-icon">🔆</span><span class="feature-text"><strong>High-Contrast Modus</strong> für Outdoor-Sichtbarkeit + <strong>Fullscreen Lean Mode</strong> (per Doppeltipp).</span></li>
-        <li><span class="feature-icon">🔊</span><span class="feature-text"><strong>Lautstärke-Tasten:</strong> Doppeltipp startet/stoppt die Aufnahme; haptisches Feedback bei Start/Stop/Kurve.</span></li>
-        <li><span class="feature-icon">⏸️</span><span class="feature-text"><strong>Auto-Pause &amp; Speicher-Monitor:</strong> Erkennt Stillstand (&gt;5 Min), Auto-Stop bei kritisch wenig Speicher (&lt;100 MB).</span></li>
-        <li><span class="feature-icon">✅</span><span class="feature-text"><strong>79 Unit-Tests:</strong> ChunkWriter, LiveCurveDetector, Pipeline und 7 Filter; Crashlytics vorbereitet.</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.5 Build 8 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.5 (8)</span>
-        <span class="version-title">Kurvenfokus-Modus als Default</span>
-        <span class="version-date">09. April 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🎯</span><span class="feature-text"><strong>Kurvenfokus-Modus als neuer Default</strong> (50 Hz IMU, Auto-Export) + Onboarding-Modusauswahl (Kurvenfokus vs. Entwickler).</span></li>
-        <li><span class="feature-icon">⚙️</span><span class="feature-text"><strong>Hz-Konfigurator</strong> (10/50/100 Hz) in den Einstellungen + Speicher-Hochrechnung im Recording-Screen.</span></li>
-        <li><span class="feature-icon">📦</span><span class="feature-text"><strong>Summary-Dialog nach Stopp</strong> mit Kurvenfokus-Share-Option; Lean auf ±60° begrenzt im Export.</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.4 Build 7 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.4 (7)</span>
-        <span class="version-title">Mount-Tracker &amp; Summary-Screen</span>
-        <span class="version-date">06. April 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🧭</span><span class="feature-text"><strong>Mount-Tracker-Integration</strong> zur Erkennung der Geräte-Montage.</span></li>
-        <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Summary-Screen</strong> nach jeder Aufnahme + Export-Verbesserungen und diverse Bugfixes.</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.3 Build 5 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.3 (5)</span>
-        <span class="version-title">GPX-Export &amp; iOS-Parität</span>
-        <span class="version-date">25. März 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">🗺️</span><span class="feature-text"><strong>GPX-Export</strong> mit 4-Optionen-Export-Dialog.</span></li>
-        <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Feature-Parität mit iOS:</strong> Sensor-Pipeline, Signal Processing und Library angeglichen; Share-Fix (MIME `*/*`).</span></li>
-        <li><span class="feature-icon">🐛</span><span class="feature-text"><strong>Stop-Recording-Bug gefixt</strong> (GNSS-Callback-Leak).</span></li>
-      </ul>
-    </div>
-
-    <!-- ═══════ Android v0.0.1–0.0.2 Build 1–4 ═══════ -->
-    <div class="version-entry">
-      <div class="version-dot"></div>
-      <div class="version-header">
-        <span class="version-number">v0.0.1–0.0.2 (1–4)</span>
-        <span class="version-title">Foundation — Sensor-Engine &amp; Pipeline</span>
-        <span class="version-date">23. März 2026</span>
-      </div>
-      <ul class="feature-list">
-        <li><span class="feature-icon">📡</span><span class="feature-text"><strong>Erste Sensor-Schicht:</strong> SensorCollector (100 Hz), GpsCollector, PressureCollector.</span></li>
-        <li><span class="feature-icon">🔬</span><span class="feature-text"><strong>Signal Processing Pipeline:</strong> RingBuffer, LowPass, HighPass, MovingAverage, Butterworth IIR, Jerk, FrequencyBand.</span></li>
-        <li><span class="feature-icon">🎙️</span><span class="feature-text"><strong>Recording &amp; Storage:</strong> RecordingManager + RecordingService (WakeLock), SessionStorage, ChunkWriter, ExportService, Calibration Engine.</span></li>
-        <li><span class="feature-icon">🏗️</span><span class="feature-text"><strong>Projekt-Fundament:</strong> Hilt DI, Navigation, Basis-UI und App-Icon im Waveform-Design.</span></li>
-      </ul>
-    </div>
-
-    <div class="platform-section ios"><span class="platform-label"><span class="pf-icon">🍎</span> iOS</span></div>
 
     <!-- ═══════ v1.0 Build 24 ═══════ -->
     <div class="version-entry">
