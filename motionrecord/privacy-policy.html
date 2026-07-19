@@ -38,7 +38,7 @@
     </div>
 
     <h1>Datenschutzerklärung</h1>
-    <p class="date">Stand: April 2026</p>
+    <p class="date">Stand: Juli 2026</p>
 
     <div class="highlight">
         <strong>Kurzfassung:</strong> MotionRecord ist eine reine Offline-App für iOS und Android. Alle aufgezeichneten Sensordaten (Beschleunigung, GPS, Gyroskop, Barometer) bleiben ausschließlich auf deinem Gerät. Wir übertragen keine Daten an Server, tracken keine Nutzer und verwenden keine Analytics-Dienste.
@@ -143,11 +143,12 @@
     <p>Für die Kartenanzeige aufgezeichneter Strecken nutzt die App:</p>
     <ul>
         <li><strong>iOS:</strong> Apple MapKit — es gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</li>
-        <li><strong>Android:</strong> MapLibre (Open-Source) mit OpenStreetMap-Kacheln — dabei werden Kartenkacheln von einem Tile-Server geladen. Es werden keine personenbezogenen Daten übermittelt.</li>
+        <li><strong>Android:</strong> MapLibre (Open-Source) mit Karten-Kacheln von <strong>OpenFreeMap</strong> (openfreemap.org). Beim Kachel-Abruf wird technisch bedingt deine IP-Adresse an den Kartendienst übermittelt — <strong>nicht jedoch deine Sensor- oder Tourdaten</strong>. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der Kartenfunktion).</li>
     </ul>
 
     <h2>9. Datenexport</h2>
-    <p>Du kannst aufgezeichnete Sessions in verschiedenen Formaten exportieren (JSON, GPX, CSV, KML) und über die Teilen-Funktion weitergeben. Der Export erfolgt ausschließlich auf deine Initiative — die App teilt niemals selbstständig Daten.</p>
+    <p>Du kannst aufgezeichnete Sessions in verschiedenen Formaten exportieren (JSON, GPX, CSV, KML, FIT, NMEA, HTML) und über die Teilen-Funktion oder deine eigene Mail-App weitergeben. Der Export erfolgt ausschließlich auf deine Initiative — die App teilt niemals selbstständig Daten.</p>
+    <p><strong>Hinweis zu HTML-Exporten:</strong> In HTML-Exporten enthaltene interaktive Karten laden beim späteren Öffnen der Datei im Browser Kartenbibliotheken und Karten-Kacheln von Drittanbietern (z.&nbsp;B. unpkg/Leaflet, OpenStreetMap, CARTO) — dies geschieht erst beim Betrachter der Datei, nicht durch die App.</p>
 
     <h2>10. Keine Datenerhebung durch Dritte</h2>
     <ul>
@@ -155,6 +156,7 @@
         <li><strong>Keine Werbung:</strong> Die App enthält keine Werbung und keine Werbe-SDKs.</li>
         <li><strong>Keine Tracking-IDs:</strong> Wir erheben keine Geräte-IDs, Werbe-IDs oder Nutzerprofile.</li>
         <li><strong>Keine Netzwerkverbindungen:</strong> Die App benötigt keine Internetverbindung (außer für Kartenkacheln und GPS-Abruf via Netzwerkortung).</li>
+        <li><strong>Optionaler OBD-Adapter:</strong> Die Verbindung zu einem Fahrzeug-Telemetrie-Adapter (z.&nbsp;B. Wingman) erfolgt ausschließlich über dessen lokales WLAN direkt zwischen deinem Gerät und dem Adapter — es werden dabei keine Daten ins Internet übertragen.</li>
     </ul>
 
     <h2>11. Rechtsgrundlage</h2>
@@ -166,7 +168,7 @@
         <li><strong>Auskunft &amp; Zugriff:</strong> Alle Daten sind in der App unter „Bibliothek" einsehbar und exportierbar.</li>
         <li><strong>Löschung:</strong> Einzelne Aufnahmen können in der Bibliothek gelöscht werden. Bei Deinstallation der App werden alle Daten automatisch entfernt.</li>
         <li><strong>Einschränkung:</strong> Du kannst einzelne Berechtigungen (GPS, Sensoren, Kamera) jederzeit in den Geräte-Einstellungen entziehen.</li>
-        <li><strong>Beschwerde:</strong> Du hast das Recht, dich bei der zuständigen Datenschutzbehörde zu beschweren.</li>
+        <li><strong>Beschwerde (Art. 77):</strong> Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig für uns: Bayerisches Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank">www.lda.bayern.de</a></li>
     </ul>
 
     <h2>13. Änderungen dieser Datenschutzerklärung</h2>

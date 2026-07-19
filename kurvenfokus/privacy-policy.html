@@ -34,10 +34,10 @@
     </div>
 
     <h1>Datenschutzerklärung</h1>
-    <p class="date">Stand: Februar 2026</p>
+    <p class="date">Stand: Juli 2026</p>
 
     <div class="highlight">
-        <strong>Kurzfassung:</strong> Kurvenfokus ist primär eine Offline-App. Alle Tour-Daten bleiben auf deinem Gerät – wir tracken keine Nutzer und senden keine App-Daten an eigene Server. Für Karten (Apple MapKit), Regionsbestimmung (Apple CLGeocoder) und optionale Höhendaten (Open-Meteo) werden einzelne Koordinatenpunkte an die jeweiligen Dienste übermittelt (siehe Abschnitt 5).
+        <strong>Kurzfassung:</strong> Kurvenfokus ist primär eine Offline-App. Alle Tour-Daten bleiben auf deinem Gerät – wir tracken keine Nutzer und senden keine App-Daten an eigene Server. Für Karten (Apple MapKit auf iOS, osmdroid-Kartendienste auf Android), Regionsbestimmung (Apple CLGeocoder) sowie optionale Höhen- und Wetterdaten (Open-Meteo) werden einzelne Koordinaten bzw. Kartenanfragen an die jeweiligen Dienste übermittelt (siehe Abschnitt 5).
     </div>
 
     <h2>1. Verantwortlicher</h2>
@@ -65,7 +65,7 @@
     <p>Du kannst GPX- oder JSON-Dateien mit Motorrad-Touren importieren. Diese Daten:</p>
     <ul>
         <li>Werden <strong>nur lokal</strong> auf deinem Gerät gespeichert</li>
-        <li>Werden <strong>niemals</strong> an Server übertragen</li>
+        <li>Werden <strong>nicht auf unsere Server hochgeladen</strong> – es findet kein Upload deiner Touren statt; nur die in Abschnitt 5 beschriebenen Funktionen (Karten, Regionsbestimmung, Höhen-/Wetterdaten) kontaktieren technisch bedingt externe Dienste</li>
         <li>Können jederzeit von dir gelöscht werden</li>
     </ul>
 
@@ -83,13 +83,21 @@
     <p>Die App benötigt <strong>keine</strong> Standort-, Kamera-, Mikrofon- oder Kontaktberechtigungen.</p>
 
     <h2>5. Karten-Darstellung und externe Dienste</h2>
-    <p>Für die Kartenanzeige nutzt die App Apple MapKit. Dabei gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</p>
+    <p>Für die Kartenanzeige lädt die App Karten-Kacheln (Tiles) von Kartendiensten. Dabei wird technisch bedingt deine IP-Adresse an den jeweiligen Dienst übermittelt – <strong>nicht jedoch deine Tour-Daten</strong>; wir erhalten keine Daten aus diesen Abrufen.</p>
+    <ul>
+        <li><strong>iOS:</strong> Apple MapKit – es gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</li>
+        <li><strong>Android (osmdroid):</strong> Je nach gewähltem Kartenstil werden Kacheln von der OpenStreetMap Foundation (Standard), CARTO/CartoDB (Hell/Dunkel) oder OpenTopoMap (Topo) geladen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir genutzten Kartenfunktion).</li>
+    </ul>
 
     <h3>5.1 Regionsbestimmung (CLGeocoder)</h3>
     <p>Beim Import einer Tour wird anhand eines einzelnen GPS-Koordinatenpunkts (Start- oder Mittelpunkt) das zugehörige Land und die Region bestimmt (Reverse Geocoding). Hierfür wird Apples <strong>CLGeocoder</strong>-Dienst verwendet. Dabei wird <strong>ein einzelner Koordinatenpunkt</strong> an Apple-Server übermittelt – keine vollständigen Streckenverläufe. Es gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</p>
 
     <h3>5.2 Höhendaten (Open-Meteo)</h3>
-    <p>Für Touren ohne eigene Höhendaten kann die App Höhenprofile über die kostenlose <strong>Open-Meteo Elevation API</strong> nachladen. Dabei werden GPS-Koordinaten (Breitengrad, Längengrad) an den Open-Meteo-Dienst übertragen. Open-Meteo erhebt laut eigener Angabe keine personenbezogenen Daten und verwendet keine Cookies. Weitere Informationen: <a href="https://open-meteo.com/en/terms" target="_blank">open-meteo.com/en/terms</a>.</p>
+    <p>Für Touren ohne eigene Höhendaten kann die App Höhenprofile über die kostenlose <strong>Open-Meteo Elevation API</strong> nachladen. Dabei werden GPS-Koordinaten (Breitengrad, Längengrad) an den Open-Meteo-Dienst übertragen. Weitere Informationen: <a href="https://open-meteo.com/en/terms" target="_blank">open-meteo.com/en/terms</a>.</p>
+
+    <h3>5.3 Wetterdaten für die Tour-Story (Open-Meteo)</h3>
+    <p>Wenn du eine <strong>Tour-Story mit Wetterinformationen</strong> erstellst, ruft die App historische Wetterdaten für deine Tour ab. Dabei werden die ungefähren Koordinaten des Tour-Gebiets und das Tour-Datum an die Open-Meteo-Wetter-API übermittelt. Es werden keine Namen, Konten oder Gerätekennungen übertragen – die App nutzt die API ohne Registrierung und ohne API-Schlüssel. Der Abruf erfolgt <strong>nur</strong>, wenn du die Funktion aktiv nutzt.</p>
+    <p>Anbieter beider Open-Meteo-Dienste ist die <strong>OpenMeteo GmbH</strong>, Bürglen (UR), Schweiz. Open-Meteo protokolliert Zugriffe (inkl. IP-Adresse und angefragter Koordinaten) aus technischen Gründen und löscht diese Logs nach 90 Tagen. Für die Schweiz besteht ein Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO). Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von dir angeforderten Funktion).</p>
 
     <h2>6. Beta-Feedback (Website)</h2>
     <p>Während der Beta-Phase bieten wir auf unserer Website freiwillige, anonyme Feedback-Formulare an. Hierbei kommen folgende Technologien und Dienste zum Einsatz:</p>
@@ -129,14 +137,17 @@
     <p>Für die Nutzung von Google Firebase besteht ein Auftragsverarbeitungsvertrag (Data Processing Agreement) mit Google gemäß Art. 28 DSGVO. Weitere Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Datenschutz</a>.</p>
 
     <h2>7. In-App-Käufe</h2>
-    <p>Falls du ein Abonnement abschließt, wird die Zahlung über Apple abgewickelt. Wir haben keinen Zugriff auf deine Zahlungsdaten. Es gelten die <a href="https://www.apple.com/legal/privacy/" target="_blank">Datenschutzrichtlinien von Apple</a>.</p>
+    <p>Falls du kostenpflichtige Funktionen erwirbst, wird die Zahlung ausschließlich über Apple (iOS) bzw. Google (Android) abgewickelt. Wir haben keinen Zugriff auf deine Zahlungsdaten. Es gelten die Datenschutzrichtlinien des jeweiligen Store-Betreibers.</p>
 
     <h2>8. Deine Rechte (DSGVO)</h2>
     <p>Du hast das Recht auf:</p>
     <ul>
-        <li><strong>Auskunft:</strong> Welche Daten wir haben (Antwort: keine)</li>
-        <li><strong>Löschung:</strong> App deinstallieren löscht alle lokalen Daten</li>
-        <li><strong>Beschwerde:</strong> Bei der zuständigen Datenschutzbehörde</li>
+        <li><strong>Auskunft (Art. 15):</strong> Welche Daten wir über dich haben. Da die App keine Daten an uns überträgt, lautet die Antwort in aller Regel: keine</li>
+        <li><strong>Berichtigung (Art. 16)</strong> und <strong>Einschränkung der Verarbeitung (Art. 18)</strong></li>
+        <li><strong>Löschung (Art. 17):</strong> App deinstallieren löscht alle lokalen Daten</li>
+        <li><strong>Datenübertragbarkeit (Art. 20):</strong> Deine Tour-Daten liegen bei dir – die App exportiert in offene Formate (GPX, JSON)</li>
+        <li><strong>Widerspruch (Art. 21):</strong> Gegen Verarbeitungen auf Grundlage berechtigter Interessen</li>
+        <li><strong>Beschwerde (Art. 77):</strong> Bei einer Datenschutz-Aufsichtsbehörde. Zuständig für uns: Bayerisches Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach, <a href="https://www.lda.bayern.de" target="_blank">www.lda.bayern.de</a></li>
     </ul>
 
     <h2>9. Änderungen</h2>
