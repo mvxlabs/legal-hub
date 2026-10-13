@@ -615,13 +615,209 @@
 
     <div class="platform-section ios"><span class="platform-label"><span class="pf-icon">🍎</span> iOS</span></div>
 
-    <!-- ═══════ v1.0 Build 29 ═══════ -->
+    <!-- ═══════ v1.0 Build 58 ═══════ -->
     <div class="version-entry">
       <div class="version-dot current"></div>
       <div class="version-header">
+        <span class="version-number">v1.0 (58)</span>
+        <span class="version-title">iPhone wie Android — Startbildschirm, Leiste und Cockpit-Menü</span>
+        <span class="version-badge badge-live">Aktuell</span>
+        <span class="version-date">13. Oktober 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Startbildschirm wie auf Android:</strong> oben „MotionRecord“, Cockpit-Name und GPS-Zeile, dann „BEREIT 00:00:00“. Darunter die Karten „Vorbereitung“ (Profil, Aufnahmemodus, Profil ändern, Kalibrierung / Auf Null, Layout), „Quelle / Qualität“ (GPS-Genauigkeit, GPS-Status, Anzeigen) und „Geräte und Extras“ (OBD-II-Profil, Motordaten einrichten, Sync, Wingman, Teilen, Schnellstart). Die Taste „Aufnahme starten“ steht fest unten.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Die Leiste unten hat fünf Reiter wie auf Android:</strong> Aufnahme, Dashboard, Bibliothek, Diagnose, Optionen. Die runde Aufnahme-Taste und das „Mehr“-Menü sind weg — Analyse, Racing und LiDAR findest du jetzt in den Optionen unter „Werkzeuge“.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Drei-Punkte-Menü „Cockpit-Design“ oben rechts:</strong> Instrument, Lab, Circuit oder APEX R. Die Wahl gilt für die nächste Aufnahme — der Startbildschirm selbst bleibt für alle Cockpits gleich, wie auf Android.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Taste „Kalibrierung / Auf Null“ in der Karte „Vorbereitung“: „Kalibrierung“ öffnet den Kalibrier-Bildschirm, „Null (2 s)“ setzt nach zwei Sekunden Halten die Kalibrierung zurück — beim Start wird neu kalibriert.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Cockpits Instrument, Lab, Circuit und APEX R im R2-Design mit einheitlichen Farben, Schriften und Raster. Fehlende Messwerte erscheinen als „—“ statt als Null — ein Verbindungsabbruch sieht nicht mehr aus wie 0 km/h.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Die Marke „OBD“ oben links zeigt den Motordaten-Status auch vor dem Start — bewusst anders als Android.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 46 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (46)</span>
+        <span class="version-title">Stabiler und korrekter — das Code-Review-Update</span>
+        <span class="version-date">28. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Aufnahme-Bewertung:</strong> Pausen am selben Ort (Tanken, Mittag, Fotostopp) gelten nicht mehr als GPS-Lücke und kosten keine Punkte mehr. Aussetzer werden jetzt je Stunde bewertet statt mit einer Schwelle, die nie greifen konnte.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Garage:</strong> Wer beim Laden der Ortsnamen weiterscrollt, bekommt Start und Ziel trotzdem — bisher blieb die Aufnahme bis zum nächsten App-Start ohne Ortsnamen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Live Activity:</strong> Sperrbildschirm und Dynamic Island abgesichert — Status- und Profiltext kommen jetzt in der in der App gewählten Sprache, und eine geänderte Datenstruktur bringt die Anzeige nicht mehr zum Schweigen.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Englisch komplett:</strong> Rund 1.200 Texte in App, Watch und Widgets sind übersetzt.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Feedback-Knopf in der Tester-Box:</strong> öffnet eine E-Mail mit der Build-Nummer im Betreff.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Wingman (OBD-Adapter):</strong> Der Datenstrom läuft deutlich robuster. Zwei parallele Zugriffe auf den Adapter — eine der Hauptursachen für Verbindungsabbrüche — sind jetzt ausgeschlossen, und der Test-Stream stoppt auch dann, wenn du das Sheet einfach wegwischst.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>RaceBox:</strong> Nach dem manuellen Trennen verbindet sich die App nicht mehr ungewollt erneut. Verlaufs-Downloads hinterlassen keine Datenreste mehr im Speicher, und defekte Byte-Ströme wachsen nicht mehr endlos im Empfangspuffer.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Kurvenfokus-Export:</strong> Das Erzeugen der Export-Datei ist um ein Vielfaches schneller. Exportierte Beschleunigungswerte bei kräftigen Bremsungen sind jetzt korrekt, und eine Tour behält nach App-Neustart dieselbe ID statt als neue Tour zu erscheinen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Apple Watch:</strong> Stoppt ihr die Aufnahme gleichzeitig auf Uhr und iPhone, wird der Export nicht mehr doppelt erzeugt und übertragen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Behoben:</strong> Ein Absturz bei der Auswertung von Aufnahmen, deren Strecke das Rundkurs-Gate nie durchquert.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Geräte-Zeitsynchronisation zwischen iPhone und Zweitgerät funktioniert jetzt tatsächlich — bisher schlug der Abgleich still fehl.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Apple Watch:</strong> Beim Aufnahmestart wählst du jetzt 50 oder 100 Hz für die Bewegungssensoren. 100 Hz erfasst auch ruckartige Bewegungen feiner, verbraucht aber mehr Batterie. Und: Längere Aufnahmen verlieren keine Daten mehr — übergroße Puffer werden auf der Uhr zwischengelagert, statt ältere Werte still zu verwerfen.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 45 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (45)</span>
+        <span class="version-title">Erscheinungsbild und Sprache in der App einstellbar</span>
+        <span class="version-date">23. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">✨</span><span class="feature-text">Unter „Einstellungen → Darstellung &amp; Sprache“ wählst du jetzt Hell, Dunkel oder System — unabhängig davon, wie das iPhone eingestellt ist. Bisher folgte die App immer dem Gerät.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Ebenso die Sprache:</strong> Deutsch, English oder Systemsprache. Wer das iPhone auf Englisch nutzt, aber MotionRecord auf Deutsch lesen möchte, kann das jetzt tun.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die deutschen Berechtigungstexte sind jetzt eigens hinterlegt. Bisher lagen sie nur als Rückfallwerte vor, während die englische Fassung bereits gepflegt war.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Ein Sprachwechsel greift ohne Neustart. Einzelne Texte, die eine Ansicht zwischengespeichert hat, folgen beim nächsten Start — eine laufende Aufnahme bleibt dabei unangetastet.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 44 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (44)</span>
+        <span class="version-title">Die Garage zeigt jetzt, wo du gefahren bist</span>
+        <span class="version-date">23. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">✨</span><span class="feature-text">Jede Aufnahme hat ein Kartenbild statt einer orangen Linie. Darauf die gefahrene Route auf OpenStreetMap-Karte, darunter der Ortsname von Start und Ziel — „Geretsried → Bad Tölz“, bei Rundfahrten „Geretsried · Rundtour“. Bisher war an einem Strich nicht zu erkennen, welche Tour das war.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Tippst du auf das Vorschaubild, öffnet sich eine schnelle Kartenansicht mit Route, Strecke und Dauer — ohne die ganze Aufnahme zu laden. Bei einer 144-Minuten-Fahrt bedeutete das bisher 864.000 Messpunkte und entsprechend Wartezeit. Die vollständige Auswertung erreichst du weiterhin über die Zeile selbst oder über den Knopf in der Schnellansicht.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die Streckenzeichnungen waren verzerrt. Ein Längengrad ist auf unseren Breiten nur etwa zwei Drittel so lang wie ein Breitengrad — das war in der Berechnung nicht berücksichtigt, jede Route wurde rund anderthalbfach in die Breite gezogen. Jetzt stimmen die Formen.</span></li>
+        <li><span class="feature-icon">⚡</span><span class="feature-text">Die Liste rechnete beim Scrollen alles neu. Für jede sichtbare Zeile wurden sämtliche GPS-Rohpunkte von der Platte gelesen — bei einer 144-Minuten-Fahrt rund 8.600 Punkte, um 60 davon zu zeichnen, und das bei jedem Auftauchen der Zeile erneut. Vorschau, Strecke und Ortsname entstehen jetzt einmalig je Aufnahme und werden danach nur noch gelesen.</span></li>
+        <li><span class="feature-icon">⚡</span><span class="feature-text">Die Suche in der Bibliothek stockte beim Tippen. Bei jedem Buchstaben wurde für sämtliche Aufnahmen die Ordnergröße neu von der Platte ermittelt, nur um die Megabyte anzuzeigen. Der Wert wird jetzt einmal beim Einlesen bestimmt.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Die Vorschau überlebt das Löschen der Bewegungsdaten. Wer Platz spart, sieht die Route weiterhin — sie liegt als eigene kleine Datei neben der Aufnahme und wandert auch in die Sicherung.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Der Aufnahme-Bildschirm war vollflächig in der Schräglagenfarbe eingefärbt — gelb, orange oder rot über das ganze Bild. Bei Sonne blendete das, und der Schräglagenwert selbst war darauf kaum zu lesen. Die Farbe sitzt jetzt dort, wo sie hingehört: im Anzeigebogen. Der Hintergrund bleibt dunkel. Wer die Einfärbung möchte, findet sie weiterhin in den Einstellungen, jetzt deutlich dezenter.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Im Querformat war die untere Bildhälfte leer, während oben alles zusammengedrängt stand. Der Grund: Die Weiche für das Querformat prüfte eine Bedingung, die auf iPhones praktisch nie zutrifft — der gesamte Zweig lief nie. Jetzt steht links die große Schräglagenanzeige und rechts eine Spalte mit Aufnahmestatus, GPS-Zustand, Geschwindigkeit, Ansicht und Stopp.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Unter dem Schräglagenwert steht jetzt die Richtung — „← LINKS“ oder „RECHTS →“. Bisher war nur der Betrag zu sehen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">„REC“ war im Aufnahme-Bildschirm zu „R E“ gestaucht. Jetzt steht es vollständig da, mit der laufenden Zeit in derselben Anzeige.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die Geschwindigkeit stand zweimal auf dem Bildschirm, und daneben eine Angabe „42 GPS“, die gar kein gemessener Wert war, sondern eine fest eingetragene Zahl. Beides ist weg — die Geschwindigkeit steht jetzt an einer Stelle.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 42 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (42)</span>
+        <span class="version-title">„Keine Motordaten“ stimmte nicht</span>
+        <span class="version-date">8. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die App versucht nicht mehr, eine tote Verbindung zu reparieren. Bisher merkte sie sich den letzten gemessenen Motorzustand für immer — brach die Verbindung bei laufendem Motor ab, galt der Motor stundenlang weiter als laufend, und die Rettungsversuche liefen ins Leere (am 4. September 113 Stück). Jetzt zählt der Motorzustand nur, wenn er höchstens 15 Sekunden alt ist.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Ältere Aufnahmen werden beim Öffnen der Bibliothek einmalig richtiggestellt. Der echte Zählerstand steht im Diagnoseprotokoll jeder Aufnahme — er wird jetzt in die Übersicht übernommen. Auf einem Testgerät betrifft das 16 Fahrten mit zusammen 240.953 Datenzeilen, die bisher als „keine Motordaten“ geführt wurden. Fahrten, die wirklich keine hatten, bleiben unverändert.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Neu unter Einstellungen → OBD:</strong> die Wingman-Werkstatt. Alles an einem Ort — bin ich im richtigen WLAN, antwortet der Adapter und wie schnell, wie viele Daten kommen an, welche Motorwerte liefert dein Motorrad tatsächlich. Dazu der Werte-Scan auf Knopfdruck und das vollständige Verbindungsprotokoll. Das gab es größtenteils schon, aber an drei verschiedenen Stellen.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Die App prüft acht Sekunden nach dem Start, ob wirklich Motordaten ankommen — und hilft einmal selbst nach. Kommen gar keine Daten, baut sie die Verbindung neu auf; kommen Daten ohne Motorwerte, setzt sie das Profil neu. Erst wenn das nicht hilft, meldet sie sich: nach rund 16 statt 60 Sekunden, also solange du noch stehst.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Die App merkt jetzt, wenn die Verbindung zum Adapter still wird. Bisher konnte sie offen bleiben und trotzdem nichts liefern — am 6. September kamen so in 72 Minuten ganze 27 Datenzeilen an, statt rund 81.000. Die App wartete geduldig weiter. Neu: Kommt zehn Sekunden lang kein einziges Zeichen, wird die Verbindung neu aufgebaut. Beim Test danach dauerte es 3,4 Sekunden bis zu den ersten Motordaten.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die Bibliothek meldete bei jeder Fahrt mit OBD-Profil „keine Motordaten“ — auch wenn welche aufgezeichnet wurden. Aufgefallen an einer Fahrt vom 6. September: 144 Minuten, 161.926 Zeilen mit Drehzahl, Gang, Kühlmitteltemperatur und Motorlast, alle sauber gespeichert, und trotzdem rot. Der Zähler wurde erst ausgelesen, nachdem die Verbindung schon beendet und zurückgesetzt war. Jetzt wird er vorher gesichert.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Ältere Aufnahmen bleiben rot. Ihr Status steht so gespeichert auf dem Gerät und ändert sich nicht rückwirkend — die tatsächlichen Motordaten sind aber vollständig da und exportierbar.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Das Diagnoseprotokoll listete nur, welche Werte die App angefordert hat, nicht welche ankamen. Stand der Adapter schon richtig, war die Liste leer — trotz fließender Daten. Jetzt stehen beide darin, dazu die Antwortquote je Wert. Damit ist erkennbar, ob ein Wert fehlt, weil er nicht angefordert wurde, oder weil das Motorrad ihn nicht kennt.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 40 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (40)</span>
+        <span class="version-title">Verbindungsprotokoll — die App sagt, woran es liegt</span>
+        <span class="version-date">6. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Neu unter Einstellungen → OBD:</strong> ein Verbindungsprotokoll mit Uhrzeit und Klartext. Es zeigt jede Station — Netzwerk gewechselt, Datenverbindung geöffnet, erste Motordaten, Motor aus, Motordaten abgerissen. Teilbar, und es übersteht einen Neustart der App.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Der Knopf Verbindung prüfen fragt den Adapter direkt, statt iOS zu vertrauen. Das ist ein Unterschied: iOS meldet eine bestehende WLAN-Verbindung auch dann, wenn dein iPhone im Hausnetz hängt. Er liest außerdem mit, wessen Einstellung im Adapter steht — ist es nicht deine, hat eine andere App sie gesetzt.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Antwortquote je einzelnem Wert. Elf eingestellte Werte sagten nichts darüber, ob sie ankommen — jetzt siehst du für Drehzahl, Zündwinkel oder Gang getrennt, wie oft er geliefert wurde. Das trennt einen stummen Adapter von einem Wert, den dein Motorrad gar nicht kennt.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die App beschuldigt keine andere App mehr grundlos. Bei unbekannter Ursache meldete sie, die Ridelink-App belege den Adapter — auch wenn die gar nicht lief. Jetzt entscheidet das Ergebnis der Wertesuche: Findet sie Werte, hält sie tatsächlich eine andere App. Findet sie keine, antwortet die Motorsteuerung selbst nicht, und die Meldung nennt das Mittel — Zündung aus, zehn Sekunden, wieder an.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der Netzwerkzustand misst jetzt das Richtige. Bisher wurde gefragt, ob das iPhone Internet hat — weil das Wingman-Netz keines anbietet, stand im Protokoll dauernd Mobilfunk, obwohl der Adapter erreichbar war. Jetzt zählt, ob eine WLAN-Strecke zum Adapter besteht. Fehlt sie, wartet die App, statt Einstellungen ins Leere zu senden.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Motor an und aus wird an der Bordspannung erkannt und ins Protokoll geschrieben — die Lichtmaschine hebt sie über 14 Volt, ohne sie liegt die Batterie bei rund 12,5.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Die Profilbeschreibungen waren falsch. Sie legten nahe, mehr Werte kosteten Abtastrate. Gemessen an fünf Fahrten laufen alle Profile mit rund 18,7 Hz — die Rate bestimmt der Adapter, nicht die Zahl der Werte. Discovery ist damit immer die beste Wahl und liefert dazu Zündwinkel und Saugrohrdruck.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 39 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (39)</span>
+        <span class="version-title">RaceBox-Download sagt jetzt, was los ist</span>
+        <span class="version-date">4. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der RaceBox-Download funktioniert. Die Box schickt ihre gespeicherten Fahrten über einen anderen Bluetooth-Kanal als die Live-Daten — im selben Format. Die App erkannte das nicht und hielt die ankommende Historie für Live-Werte: Sie wurden angezeigt und sofort verworfen, während der Download endlos auf Daten wartete, die er gerade selbst weggeworfen hatte.</span></li>
+        <li><span class="feature-icon">⚡</span><span class="feature-text">Der Download ist deutlich schneller geworden. Die Fortschrittsanzeige wurde bei jedem einzelnen Datensatz neu gezeichnet — bei 100.000 Sätzen also hunderttausendmal, mitten im laufenden Empfang. Jetzt alle 50.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der Knopf „Sessions herunterladen&quot; erscheint jetzt immer, sobald die RaceBox verbunden ist. Vorher war er unsichtbar, solange das Gerät seinen Status nicht gemeldet hatte — und diese Abfrage lief nur ein einziges Mal beim Verbinden. Ging sie schief, gab es keinen Weg zurück: kein Knopf, keine Meldung, kein erneuter Versuch. Jetzt steht dort ein „Status abfragen&quot;, und der Download-Knopf ist bei leerem Speicher nur inaktiv statt verschwunden.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Vor dem Download steht jetzt da, was auf dem Gerät liegt: Anzahl der Datensätze, ungefähre Fahrtdauer, Batterie und freier Speicher. Vorher drückte man den Knopf blind.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der Download bleibt nicht mehr stumm hängen. Antwortet die RaceBox nicht oder reißt Bluetooth mitten in der Übertragung ab, sagt die App es nach spätestens 20 Sekunden — vorher blieb der Knopf einfach für immer grau, ohne Meldung.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Ein leerer Gerätespeicher wird beim Namen genannt. Bisher meldete die App in diesem Fall „keine Punkte mit Satellitenfix&quot; — die falsche Erklärung für „das Gerät hat gar nichts aufgezeichnet&quot;.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der Gerätestatus wird vor jedem Download frisch abgefragt. Ohne das brach der erste Versuch nach dem Verbinden mit einer Meldung ab, die niemand deuten konnte.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Ist der Gerätespeicher mit einem Code geschützt, sagt die App das jetzt deutlich, statt den Download scheitern zu lassen.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 38 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (38)</span>
+        <span class="version-title">Motordaten kommen jetzt zuverlässig an</span>
+        <span class="version-date">4. September 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Drehzahl, Gas und Gang fehlten bisher in fast allen Aufnahmen — obwohl die Verbindung zum Wingman stand und die App Live-Daten zeigte. Grund: Der Adapter liefert Motordaten nur, solange in ihm die passende Konfiguration aktiv ist, und die kann er verlieren. Die App merkt das jetzt und stellt sie selbst wieder her, während der Fahrt.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Bleiben die Motordaten bei laufendem Motor länger als 20 Sekunden aus, sucht die App im Hintergrund automatisch nach den Werten, die dein Motorrad liefern kann — und fordert danach genau diese an. Die Aufnahme läuft dabei ununterbrochen weiter.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Das OBD-Zeichen sagt jetzt die Wahrheit:</strong> Es leuchtet nur grün, wenn wirklich Motordaten ankommen. „OBD –&quot; heißt verbunden ohne Motordaten, „OBD SCAN&quot; heißt Suche läuft, „OBD !&quot; heißt die Daten sind weggebrochen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Kurze Aussetzer der Verbindung kosten nicht mehr den Rest der Fahrt — die App versucht es jetzt unbegrenzt weiter statt nach gut einer halben Minute aufzugeben.</span></li>
+        <li><span class="feature-icon">⚡</span><span class="feature-text">Die Aufnahme startet sofort und wartet nicht mehr darauf, dass der Adapter antwortet.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">RaceBox-Aufzeichnungen lassen sich jetzt speichern: Der Download über Bluetooth holte die Fahrten schon länger vom Gerät, zeigte sie aber nur an — nach dem Schließen waren sie weg. Sie landen jetzt in der Bibliothek wie jede andere Aufnahme, mit Karte, Viewer und Export. Ganz ohne Cloud oder RaceBox-Konto.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Beim Start der Aufnahme kommt jetzt eine Übersicht: Motordaten, GPS, Bewegungssensoren und RaceBox mit Ampel — du siehst vor der Fahrt, was aufgezeichnet wird. Fehlt etwas, kannst du direkt einrichten oder bewusst trotzdem starten. Abschaltbar in den Einstellungen.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Fehlen die Motordaten, richtet die App sie auf Wunsch selbst ein — einmal pro Sitzung, ohne Nachfragen. Wer lieber selbst prüft, schaltet das in den Einstellungen ab.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Der Vorflug-Check prüft jetzt wirklich, ob Motordaten ankommen — vorher schaute er nur nach, ob sie im Adapter eingestellt sind. Am 03.09. stand die Drehzahl 76 Minuten lang korrekt eingestellt, angekommen ist trotzdem nichts. Neue Meldung „Eingestellt, aber keine Werte&quot; nennt genau diesen Fall.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Die RaceBox-Kachel zeigt jetzt die gemessene Empfangsrate in Hz. Wichtig zu wissen: Welche Rate ankommt, bestimmt die RaceBox selbst — die Einstellung in der App kann sie nicht ändern. Jetzt siehst du wenigstens sofort, was tatsächlich läuft.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Steht die Vorflug-Zeile nicht auf grün, gibt es jetzt einen Knopf „Motordaten einrichten&quot;. Er fragt den Adapter ab, welche Werte dein Motorrad liefert, und stellt genau diese ein — im Stand, wo es zuverlässig klappt. Dauert etwa 10 Sekunden, danach kann es losgehen.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text"><strong>Neu vor dem Start:</strong> eine Zeile über der GPS-Anzeige sagt dir, ob Motordaten zu erwarten sind — und wenn nicht, warum. Häufigster Fall: Der Adapter nimmt nur eine App gleichzeitig an; läuft die Ridelink-App noch, bekommt MotionRecord keine Motordaten. Antippen prüft erneut.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Die Empfangsrate des OBD-Adapters ist jetzt während der Fahrt sichtbar — in der Kachel „Sensoren&quot; unter der IMU-Rate und in der Wingman-Kachel. Sie zeigt die letzten Sekunden, nicht den Schnitt seit Beginn: Bricht der Strom ein, siehst du es sofort.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Neue Schaltzähler-Kachel fürs Cockpit — zählt Hoch- und Runterschaltungen mit und zeigt den aktuellen Gang. Kurzes Kuppeln und Flackern der Gangerkennung werden dabei herausgerechnet, damit die Zahl stimmt.</span></li>
+        <li><span class="feature-icon">✨</span><span class="feature-text">Neue RaceBox-Kachel fürs Cockpit — Empfangsqualität, Satelliten, Tempo, Höhe, G-Kräfte und Kurs jetzt auch während der Fahrt sichtbar statt nur im Dashboard. In den Cockpit-Einstellungen auswählbar.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 30 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
+        <span class="version-number">v1.0 (30)</span>
+        <span class="version-title">App auf Englisch, stabilere Aufnahmen &amp; aufgeräumte Navigation</span>
+        <span class="version-date">10. August 2026</span>
+      </div>
+
+      <ul class="feature-list">
+        <li><span class="feature-icon">✨</span><span class="feature-text">Komplette App auf Englisch verfügbar — iPhone, Apple Watch und Widgets folgen der Systemsprache, inklusive dieses Changelogs.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text">Einstellungen sind jetzt global über „Mehr&quot; erreichbar statt hinter dem Aufnahme-Tab versteckt.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Absturz in der Montage-Kalibrierung behoben — betraf Build 29 auf iOS 18.7 und trat direkt beim Öffnen des Kalibrier-Bildschirms auf.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text"><strong>Lange Aufnahmen blockieren die App nicht mehr:</strong> Nach einem Absturz wurde die Wiederherstellung bisher komplett beim Start geladen — bei einer 2-Stunden-Aufnahme startete die App gar nicht mehr. Jetzt läuft sie im Hintergrund mit Fortschrittsanzeige, ein defekter Datenblock wird übersprungen statt alles zu verwerfen.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Aufnahme-Daten liegen jetzt an einem Ort, den iOS nicht eigenmächtig leeren darf — vorher konnte eine noch nicht gesicherte Aufnahme still verschwinden.</span></li>
+        <li><span class="feature-icon">🔧</span><span class="feature-text">Übrig gebliebene Live-Aktivität nach dem Beenden per Wischgeste wird aufgeräumt; Stoppen direkt vom Sperrbildschirm.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Tester-Rückmeldungen umgesetzt:</strong> gewählter Modus bleibt erhalten, der Stopp-Knopf ist dauerhaft sichtbar und die Übertragung von der Watch friert nicht mehr ein.</span></li>
+        <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Fortschrittsbalken statt Warte-Kringel:</strong> Beim Öffnen in Kurvenfokus siehst du jetzt in Prozent, wie weit die Übertragung ist — der Kringel drehte sich auch dann weiter, wenn nichts mehr passierte.</span></li>
+      </ul>
+    </div>
+
+    <!-- ═══════ v1.0 Build 29 ═══════ -->
+    <div class="version-entry">
+      <div class="version-dot"></div>
+      <div class="version-header">
         <span class="version-number">v1.0 (29)</span>
         <span class="version-title">Export überall, E-Mail-Versand &amp; Quick Share</span>
-        <span class="version-badge badge-live">Aktuell</span>
         <span class="version-date">17. Juli 2026</span>
       </div>
 
