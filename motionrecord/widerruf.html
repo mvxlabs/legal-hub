@@ -89,5 +89,37 @@
         </p>
     </div>
 
+
+<!-- ═══ Einheitlicher Footer (wie MotionRecord-Startseite), 16.10.2026 ═══ -->
+<style>
+.mr-sitefooter{background:linear-gradient(135deg,#0a1a1a 0%,#0d2626 100%);color:#fff;text-align:center;padding:48px 16px 40px;margin-top:48px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;border-top:1px solid rgba(255,255,255,0.08)}
+.mr-sitefooter .mr-meta{font-size:13px;color:#9fb3b3;margin:0 0 6px}
+.mr-sitefooter .mr-meta b{color:#00E5FF}
+.mr-sitefooter .mr-store{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;margin:28px 0}
+.mr-sitefooter .mr-store a{display:inline-flex;transition:transform .2s,opacity .2s}
+.mr-sitefooter .mr-store a:hover{transform:translateY(-2px);opacity:.92}
+.mr-sitefooter .mr-store img{height:56px;width:auto;display:block;max-width:100%}
+.mr-sitefooter .mr-links{margin-top:28px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px}
+.mr-sitefooter .mr-links a{color:#a7b8b8;text-decoration:none;font-size:14px}
+.mr-sitefooter .mr-links a:hover,.mr-sitefooter .mr-links a:focus-visible{color:#00E5FF}
+.mr-sitefooter .mr-copy{color:#7f9494;font-size:12px;margin-top:32px}
+@media (max-width:520px){.mr-sitefooter .mr-store img{height:44px}.mr-sitefooter .mr-links{gap:8px 16px}}
+</style>
+<footer class="mr-sitefooter">
+  <div class="mr-store">
+    <a href="https://testflight.apple.com/join/3yMgTTpn" aria-label="MotionRecord für iOS über TestFlight laden"><img src="img/appstore-badge.svg" alt="Laden im App Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=de.motionrecord" aria-label="MotionRecord bei Google Play laden"><img src="img/gplay-badge.png" alt="Jetzt bei Google Play"></a>
+  </div>
+  <nav class="mr-links" aria-label="MotionRecord-Seiten">
+    <a href="index.html">Startseite</a>
+    <a href="changelog.html">Changelog</a>
+    <a href="privacy-policy.html">Datenschutz</a>
+    <a href="terms-of-service.html">Nutzungsbedingungen</a>
+    <a href="widerruf.html">Widerrufsbelehrung</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="mailto:kurvenfokus@gmail.com">Kontakt</a>
+  </nav>
+  <p class="mr-copy">© 2026 MVXLabs · MotionRecord — Sensor-Recording für Motorräder</p>
+</footer>
 </body>
 </html>
