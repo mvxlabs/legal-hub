@@ -923,15 +923,15 @@
 
     <div class="stats-bar">
       <div class="stat-item">
-        <div class="stat-val android-color">v0.0.19</div>
+        <div class="stat-val android-color">v0.0.21</div>
         <div class="stat-label">Aktuelle Version</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">~115</div>
+        <div class="stat-val android-color">~130</div>
         <div class="stat-label">Features</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val android-color">19</div>
+        <div class="stat-val android-color">21</div>
         <div class="stat-label">Releases</div>
       </div>
       <div class="stat-item">
@@ -942,13 +942,58 @@
 
     <div class="timeline">
 
-      <!-- v0.0.18 -->
+      <!-- v0.0.21 (versionCode 34) -->
       <div class="version-entry">
         <div class="version-dot android current"></div>
         <div class="version-header">
+          <span class="version-number">v0.0.21</span>
+          <span class="version-title">Neues Design wie die iOS-App, Reisen &amp; Import mit Fortschritt</span>
+          <span class="version-badge badge-dev">Aktuell</span>
+          <span class="version-date">16. Okt 2026</span>
+        </div>
+        <div class="highlight-card featured-android">
+          <div class="highlight-title">Neue Features <span class="highlight-count">+8 Neuerungen</span></div>
+          <div class="highlight-features">
+            <span class="highlight-tag">iOS-Design hell &amp; dunkel</span>
+            <span class="highlight-tag">Reisen</span>
+            <span class="highlight-tag">Import mit Fortschritt</span>
+            <span class="highlight-tag">RideLink wie auf dem iPhone</span>
+          </div>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">🏷️</span><span class="feature-text"><strong>MotionRecord richtig benannt:</strong> Touren aus MotionRecord heißen beim Import und in der Tourliste jetzt „MotionRecord“ statt „RideLink“, das Aufnahmeprofil steht auf Deutsch da.</span></li>
+          <li><span class="feature-icon">⏳</span><span class="feature-text"><strong>Import mit Fortschritt:</strong> Lange Touren aus MotionRecord zeigen beim Import jetzt oben in der Tourliste, wie viele MB übertragen sind und welcher Rechenschritt gerade läuft. Die App bleibt dabei bedienbar.</span></li>
+          <li><span class="feature-icon">🎨</span><span class="feature-text"><strong>Neues Design wie die iOS-App:</strong> • Hell und Dunkel, umschaltbar im Menü unter „Erscheinungsbild“<br>• Größere Karte mit allen Knöpfen im Kartenbild, Vollbild ohne Statusleiste<br>• Wiedergabe-Leiste fest unten, neue Kopfzeile<br>• Schmale Kurven-Chips, Kennzahlen und Charts in den iOS-Farben</span></li>
+          <li><span class="feature-icon">🧳</span><span class="feature-text"><strong>Reisen:</strong> Touren per langem Druck zu Reisen zusammenfassen, mit Karte und Kennzahlen.</span></li>
+          <li><span class="feature-icon">📐</span><span class="feature-text"><strong>RideLink-Touren wie auf dem iPhone:</strong> Die gemessene Schräglage wird ungeglättet gezeigt, Kurven werden wie auf dem iPhone gezählt. Bereits importierte Touren für die neuen Werte neu importieren.</span></li>
+          <li><span class="feature-icon">📋</span><span class="feature-text"><strong>Touren zuerst:</strong> Statistik und Dein Jahr sind eingeklappt und einen Tipp entfernt.</span></li>
+          <li><span class="feature-icon">🔠</span><span class="feature-text"><strong>Große Schrift:</strong> Tourkarten bleiben bei Schriftgröße 200 % lesbar.</span></li>
+          <li><span class="feature-icon">🏳️</span><span class="feature-text"><strong>Flaggen stimmen wieder:</strong> Regionen zeigen die richtige Landesflagge.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.20 (versionCode 27, nicht einzeln im Store) -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
+          <span class="version-number">v0.0.20</span>
+          <span class="version-title">Genauere Strecken &amp; RaceBox-Erkennung</span>
+          <span class="version-date">27. Sep 2026 · im Store mit v0.0.21</span>
+        </div>
+        <ul class="feature-list">
+          <li><span class="feature-icon">🏁</span><span class="feature-text"><strong>Feinere Kurvenerkennung bei RaceBox-Aufzeichnungen:</strong> Sehr dicht aufgezeichnete Spuren (25 Hz) werden vor der Erkennung auf 5 m Punktabstand gebracht. Der Wert ist im Diagnose-Sheet einstellbar.</span></li>
+          <li><span class="feature-icon">🛰️</span><span class="feature-text"><strong>Genauere Strecken:</strong> GPS-Punkte mit mehr als 25 m Unsicherheit werden übersprungen, Aufnahmepausen zählen nicht mehr als Luftlinie.</span></li>
+          <li><span class="feature-icon">📊</span><span class="feature-text"><strong>Abtastrate wird echt gemessen:</strong> Die Diagnostik-Kachel zeigt jetzt die tatsächliche Abtastrate der Aufzeichnung.</span></li>
+          <li><span class="feature-icon">📁</span><span class="feature-text"><strong>RaceBox-Dateien werden erkannt:</strong> GPX-Exporte der RaceBox bekommen automatisch das passende Erkennungsprofil.</span></li>
+        </ul>
+      </div>
+
+      <!-- v0.0.19 -->
+      <div class="version-entry">
+        <div class="version-dot android"></div>
+        <div class="version-header">
           <span class="version-number">v0.0.19</span>
           <span class="version-title">Sicherungen bleiben liegen</span>
-          <span class="version-badge badge-dev">Aktuell</span>
           <span class="version-date">12. Sep 2026</span>
         </div>
         <ul class="feature-list">
@@ -957,6 +1002,9 @@
           <li><span class="feature-icon">📏</span><span class="feature-text"><strong>Pausen sind keine Fahrstrecke:</strong> Wer unterwegs anhält, bekam bisher die Luftlinie bis zum Wiederanfahren als gefahrene Kilometer angerechnet.</span></li>
           <li><span class="feature-icon">🧭</span><span class="feature-text"><strong>Kurven über Norden:</strong> Beim Glätten der Fahrtrichtung wurden 359° und 1° als weit auseinander behandelt und zur Gegenrichtung verrechnet — solche Kurven bekamen falsche Schräglagen.</span></li>
           <li><span class="feature-icon">🌍</span><span class="feature-text"><strong>Zweisprachig:</strong> Die App gibt es jetzt vollständig auf Englisch.</span></li>
+          <li><span class="feature-icon">🔄</span><span class="feature-text"><strong>Backup 2.0 — mit Umzugsservice:</strong> Das Backup ist komplett neu: Jede Sicherung wird mit Prüfsummen geschützt, und beim Einspielen fragt die App jetzt „Zusammenführen oder Ersetzen?" — nichts wird mehr stillschweigend gelöscht, doppelte Touren entstehen nicht. Das Beste: Backups aus der iPhone-App lassen sich auf Android übernehmen — und umgekehrt. Auch alte Backups beider Apps werden gelesen.</span></li>
+          <li><span class="feature-icon">🗑️</span><span class="feature-text"><strong>Papierkorb:</strong> Gelöschte Touren landen jetzt 30 Tage im Papierkorb (im Menü) und lassen sich mit einem Tipp wiederherstellen — erst danach wird endgültig gelöscht.</span></li>
+          <li><span class="feature-icon">📈</span><span class="feature-text"><strong>Ehrliche GPX-Importe:</strong> GPX-Aufzeichnungen ohne Zeitstempel bekommen keine erfundene 50-km/h-Pauschale mehr: Das Tempo folgt jetzt der Strecke (ein Punkt je Sekunde, wie auf iOS), und der Import-Bericht sagt klar, dass es eine Schätzung ist.</span></li>
         </ul>
       </div>
 
