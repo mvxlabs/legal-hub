@@ -220,6 +220,9 @@
             font-size: 17px;
             font-weight: 700;
         }
+    .ecosystem-card { display: block; max-width: 560px; margin: 30px auto; background: linear-gradient(135deg, rgba(0, 206, 209, 0.08), rgba(34, 197, 94, 0.04)); border: 1px solid rgba(0, 206, 209, 0.22); border-radius: 16px; padding: 22px 28px; text-align: center; text-decoration: none; color: inherit; transition: transform 0.25s ease, box-shadow 0.3s ease; }
+        .ecosystem-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0, 206, 209, 0.15); }
+        .ecosystem-card:focus-visible { outline: 2px solid #00CED1; outline-offset: 4px; }
     </style>
 </head>
 <body>
@@ -278,7 +281,7 @@
             </a>
             <a href="android-funktionsuebersicht.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(0,255,136,0.3);">
                 <h3 style="color: #22c55e;">📱 Android Funktionsübersicht</h3>
-                <p>Alle Features von v0.0.19 im Detail – Android.</p>
+                <p>Alle Features von v0.0.21 im Detail – Android.</p>
                 <span style="display: inline-block; margin-top: 10px; background: #22c55e; color: #000; font-weight: 700; font-size: 12px; padding: 3px 12px; border-radius: 20px;">Android 10+</span>
             </a>
             <a href="changelog.html" class="feature" style="text-decoration: none; color: inherit; border-color: rgba(255,215,0,0.3);">
@@ -291,6 +294,13 @@
         <p style="color: #666; font-size: 14px; margin-top: 20px;">
             Importiere deine GPX-Dateien von Calimoto, Motobit oder anderen GPS-Trackern.
         </p>
+
+        <!-- MotionRecord Ökosystem -->
+        <a href="https://mvxlabs.github.io/legal-hub/motionrecord/" class="ecosystem-card">
+            <span style="display: inline-block; background: #00CED1; color: #000; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px;">Ökosystem</span>
+            <p style="font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 4px;">Kurvenfokus + MotionRecord</p>
+            <p style="font-size: 14px; color: #aaa; margin-bottom: 0;">MotionRecord zeichnet deine Fahrt mit dem Smartphone auf. Kurvenfokus analysiert jede Kurve — Schräglage, Score, Heatmap. Zusammen ein Telemetrie-System, ganz ohne Zusatzhardware.</p>
+        </a>
 
         <!-- Store Buttons UNTEN -->
         <div class="store-buttons" style="margin-top: 40px;">
